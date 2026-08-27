@@ -103,7 +103,6 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      {/* Saudi Vision 2030 Logo (Bottom Right) */}
       <div className="absolute right-10 sm:right-20 lg:right-20 xl:right-25 bottom-6 z-20 pointer-events-none">
         <Image
           src="/Saudi_Vision_2030_logo.svg.webp"
