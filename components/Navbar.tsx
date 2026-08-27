@@ -10,6 +10,7 @@ import {
   ChevronRight,
   ChevronDown
 } from "lucide-react";
+import LiquidButton from "@/components/LiquidButton";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -296,12 +297,15 @@ export default function Navbar() {
 
             {/* Right Action CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <a
+              <LiquidButton
+                text="Get a Quote"
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-semibold text-white bg-blue-700 shadow-md transition-all duration-200 transform active:translate-y-0"
-              >
-                <span>Get a Quote</span>
-              </a>
+                btnColor="#1d4ed8"
+                hoverBgColor="#ffffff"
+                textColor="#ffffff"
+                hoverTextColor="#1d4ed8"
+                className="px-5 py-2.5 text-sm"
+              />
             </div>
 
             {/* Mobile Hamburger Button */}
@@ -471,13 +475,16 @@ export default function Navbar() {
           </div>
 
           <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 space-y-4">
-            <a
+            <LiquidButton
+              text="Get a Quote"
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl text-sm font-semibold text-white bg-blue-700 transition-colors"
-            >
-              <span>Get a Quote</span>
-            </a>
+              btnColor="#1d4ed8"
+              hoverBgColor="#ffffff"
+              textColor="#ffffff"
+              hoverTextColor="#1d4ed8"
+              className="w-full py-3 text-sm"
+            />
           </div>
         </div>
       </div>

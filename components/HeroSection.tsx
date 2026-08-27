@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import LiquidButton from "@/components/LiquidButton";
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,7 +15,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      image: "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Empowering Supply Chains\n& Mega Infrastructure",
       description: "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
       primaryBtn: { text: "Our Logistics Services", href: "#services" },
@@ -83,19 +84,25 @@ export default function HeroSection() {
 
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                  <a
+                  <LiquidButton
+                    text={slide.primaryBtn.text}
                     href={slide.primaryBtn.href}
-                    className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded text-sm sm:text-base font-semibold text-white bg-blue-700 transition-all duration-200 transform"
-                  >
-                    <span>{slide.primaryBtn.text}</span>
-                  </a>
+                    btnColor="#1d4ed8"
+                    hoverBgColor="#ffffff"
+                    textColor="#ffffff"
+                    hoverTextColor="#1d4ed8"
+                    className="px-7 py-3.5 text-sm sm:text-base font-semibold"
+                  />
 
-                  <a
+                  <LiquidButton
+                    text={slide.secondaryBtn.text}
                     href={slide.secondaryBtn.href}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded text-sm sm:text-base font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-all duration-200"
-                  >
-                    <span>{slide.secondaryBtn.text}</span>
-                  </a>
+                    btnColor="rgba(255, 255, 255, 0.1)"
+                    hoverBgColor="#ffffff"
+                    textColor="#ffffff"
+                    hoverTextColor="#1d4ed8"
+                    className="px-7 py-3.5 text-sm sm:text-base font-semibold border border-white/20 backdrop-blur-md"
+                  />
                 </div>
               </div>
             </div>
