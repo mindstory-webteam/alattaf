@@ -9,8 +9,8 @@ export default function Home() {
     <div className="flex flex-col flex-1 w-full bg-white">
       <HeroSection />
       <AboutSection />
-      <ProjectsSection />
       <CoverageSection />
+      <ProjectsSection />
       <Footer />
     </div>
   );

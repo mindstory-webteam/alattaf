@@ -203,9 +203,9 @@ export default function ProjectsSection() {
           >
             {filteredProjects.map((project) => (
               <SwiperSlide key={project.id} className="!h-auto flex">
-                <div className="relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm h-full">
+                <div className="relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-none overflow-hidden shadow-sm h-full">
                   {/* Image Container */}
-                  <div className="relative w-full aspect-[16/10] shrink-0 overflow-hidden bg-slate-100">
+                  <div className="relative w-full aspect-[16/10] shrink-0 overflow-hidden bg-slate-100 rounded-none">
                     <Image
                       src={project.image}
                       alt={project.title}
