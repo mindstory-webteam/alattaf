@@ -33,16 +33,16 @@ export default function AboutSection() {
   return (
     <section id="about" className="w-full bg-white py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden">
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-        {/* Top Row: Matched Height Image on Left + Comprehensive Content on Right */}
+        {/* Top Row: Matched Height Image on Left + Concise Content on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-stretch pb-16 lg:pb-20">
           {/* Left Side: Heavy Industrial Contracting Image Matching Content Height (Sharp Corners, No Hover) */}
-          <div className="lg:col-span-5 xl:col-span-5 flex">
-            <div className="relative w-full h-full min-h-[280px] sm:min-h-[320px] lg:min-h-full rounded-none overflow-hidden shadow-sm border border-slate-200/80 bg-slate-100">
+          <div className="lg:col-span-4 xl:col-span-4 flex">
+            <div className="relative w-full h-full min-h-[260px] sm:min-h-[300px] lg:min-h-full rounded-none overflow-hidden shadow-sm border border-slate-200/80 bg-slate-100">
               <Image
                 src="https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Al Attaf Advanced Contracting Heavy Industrial Infrastructure Operations"
                 fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 100vw, 34vw"
                 className="object-cover object-center"
                 priority
               />
@@ -50,7 +50,7 @@ export default function AboutSection() {
           </div>
 
           {/* Right Side: Detailed Company Profile Narrative */}
-          <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">
+          <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">
             {/* Dynamic Scroll-Driven Word-by-Word Ash to Black Heading */}
             <h2
               ref={headingRef}
@@ -88,10 +88,6 @@ export default function AboutSection() {
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
               Al Attaf Advanced Contracting Company is officially registered under Commercial Registration Number <strong className="text-slate-900 font-semibold"># 2059000287</strong> at the Saudi Arabian Ministry of Commerce in Abqaiq, and under Contracting Vendor Number <strong className="text-slate-900 font-semibold"># 10005728</strong> at Saudi Aramco in Dhahran. AAAC is also an active member of the Eastern Province Chamber of Commerce and maintains valid Zakat and tax compliance certification.
-            </p>
-
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-              Backed by experienced engineering leadership, certified HSE governance, a modern logistics transport fleet, and skilled manpower mobilization, AAAC delivers dependable, on-time project execution meeting the highest safety and engineering standards across the Kingdom.
             </p>
           </div>
         </div>

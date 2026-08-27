@@ -81,7 +81,7 @@ export default function CoverageSection() {
   ];
 
   return (
-    <section className="w-full bg-[#fafafa] py-16 sm:py-20 lg:py-28 font-sans border-b border-slate-200/60">
+    <section className="w-full bg-white py-16 sm:py-20 lg:py-28 font-sans border-b border-slate-200/60">
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         {/* Top Header Row */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-12 lg:pb-14">
