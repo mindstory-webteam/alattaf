@@ -18,9 +18,9 @@ import {
 export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "#about" },
-    { name: "Core Services", href: "#services" },
-    { name: "Human Resources", href: "#human-resources" },
+    { name: "About us", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Careers", href: "#careers" },
     { name: "Gallery", href: "#gallery" },
     { name: "Contact", href: "#contact" },
   ];
@@ -112,28 +112,28 @@ export default function Footer() {
             <div className="space-y-3.5 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-sky-400 mt-1 shrink-0" />
-                <span className="text-slate-400">
-                  Kingdom of Saudi Arabia
+                <span className="text-slate-400 leading-relaxed">
+                  6584-Abqaiq 33261-Taif street-Al madiynah, Kingdom of Saudi Arabia
                 </span>
               </div>
 
               <div className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-sky-400 shrink-0" />
                 <a 
-                  href="tel:+966500000000" 
+                  href="tel:+966135660243" 
                   className="text-slate-400 hover:text-sky-400 transition-colors font-medium"
                 >
-                  +966 50 000 0000
+                  00966 13 566 0243
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-sky-400 shrink-0" />
                 <a 
-                  href="mailto:info@alattaf.com" 
+                  href="mailto:info@alattafcompany.com" 
                   className="text-slate-400 hover:text-sky-400 transition-colors font-medium"
                 >
-                  info@alattaf.com
+                  info@alattafcompany.com
                 </a>
               </div>
 

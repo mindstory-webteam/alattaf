@@ -6,13 +6,15 @@ import Link from "next/link";
 import { 
   Menu, 
   X, 
-  Phone, 
+  Phone,
   ChevronRight,
   ChevronDown
 } from "lucide-react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
@@ -34,7 +36,7 @@ export default function Navbar() {
       items: [
         { name: "Material Supply To Saudi Aramco", href: "#services" },
         { name: "Supply of Equipment & Portable office", href: "#services" },
-        { name: "Manpower Supply", href: "#human-resources" },
+        { name: "Manpower Supply", href: "#services" },
         { name: "T&I Work On A/C Cooling Towers", href: "#services" },
         { name: "Computer It Works & Maintenance", href: "#services" },
       ],
@@ -43,16 +45,31 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      const currentScrollY = window.scrollY;
+
+      // When mobile menu is open, don't hide
+      if (isMobileMenuOpen) return;
+
+      // If scrolling down past threshold, hide navbar
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // If scrolling up (reverse scroll), show navbar
+        setIsVisible(true);
+      }
+
+      if (currentScrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -64,7 +81,81 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out font-sans ${
+      isVisible ? "translate-y-0" : "-translate-y-full"
+    }`}>
+      {/* Top Bar - Contact, Location & Social Information (Text Only) */}
+      <div className="w-full bg-slate-900 text-slate-300 text-xs border-b border-slate-800 transition-all duration-300">
+        <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-24 py-2 flex items-center justify-between">
+          {/* Left Side: Phone, Email & Location */}
+          <div className="flex items-center space-x-4 sm:space-x-6">
+            <a 
+              href="tel:+966135660243" 
+              className="hover:text-sky-400 transition-colors"
+            >
+              00966 13 566 0243
+            </a>
+
+            <a 
+              href="mailto:info@alattafcompany.com" 
+              className="hover:text-sky-400 transition-colors"
+            >
+              info@alattafcompany.com
+            </a>
+
+            <span className="hidden md:inline text-slate-400">
+              6584-Abqaiq 33261-Taif street-Al madiynah
+            </span>
+          </div>
+
+          {/* Right Side: Social Icons */}
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 text-slate-400">
+            
+
+              {/* Twitter / X */}
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-sky-400 transition-colors"
+                aria-label="Twitter / X"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-sky-400 transition-colors"
+                aria-label="Instagram"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+
+              {/* Facebook */}
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-sky-400 transition-colors"
+                aria-label="Facebook"
+              >
+                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.597 0 9 1.583 9 4.615V8z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Main Navigation Bar */}
       <nav 
         className={`w-full bg-white transition-all duration-300 border-b border-slate-100 shadow-sm ${
@@ -92,7 +183,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation Links (Centered) */}
-            <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-3">
               {/* Home */}
               <Link
                 href="/"
@@ -106,31 +197,31 @@ export default function Navbar() {
                 Home
               </Link>
 
-              {/* About Us */}
+              {/* About us */}
               <Link
                 href="#about"
-                onClick={() => setActiveItem("About Us")}
+                onClick={() => setActiveItem("About us")}
                 className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
-                  activeItem === "About Us"
+                  activeItem === "About us"
                     ? "text-sky-600 font-bold"
                     : "text-slate-800 hover:text-sky-600"
                 }`}
               >
-                About Us
+                About us
               </Link>
 
-              {/* Core Services Dropdown */}
+              {/* Services Dropdown */}
               <div className="relative group py-2">
                 <button
                   type="button"
-                  onClick={() => setActiveItem("Core Services")}
+                  onClick={() => setActiveItem("Services")}
                   className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg ${
-                    activeItem === "Core Services"
+                    activeItem === "Services"
                       ? "text-sky-600 font-bold"
                       : "text-slate-800 hover:text-sky-600"
                   }`}
                 >
-                  <span>Core Services</span>
+                  <span>Services</span>
                   <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                 </button>
 
@@ -148,7 +239,7 @@ export default function Navbar() {
                               <li key={iIdx}>
                                 <a
                                   href={item.href}
-                                  onClick={() => setActiveItem("Core Services")}
+                                  onClick={() => setActiveItem("Services")}
                                   className="block px-2.5 py-2 rounded-none text-xs font-medium text-slate-700 hover:text-sky-600 hover:bg-sky-50 transition-colors leading-snug"
                                 >
                                   {item.name}
@@ -163,17 +254,17 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Human Resources */}
+              {/* Careers */}
               <Link
-                href="#human-resources"
-                onClick={() => setActiveItem("Human Resources")}
+                href="#careers"
+                onClick={() => setActiveItem("Careers")}
                 className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
-                  activeItem === "Human Resources"
+                  activeItem === "Careers"
                     ? "text-sky-600 font-bold"
                     : "text-slate-800 hover:text-sky-600"
                 }`}
               >
-                Human Resources
+                Careers
               </Link>
 
               {/* Gallery */}
@@ -207,7 +298,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-4">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-semibold text-white bg-blue-700  shadow-md transition-all duration-200 transform active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded text-sm font-semibold text-white bg-blue-700 shadow-md transition-all duration-200 transform active:translate-y-0"
               >
                 <span>Get a Quote</span>
               </a>
@@ -243,7 +334,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Navigation */}
       <div
-        className={`fixed inset-x-0 top-[65px] sm:top-[73px] bottom-0 bg-slate-900/60 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-x-0 top-[100px] sm:top-[110px] bottom-0 bg-slate-900/60 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMobileMenuOpen(false)}
@@ -274,31 +365,31 @@ export default function Navbar() {
             <Link
               href="#about"
               onClick={() => {
-                setActiveItem("About Us");
+                setActiveItem("About us");
                 setIsMobileMenuOpen(false);
               }}
               className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
-                activeItem === "About Us"
+                activeItem === "About us"
                   ? "bg-sky-50 text-sky-600 dark:bg-sky-950/50 dark:text-sky-400"
                   : "text-slate-750 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800/60"
               }`}
             >
-              <span>About Us</span>
+              <span>About us</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </Link>
 
-            {/* Core Services Mobile Accordion */}
+            {/* Services Mobile Accordion */}
             <div className="overflow-hidden">
               <button
                 type="button"
                 onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)}
                 className={`flex items-center justify-between w-full px-4 py-3 text-base font-semibold transition-all ${
-                  activeItem === "Core Services"
+                  activeItem === "Services"
                     ? "bg-sky-50 text-sky-600 dark:bg-sky-950/50 dark:text-sky-400"
                     : "text-slate-750 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800/60"
                 }`}
               >
-                <span>Core Services</span>
+                <span>Services</span>
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpenMobile ? "rotate-180" : ""}`} />
               </button>
 
@@ -315,7 +406,7 @@ export default function Navbar() {
                             key={iIdx}
                             href={item.href}
                             onClick={() => {
-                              setActiveItem("Core Services");
+                              setActiveItem("Services");
                               setIsMobileMenuOpen(false);
                             }}
                             className="block px-2.5 py-1.5 rounded-none text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-sky-600 hover:bg-white dark:hover:bg-slate-800"
@@ -331,18 +422,18 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="#human-resources"
+              href="#careers"
               onClick={() => {
-                setActiveItem("Human Resources");
+                setActiveItem("Careers");
                 setIsMobileMenuOpen(false);
               }}
               className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
-                activeItem === "Human Resources"
+                activeItem === "Careers"
                   ? "bg-sky-50 text-sky-600 dark:bg-sky-950/50 dark:text-sky-400"
                   : "text-slate-750 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800/60"
               }`}
             >
-              <span>Human Resources</span>
+              <span>Careers</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </Link>
 

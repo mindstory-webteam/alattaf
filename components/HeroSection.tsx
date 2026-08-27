@@ -50,7 +50,7 @@ export default function HeroSection() {
           disableOnInteraction: false,
         }}
         loop={true}
-        className="w-full h-[580px] sm:h-[600px] lg:h-[650px]"
+        className="w-full h-[500px] sm:h-[540px] lg:h-[620px]"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative w-full h-full">
@@ -104,7 +104,7 @@ export default function HeroSection() {
       </Swiper>
 
       {/* Saudi Vision 2030 Logo (Bottom Right) */}
-      <div className="absolute right-4 sm:right-6 lg:right-8 bottom-6 z-20 pointer-events-none">
+      <div className="absolute right-10 sm:right-20 lg:right-20 xl:right-25 bottom-6 z-20 pointer-events-none">
         <Image
           src="/Saudi_Vision_2030_logo.svg.webp"
           alt="Saudi Vision 2030 Logo"

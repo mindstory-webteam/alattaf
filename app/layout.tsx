@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} min-h-screen flex flex-col bg-white text-slate-900 antialiased`}>
         <Navbar />
-        <main className="flex-1 flex flex-col pt-[72px] sm:pt-[80px] bg-white">
+        <main className="flex-1 flex flex-col pt-[104px] sm:pt-[116px] bg-white">
           {children}
         </main>
         <WhatsAppButton />
