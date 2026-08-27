@@ -48,3 +48,23 @@ body {
   width: 32px;
   background: linear-gradient(to right, #0284c7, #38bdf8);
 }
+
+/* Infinite Marquee Animation for Brand Logos */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
