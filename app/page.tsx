@@ -4,6 +4,7 @@ import HomeVisionMission from "@/components/HomeVisionMission";
 import WorkProcessSection from "@/components/WorkProcessSection";
 import CoverageSection from "@/components/CoverageSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <CoverageSection />
       <ProjectsSection />
       <HomeVisionMission />
+      <FaqSection />
       <Footer />
     </div>
   );
