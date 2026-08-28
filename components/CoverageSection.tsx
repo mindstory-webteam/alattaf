@@ -98,18 +98,33 @@ export default function CoverageSection() {
             </div>
           </div>
 
-          {/* Right Column: 2x2 Stats Grid with Animated Framer Motion Counter */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-10 lg:gap-12 pl-0 lg:pl-4">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="space-y-2">
-                <div className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 tracking-tight">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+          {/* Right Column: 2x2 Stats Grid + Location Info at Bottom */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-8 lg:space-y-10 pl-0 lg:pl-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-10 lg:gap-12">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="space-y-2">
+                  <div className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 tracking-tight">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+                    {stat.label}
+                  </p>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
-                  {stat.label}
+              ))}
+            </div>
+
+            {/* Location block under stats on right side bottom */}
+            <div className="pt-6 border-t border-slate-200/80 flex items-start gap-3 text-slate-700">
+            
+              <div className="space-y-0.5">
+                <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
+                  Headquarters & Central Operations Base
+                </span>
+                <p className="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
+                  6584-Abqaiq 33261-Taif street-Al madiynah, Saudi Arabia
                 </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import HomeVisionMission from "@/components/HomeVisionMission";
 import WorkProcessSection from "@/components/WorkProcessSection";
+import ServicesSection from "@/components/ServicesSection";
 import CoverageSection from "@/components/CoverageSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import FaqSection from "@/components/FaqSection";
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <WorkProcessSection />
+      <ServicesSection />
       <CoverageSection />
       <ProjectsSection />
       <HomeVisionMission />

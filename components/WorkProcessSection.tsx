@@ -72,8 +72,8 @@ export default function WorkProcessSection() {
                 key={step.id}
                 className="group flex flex-col items-start transition-all duration-300"
               >
-                {/* Top Rounded Squircle Icon Badge with constant soft background */}
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center text-slate-900 shadow-xs mb-8 sm:mb-10 transition-transform duration-200 group-hover:scale-105">
+                {/* Top Rounded Squircle Icon Badge with light blue background and black icon */}
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#e0f2fe] border border-sky-200/80 flex items-center justify-center text-slate-900 shadow-xs mb-8 sm:mb-10 transition-transform duration-200 group-hover:scale-105">
                   <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900" strokeWidth={2.1} />
                 </div>
 
