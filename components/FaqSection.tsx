@@ -46,7 +46,7 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="w-full bg-white py-16 sm:py-20 lg:py-28 font-sans overflow-hidden">
+    <section id="faq" className="w-full bg-[#fafafa] py-16 sm:py-20 lg:py-28 font-sans overflow-hidden">
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Heading & Contact Card */}
@@ -89,8 +89,8 @@ export default function FaqSection() {
                   key={faq.id}
                   className={`rounded-2xl transition-all duration-200 border ${
                     isOpen
-                      ? "bg-slate-50/90 border-slate-200 shadow-xs"
-                      : "bg-slate-50/50 hover:bg-slate-50 border-slate-200/60"
+                      ? "bg-white border-slate-300 shadow-sm"
+                      : "bg-white/80 hover:bg-white border-slate-200/80 hover:border-slate-300 shadow-xs"
                   } p-5 sm:p-6 cursor-pointer`}
                   onClick={() => toggleFaq(index)}
                 >
