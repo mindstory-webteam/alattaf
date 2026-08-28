@@ -71,8 +71,8 @@ export default function CoverageSection() {
 
           <div className="shrink-0 pt-1">
             <LiquidButton
-              text="View all services"
-              href="#services"
+              text="Explore our coverage"
+              href="#contact"
               btnColor="#1d4ed8"
               hoverBgColor="#ffffff"
               textColor="#ffffff"
