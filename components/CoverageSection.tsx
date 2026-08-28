@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import LiquidButton from "@/components/LiquidButton";
+import ScrollRevealText from "@/components/ScrollRevealText";
 
 function AnimatedCounter({ value, suffix = "+" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement | null>(null);
@@ -32,30 +33,7 @@ function AnimatedCounter({ value, suffix = "+" }: { value: number; suffix?: stri
 }
 
 export default function CoverageSection() {
-  const headingRef = useRef<HTMLHeadingElement | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
   const headingText = "We deliver comprehensive contracting, logistics, and industrial solutions throughout the Kingdom.";
-  const words = headingText.split(" ");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!headingRef.current) return;
-      const rect = headingRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Start transition when top of heading enters 90% of viewport, complete at 35% of viewport
-      const start = windowHeight * 0.90;
-      const end = windowHeight * 0.35;
-      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-      
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const stats = [
     {
@@ -85,35 +63,11 @@ export default function CoverageSection() {
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         {/* Top Header Row */}
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-12 lg:pb-14">
-          <h2
-            ref={headingRef}
+          <ScrollRevealText
+            text={headingText}
+            as="h2"
             className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight max-w-3xl"
-          >
-            {words.map((word, i) => {
-              const totalWords = words.length;
-              const startThreshold = i / totalWords;
-              const endThreshold = (i + 1) / totalWords;
-              const wordProgress = Math.min(
-                Math.max((scrollProgress - startThreshold) / (endThreshold - startThreshold), 0),
-                1
-              );
-
-              // Interpolate from Ash Gray rgb(161, 161, 170) to Black rgb(15, 23, 42)
-              const r = Math.round(161 - wordProgress * (161 - 15));
-              const g = Math.round(161 - wordProgress * (161 - 23));
-              const b = Math.round(170 - wordProgress * (170 - 42));
-
-              return (
-                <span
-                  key={i}
-                  style={{ color: `rgb(${r}, ${g}, ${b})` }}
-                  className="inline-block mr-[0.28em] transition-colors duration-150 ease-out"
-                >
-                  {word}
-                </span>
-              );
-            })}
-          </h2>
+          />
 
           <div className="shrink-0 pt-1">
             <LiquidButton

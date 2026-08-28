@@ -1,40 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { ChevronRight } from "lucide-react";
+import LiquidButton from "@/components/LiquidButton";
+import ScrollRevealText from "@/components/ScrollRevealText";
 
 import "swiper/css";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState<"all" | "ongoing" | "completed">("all");
-  const headingRef = useRef<HTMLDivElement | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const headingText =
     "Crafting the Future, Honoring the Past. Our portfolio is a testament to our exceptional skills and proficiency in handling complex challenges, consistently delivering outstanding turnkey results across Saudi Arabia.";
-  const words = headingText.split(" ");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!headingRef.current) return;
-      const rect = headingRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Start transition when top enters 90% of viewport, complete at 35% of viewport
-      const start = windowHeight * 0.90;
-      const end = windowHeight * 0.35;
-      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const allProjects = [
     {
@@ -99,42 +79,31 @@ export default function ProjectsSection() {
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         {/* Header Row: Title on Left + Description and Filters on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pb-14 lg:pb-16">
-          {/* Left Column: Bold Title */}
-          <div className="lg:col-span-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-black text-slate-900 tracking-tight leading-[1.05] uppercase">
-              Our <br />
-              <span>Projects</span>
+          {/* Left Column: Title & Action Button */}
+          <div className="lg:col-span-4 flex flex-col items-start space-y-4">
+            <h2 className="text-xl sm:text-2xl lg:text-[25px] font-bold text-slate-900 tracking-tight leading-snug">
+              Our Projects
             </h2>
+            <LiquidButton
+              text="Download Brochure (PDF)"
+              href="/brochure.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              btnColor="#1d4ed8"
+              hoverBgColor="#ffffff"
+              textColor="#ffffff"
+              hoverTextColor="#1d4ed8"
+              className="px-5 py-2.5 text-xs sm:text-sm font-semibold"
+            />
           </div>
 
           {/* Right Column: Narrative with Word-by-Word Scroll Reveal + Action Filters */}
-          <div ref={headingRef} className="lg:col-span-8 space-y-5">
-            <h3 className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify">
-              {words.map((word, i) => {
-                const totalWords = words.length;
-                const startThreshold = i / totalWords;
-                const endThreshold = (i + 1) / totalWords;
-                const wordProgress = Math.min(
-                  Math.max((scrollProgress - startThreshold) / (endThreshold - startThreshold), 0),
-                  1
-                );
-
-                // Interpolate from Ash Gray rgb(161, 161, 170) to Black rgb(15, 23, 42)
-                const r = Math.round(161 - wordProgress * (161 - 15));
-                const g = Math.round(161 - wordProgress * (161 - 23));
-                const b = Math.round(170 - wordProgress * (170 - 42));
-
-                return (
-                  <span
-                    key={i}
-                    style={{ color: `rgb(${r}, ${g}, ${b})` }}
-                    className="inline-block mr-[0.28em] transition-colors duration-150 ease-out"
-                  >
-                    {word}
-                  </span>
-                );
-              })}
-            </h3>
+          <div className="lg:col-span-8 space-y-5">
+            <ScrollRevealText
+              text={headingText}
+              as="h3"
+              className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
+            />
 
             {/* Filter Navigation */}
             <div className="flex flex-wrap items-center gap-6 pt-2 text-sm font-semibold">

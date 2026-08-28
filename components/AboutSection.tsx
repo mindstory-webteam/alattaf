@@ -1,34 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
+import ScrollRevealText from "@/components/ScrollRevealText";
 
 export default function AboutSection() {
   const dummyList = Array.from({ length: 12 }, (_, i) => i + 1);
-  const headingRef = useRef<HTMLHeadingElement | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
   const headingText = "We take this opportunity to introduce Al Attaf Advanced Contracting Company (AAAC), a 100% Saudi-owned enterprise headquartered in Abqaiq, Kingdom of Saudi Arabia.";
-  const words = headingText.split(" ");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!headingRef.current) return;
-      const rect = headingRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Start transition when top of heading enters 90% of viewport, complete at 35% of viewport
-      const start = windowHeight * 0.90;
-      const end = windowHeight * 0.35;
-      const progress = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-      
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <section id="about" className="w-full bg-white py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden">
@@ -52,42 +30,18 @@ export default function AboutSection() {
           {/* Right Side: Detailed Company Profile Narrative */}
           <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">
             {/* Dynamic Scroll-Driven Word-by-Word Ash to Black Heading */}
-            <h2
-              ref={headingRef}
+            <ScrollRevealText
+              text={headingText}
+              as="h2"
               className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
-            >
-              {words.map((word, i) => {
-                const totalWords = words.length;
-                const startThreshold = i / totalWords;
-                const endThreshold = (i + 1) / totalWords;
-                const wordProgress = Math.min(
-                  Math.max((scrollProgress - startThreshold) / (endThreshold - startThreshold), 0),
-                  1
-                );
-
-                // Interpolate from Ash Gray rgb(161, 161, 170) to Black rgb(15, 23, 42)
-                const r = Math.round(161 - wordProgress * (161 - 15));
-                const g = Math.round(161 - wordProgress * (161 - 23));
-                const b = Math.round(170 - wordProgress * (170 - 42));
-
-                return (
-                  <span
-                    key={i}
-                    style={{ color: `rgb(${r}, ${g}, ${b})` }}
-                    className="inline-block mr-[0.28em] transition-colors duration-150 ease-out"
-                  >
-                    {word}
-                  </span>
-                );
-              })}
-            </h2>
+            />
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-              Formed in 1978 (1398H), AAAC commenced operations in direct partnership with Saudi Aramco. Over more than 45 years of continuous operational growth, we have built a stable financial base and proven expertise executing turnkey Civil, Mechanical, Electrical, and Instrumentation projects for Saudi Aramco and prominent private enterprise clients across the Eastern Province and nationwide.
+              Formed in 1978 (1398H), AAAC commenced operations in direct partnership with <span className="text-blue-700 font-semibold">Saudi Aramco</span>, the Kingdom&apos;s premier global energy and industrial enterprise. Over more than 45 years of continuous operational growth, we have built a trusted legacy executing turnkey Civil, Mechanical, Electrical, Instrumentation, and Plant Maintenance (T&amp;I) projects across Aramco facilities and major industrial hubs throughout Saudi Arabia.
             </p>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-              Al Attaf Advanced Contracting Company is officially registered under Commercial Registration Number <strong className="text-slate-900 font-semibold"># 2059000287</strong> at the Saudi Arabian Ministry of Commerce in Abqaiq, and under Contracting Vendor Number <strong className="text-slate-900 font-semibold"># 10005728</strong> at Saudi Aramco in Dhahran. AAAC is also an active member of the Eastern Province Chamber of Commerce and maintains valid Zakat and tax compliance certification.
+              Headquartered in Abqaiq, Al Attaf Advanced Contracting is officially registered with the Saudi Ministry of Commerce (<span className="text-blue-700 font-semibold">CR # 2059000287</span>) and recognized as an approved contractor under <span className="text-blue-700 font-semibold">Saudi Aramco Vendor # 10005728</span> (Dhahran), upholding top-tier Saudi engineering governance, certified HSE standards, and dependable Kingdom-wide project delivery.
             </p>
           </div>
         </div>
