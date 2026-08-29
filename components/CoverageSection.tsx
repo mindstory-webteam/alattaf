@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { MapPin } from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
 
@@ -33,7 +34,7 @@ function AnimatedCounter({ value, suffix = "+" }: { value: number; suffix?: stri
 }
 
 export default function CoverageSection() {
-  const headingText = "We deliver comprehensive contracting, logistics, and industrial solutions throughout the Kingdom.";
+  const headingText = "We deliver comprehensive contracting, turnkey engineering, and heavy logistics operations,\nproviding dependable industrial maintenance, specialized material supply, and certified manpower,\nempowering mega infrastructure projects with uncompromised quality throughout the Kingdom.";
 
   const stats = [
     {
@@ -66,7 +67,7 @@ export default function CoverageSection() {
           <ScrollRevealText
             text={headingText}
             as="h2"
-            className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight max-w-3xl"
+            className="text-lg sm:text-xl lg:text-[23px] font-bold leading-relaxed tracking-tight max-w-4xl"
           />
 
           <div className="shrink-0 pt-1">
@@ -84,17 +85,44 @@ export default function CoverageSection() {
 
         {/* Main Grid: Left Map + Right Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Saudi Arabia Map (Clean with No Pins) */}
+          {/* Left Column: Saudi Arabia Map with Google Maps Red Pin */}
           <div className="lg:col-span-6 relative flex items-center justify-center p-4 sm:p-6">
-            <div className="relative w-full aspect-[4/3] max-w-[500px]">
+            <div className="relative w-full aspect-[1000/824] max-w-[500px]">
               <Image
                 src="/sa-map.svg"
-                alt="Saudi Arabia Map"
+                alt="Saudi Arabia Map - Al Attaf Headquarters Abqaiq"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain object-center"
                 priority
               />
+
+              {/* Google Maps Style Red Pin for Abqaiq Location */}
+              <div 
+                className="absolute -translate-x-1/2 -translate-y-full z-20 pointer-events-none"
+                style={{ top: "38.8%", left: "69.5%" }}
+              >
+                {/* Classic Google Maps Red Pin SVG */}
+                <svg 
+                  viewBox="0 0 24 36" 
+                  className="w-6 h-9 sm:w-7 sm:h-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]"
+                  fill="none"
+                >
+                  <path 
+                    d="M12 0C5.373 0 0 5.373 0 12c0 8.5 10.5 21.5 11.3 22.5.4.5 1 .5 1.4 0C13.5 33.5 24 20.5 24 12c0-6.627-5.373-12-12-12z" 
+                    fill="url(#gmaps_red_gradient)" 
+                  />
+                  <circle cx="12" cy="11.5" r="4.2" fill="#FFFFFF" />
+                  <circle cx="12" cy="11.5" r="2" fill="#B31412" opacity="0.15" />
+
+                  <defs>
+                    <linearGradient id="gmaps_red_gradient" x1="0" y1="0" x2="24" y2="36" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#EA4335" />
+                      <stop offset="1" stopColor="#D93025" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -120,7 +148,7 @@ export default function CoverageSection() {
                 <span className="text-[11px] font-bold tracking-wider text-slate-500 uppercase block">
                   Headquarters & Central Operations Base
                 </span>
-                <p className="text-xs sm:text-sm font-medium text-slate-800 leading-relaxed">
+                <p className="text-xs sm:text-sm font-semibold text-slate-900 leading-relaxed">
                   6584-Abqaiq 33261-Taif street-Al madiynah, Saudi Arabia
                 </p>
               </div>
