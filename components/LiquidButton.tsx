@@ -8,10 +8,10 @@ interface LiquidButtonProps {
   href?: string;
   onClick?: () => void;
   className?: string;
-  btnColor?: string; // Base button background (defaults to #1d4ed8 / blue-700)
-  hoverBgColor?: string; // Hover ripple color (defaults to #ffffff / white)
-  textColor?: string; // Initial text color (defaults to #ffffff)
-  hoverTextColor?: string; // Text color on hover (defaults to #1d4ed8)
+  btnColor?: string; 
+  hoverBgColor?: string; 
+  textColor?: string;
+  hoverTextColor?: string; 
   target?: string;
   rel?: string;
   type?: "button" | "submit" | "reset";
