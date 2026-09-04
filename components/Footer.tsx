@@ -38,77 +38,131 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#fafafa] text-slate-600 font-sans pt-12 pb-8">
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-        {/* Main Boxed Container with 1600px Max Width, Visible Outer Border & Precise Architectural SVG Joints */}
+        {/* Main Boxed Container with 1600px Max Width, Visible Outer Border & SVG Joints from frontend/public/joints */}
         <div className="relative w-full border border-slate-300 bg-[#fafafa]">
-          {/* 4 Outer Corner Joints (10x10) - Uniform 1px thickness across all screens */}
-          <div className="absolute -top-px -left-px w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M10 0V1H1V10H0V0H10Z" fill="currentColor" />
-            </svg>
+          {/* 4 Outer Corner Joints (10x10) from frontend/public/joints */}
+          {/* Top-Left Corner */}
+          <div className="absolute -top-px -left-px w-[10px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/top-left-corner.svg"
+              alt=""
+              width={10}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
-          <div className="absolute -top-px -right-px w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M10 0V10H9V1H0V0H10Z" fill="currentColor" />
-            </svg>
+          {/* Top-Right Corner */}
+          <div className="absolute -top-px -right-px w-[10px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/top-right-corner.svg"
+              alt=""
+              width={10}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
-          <div className="absolute -bottom-px -left-px w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M0 0H1V9H10V10H0V0Z" fill="currentColor" />
-            </svg>
+          {/* Bottom-Left Corner */}
+          <div className="absolute -bottom-px -left-px w-[10px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/bottom-left-corner.svg"
+              alt=""
+              width={10}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
-          <div className="absolute -bottom-px -right-px w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M10 0H9V9H0V10H10V0Z" fill="currentColor" />
-            </svg>
+          {/* Bottom-Right Corner */}
+          <div className="absolute -bottom-px -right-px w-[10px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/bottom-right-corner.svg"
+              alt=""
+              width={10}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
-          {/* Vertical Continuous Divider Lines & Precision T-Joints on Parent Frame */}
+          {/* Vertical Continuous Divider Lines & Precision T-Joints on Parent Frame (Desktop) */}
           {/* Divider 1 at 33.333333% (between Section 1 & Section 2) */}
-          <div className="hidden lg:block absolute top-0 bottom-0 left-[33.333333%] w-px bg-slate-300 pointer-events-none" />
-          <div className="hidden lg:block absolute -top-px left-[calc(33.333333%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M0 0H10V1H5V10H4V1H0V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute top-0 bottom-0 left-[33.333333%] w-px bg-slate-300 pointer-events-none" />
+          <div className="hidden xl:block absolute -top-px left-[calc(33.333333%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/top-to-bottom-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
-          <div className="hidden lg:block absolute -bottom-px left-[calc(33.333333%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M4 0H5V9H10V10H0V9H4V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute -bottom-px left-[calc(33.333333%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/bottom-to-top-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
           {/* Divider 2 at 50% (between Section 2 & Section 3) */}
-          <div className="hidden lg:block absolute top-0 bottom-0 left-[50%] w-px bg-slate-300 pointer-events-none" />
-          <div className="hidden lg:block absolute -top-px left-[calc(50%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M0 0H10V1H5V10H4V1H0V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute top-0 bottom-0 left-[50%] w-px bg-slate-300 pointer-events-none" />
+          <div className="hidden xl:block absolute -top-px left-[calc(50%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/top-to-bottom-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
-          <div className="hidden lg:block absolute -bottom-px left-[calc(50%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M4 0H5V9H10V10H0V9H4V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute -bottom-px left-[calc(50%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/bottom-to-top-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
           {/* Divider 3 at 75% (between Section 3 & Section 4) */}
-          <div className="hidden lg:block absolute top-0 bottom-0 left-[75%] w-px bg-slate-300 pointer-events-none" />
-          <div className="hidden lg:block absolute -top-px left-[calc(75%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M0 0H10V1H5V10H4V1H0V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute top-0 bottom-0 left-[75%] w-px bg-slate-300 pointer-events-none" />
+          <div className="hidden xl:block absolute -top-px left-[calc(75%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/top-to-bottom-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
-          <div className="hidden lg:block absolute -bottom-px left-[calc(75%-4px)] w-[10px] h-[10px] z-30 pointer-events-none text-slate-800">
-            <svg viewBox="0 0 10 10" width="10" height="10" fill="none" shapeRendering="crispEdges" className="block w-full h-full">
-              <path d="M4 0H5V9H10V10H0V9H4V0Z" fill="currentColor" />
-            </svg>
+          <div className="hidden xl:block absolute -bottom-px left-[calc(75%-9px)] w-[19px] h-[10px] z-30 pointer-events-none">
+            <Image
+              src="/joints/bottom-to-top-Tjoint.svg"
+              alt=""
+              width={19}
+              height={10}
+              className="block w-full h-full"
+              unoptimized
+            />
           </div>
 
           {/* 4 Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 divide-y md:divide-y-0 lg:divide-y-0 relative z-10">
+          <div className="grid grid-cols-1 xl:grid-cols-12 relative z-10">
             {/* Section 1: Brand, Headquarters & Socials (4 cols) */}
-            <div className="lg:col-span-4 p-6 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
+            <div className="xl:col-span-4 p-6 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <Link href="/" className="inline-block">
                   <Image
@@ -204,8 +258,40 @@ export default function Footer() {
               </div>
             </div>
 
+            {/* Horizontal Separation Divider 1 (between Section 1 & Section 2) on sm & mid screens */}
+            <div className="xl:hidden relative w-full h-px bg-slate-300">
+              {/* Left T-Joint on Left Border (pointing right into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", left: "-1px"}}
+              >
+                <Image
+                  src="/joints/left-to-right-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+              {/* Right T-Joint on Right Border (pointing left into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", right: "-1px"}}
+              >
+                <Image
+                  src="/joints/right-to-left-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+            </div>
+
             {/* Section 2: Navigation Links (2 cols) */}
-            <div className="lg:col-span-2 p-6 sm:p-7 lg:p-8 space-y-4">
+            <div className="xl:col-span-2 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Navigation
               </h3>
@@ -223,8 +309,40 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Horizontal Separation Divider 2 (between Section 2 & Section 3) on sm & mid screens */}
+            <div className="xl:hidden relative w-full h-px bg-slate-300">
+              {/* Left T-Joint on Left Border (pointing right into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", left: "-1px"}}
+              >
+                <Image
+                  src="/joints/left-to-right-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+              {/* Right T-Joint on Right Border (pointing left into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", right: "-1px"}}
+              >
+                <Image
+                  src="/joints/right-to-left-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+            </div>
+
             {/* Section 3: Construction & Engineering Works (3 cols) */}
-            <div className="lg:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
+            <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Construction & Engineering Works
               </h3>
@@ -242,8 +360,40 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Horizontal Separation Divider 3 (between Section 3 & Section 4) on sm & mid screens */}
+            <div className="xl:hidden relative w-full h-px bg-slate-300">
+              {/* Left T-Joint on Left Border (pointing right into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", left: "-1px"}}
+              >
+                <Image
+                  src="/joints/left-to-right-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+              {/* Right T-Joint on Right Border (pointing left into horizontal divider) */}
+              <div
+                className="absolute w-[10px] h-[19px] z-30 pointer-events-none"
+                style={{top: "-9px", right: "-1px"}}
+              >
+                <Image
+                  src="/joints/right-to-left-Tjoint.svg"
+                  alt=""
+                  width={10}
+                  height={19}
+                  className="block w-full h-full"
+                  unoptimized
+                />
+              </div>
+            </div>
+
             {/* Section 4: Industrial Supply & Specialized Services (3 cols) */}
-            <div className="lg:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
+            <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
                 Industrial Supply & Specialized Services
               </h3>

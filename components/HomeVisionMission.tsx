@@ -40,9 +40,9 @@ export default function HomeVisionMission() {
       className="w-full bg-white py-16 sm:py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden"
     >
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
           {/* Left Column: Section Tag & Heading */}
-          <div className="lg:col-span-4 space-y-4">
+          <div className="xl:col-span-4 space-y-4 max-w-3xl xl:max-w-none">
             <span className="text-sm font-semibold tracking-wider text-slate-800 uppercase block">
               Our Vision & Values
             </span>
@@ -61,7 +61,7 @@ export default function HomeVisionMission() {
           </div>
 
           {/* Right Column: 3 Cards Grid with Paper Fold Corner in Top Right */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
+          <div className="xl:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
             {cards.map((card) => (
               <div
                 key={card.id}
