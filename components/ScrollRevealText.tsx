@@ -63,13 +63,15 @@ export default function ScrollRevealText({
         const b = Math.round(fromB - wordProgress * (fromB - toB));
 
         return (
-          <span
-            key={i}
-            style={{ color: `rgb(${r}, ${g}, ${b})` }}
-            className="inline-block mr-[0.28em] transition-colors duration-150 ease-out"
-          >
-            {word}
-          </span>
+          <React.Fragment key={i}>
+            <span
+              style={{ color: `rgb(${r}, ${g}, ${b})` }}
+              className="inline transition-colors duration-150 ease-out"
+            >
+              {word}
+            </span>
+            {i < words.length - 1 && " "}
+          </React.Fragment>
         );
       })}
     </Component>

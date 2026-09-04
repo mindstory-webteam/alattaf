@@ -4,7 +4,8 @@ import React from "react";
 import ScrollRevealText from "@/components/ScrollRevealText";
 
 export default function HomeVisionMission() {
-  const headingText = "Guiding principles driving turnkey excellence, safety, and sustainable industrial growth across the Kingdom.";
+  const headingText =
+    "Guiding principles driving turnkey excellence, safety, and sustainable industrial growth across the Kingdom.";
 
   const cards = [
     {
@@ -34,7 +35,10 @@ export default function HomeVisionMission() {
   ];
 
   return (
-    <section id="vision-mission" className="w-full bg-white py-16 sm:py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden">
+    <section
+      id="vision-mission"
+      className="w-full bg-white py-16 sm:py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden"
+    >
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
           {/* Left Column: Section Tag & Heading */}
@@ -46,11 +50,13 @@ export default function HomeVisionMission() {
             <ScrollRevealText
               text={headingText}
               as="h2"
-              className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-slate-900"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
             />
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2">
-              Our core values guide everything we do shaping our engineering decisions, empowering our workforce, and ensuring dependable project outcomes throughout Saudi Arabia.
+              Our core values guide everything we do shaping our engineering
+              decisions, empowering our workforce, and ensuring dependable
+              project outcomes throughout Saudi Arabia.
             </p>
           </div>
 
@@ -60,7 +66,8 @@ export default function HomeVisionMission() {
               <div
                 key={card.id}
                 style={{
-                  clipPath: "polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)",
+                  clipPath:
+                    "polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)",
                 }}
                 className={`${card.bgColor} relative p-7 sm:p-8 flex flex-col justify-start min-h-[280px] sm:min-h-[320px] transition-all duration-300 hover:shadow-md hover:-translate-y-1 group`}
               >
@@ -74,11 +81,11 @@ export default function HomeVisionMission() {
                 />
 
                 {/* Content: Title & Narrative aligned at identical start position */}
-                <div className="space-y-3 pr-2">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                <div className="space-y-3 sm:space-y-4 pr-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
                     {card.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                     {card.description}
                   </p>
                 </div>

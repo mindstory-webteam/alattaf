@@ -102,7 +102,7 @@ export default function ProjectsSection() {
             <ScrollRevealText
               text={headingText}
               as="h3"
-              className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
             />
 
             {/* Filter Navigation */}

@@ -41,7 +41,7 @@ export default function WorkProcessSection() {
           <ScrollRevealText
             text={headingText}
             as="h2"
-            className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight max-w-3xl"
+            className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight max-w-3xl text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
           />
 
           {/* Right-Aligned Button */}

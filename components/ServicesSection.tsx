@@ -75,8 +75,8 @@ export default function ServicesSection() {
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         {/* Header Row: Left Title + Right-Aligned 3-Line Content */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 lg:gap-12 pb-12 sm:pb-14 lg:pb-16">
-          {/* Left Column: Heading & Action Button */}
-          <div className="shrink-0 flex flex-col items-start space-y-4">
+          {/* Left Column: Heading & Action Button (Side-by-side on sm screens with button to the right of heading, stacked on lg) */}
+          <div className="w-full lg:w-auto shrink-0 flex flex-row items-center justify-between lg:flex-col lg:items-start lg:space-y-4">
             <h2 className="text-xl sm:text-2xl lg:text-[25px] font-bold text-slate-900 tracking-tight leading-snug">
               Services
             </h2>
@@ -87,7 +87,7 @@ export default function ServicesSection() {
               hoverBgColor="#ffffff"
               textColor="#ffffff"
               hoverTextColor="#1d4ed8"
-              className="px-5 py-2.5 text-xs sm:text-sm font-semibold"
+              className="px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold whitespace-nowrap"
             />
           </div>
 
@@ -96,7 +96,7 @@ export default function ServicesSection() {
             <ScrollRevealText
               text="Delivering turnkey engineering, industrial infrastructure, and specialized facility maintenance across Saudi Arabia."
               as="h3"
-              className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-slate-900 text-justify"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
             />
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
               Backed by over 45 years of Saudi Aramco operational excellence, certified multi-discipline workforce, and stringent HSE standards powering Kingdom-wide industrial execution.

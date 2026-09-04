@@ -67,7 +67,7 @@ export default function CoverageSection() {
           <ScrollRevealText
             text={headingText}
             as="h2"
-            className="text-lg sm:text-xl lg:text-[23px] font-bold leading-relaxed tracking-tight max-w-4xl"
+            className="text-[15px] sm:text-xl lg:text-[23px] font-bold leading-relaxed sm:leading-relaxed tracking-normal sm:tracking-tight max-w-4xl text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
           />
 
           <div className="shrink-0 pt-1">
@@ -128,10 +128,10 @@ export default function CoverageSection() {
 
           {/* Right Column: 2x2 Stats Grid + Location Info at Bottom */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-8 lg:space-y-10 pl-0 lg:pl-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-10 lg:gap-12">
+            <div className="grid grid-cols-2 gap-5 sm:gap-10 lg:gap-12">
               {stats.map((stat, idx) => (
-                <div key={idx} className="space-y-2">
-                  <div className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 tracking-tight">
+                <div key={idx} className="space-y-1.5 sm:space-y-2">
+                  <div className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 tracking-tight">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
