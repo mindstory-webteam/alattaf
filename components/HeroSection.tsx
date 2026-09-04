@@ -31,7 +31,7 @@ export default function HeroSection() {
       description:
         "Delivering dependable supply chain logistics, on-time material transport, and end-to-end heavy equipment mobility with certified safety standards.",
       primaryBtn: {text: "Explore Fleet Capabilities", href: "#services"},
-      secondaryBtn: {text: "Contact Support", href: "#contact"},
+      secondaryBtn: {text: "Contact Us", href: "#contact"},
     },
     {
       id: 3,
@@ -76,20 +76,20 @@ export default function HeroSection() {
             </div>
 
             {/* Slide Content - Positioned in the exact same place across all slides */}
-            <div className="relative z-10 max-w-7xl mx-auto h-full flex items-center px-2 sm:px-3 lg:px-4">
-              <div className="w-full max-w-4xl xl:max-w-5xl space-y-6">
+            <div className="relative z-10 w-full max-w-[1475px] mx-auto h-full flex items-center px-6 sm:px-12 lg:px-16 xl:px-24">
+              <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl space-y-3.5 sm:space-y-4 md:space-y-5 lg:space-y-6">
                 {/* Main Heading */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-6xl font-extrabold text-white tracking-tight leading-[1.15] whitespace-pre-line min-h-[72px] sm:min-h-[110px] lg:min-h-[140px] flex items-center">
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white tracking-tight leading-snug sm:leading-tight lg:leading-[1.15] whitespace-pre-line">
                   {slide.title}
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed font-normal max-w-2xl lg:max-w-3xl min-h-[56px] sm:min-h-[64px] flex items-center">
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-200 leading-relaxed font-normal max-w-lg md:max-w-2xl lg:max-w-3xl">
                   {slide.description}
                 </p>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                {/* Action Buttons - Kept on the exact same row across all screen sizes */}
+                <div className="flex flex-row items-center flex-nowrap gap-2.5 sm:gap-3.5 md:gap-4 pt-1 sm:pt-2">
                   <LiquidButton
                     text={slide.primaryBtn.text}
                     href={slide.primaryBtn.href}
@@ -97,7 +97,7 @@ export default function HeroSection() {
                     hoverBgColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#1d4ed8"
-                    className="px-7 py-3.5 text-sm sm:text-base font-semibold"
+                    className="px-3.5 py-2 sm:px-5 sm:py-2.5 md:px-7 md:py-3.5 text-xs sm:text-sm md:text-base font-semibold whitespace-nowrap shrink-0"
                   />
 
                   <LiquidButton
@@ -107,7 +107,7 @@ export default function HeroSection() {
                     hoverBgColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#1d4ed8"
-                    className="px-7 py-3.5 text-sm sm:text-base font-semibold border border-white/20 backdrop-blur-md"
+                    className="px-3.5 py-2 sm:px-5 sm:py-2.5 md:px-7 md:py-3.5 text-xs sm:text-sm md:text-base font-semibold border border-white/20 backdrop-blur-md whitespace-nowrap shrink-0"
                   />
                 </div>
               </div>
@@ -116,13 +116,13 @@ export default function HeroSection() {
         ))}
       </Swiper>
 
-      <div className="absolute right-10 sm:right-20 lg:right-20 xl:right-25 bottom-6 z-20 pointer-events-none">
+      <div className="absolute right-6 sm:right-12 lg:right-16 xl:right-24 bottom-4 sm:bottom-6 z-20 pointer-events-none">
         <Image
           src="/Saudi_Vision_2030_logo.svg.webp"
           alt="Saudi Vision 2030 Logo"
           width={220}
           height={150}
-          className="h-16 sm:h-20 lg:h-24 w-auto object-contain drop-shadow-lg brightness-0 invert opacity-90"
+          className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain drop-shadow-lg brightness-0 invert opacity-90"
         />
       </div>
     </section>
