@@ -4,7 +4,7 @@ import React from "react";
 
 export default function WhatsAppButton() {
   return (
-    <aside aria-label="WhatsApp Contact" className="fixed bottom-6 right-6 z-50 flex items-center group">
+    <aside aria-label="WhatsApp Contact" className="fixed bottom-6 right-6 z-30 flex items-center group">
       {/* Tooltip on hover */}
       <span className="hidden sm:inline-block mr-3 px-3 py-1.5 bg-slate-900/90 text-white text-xs font-semibold rounded-lg shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
         Chat with us on WhatsApp

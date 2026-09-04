@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Autoplay, Pagination, Navigation, EffectFade} from "swiper/modules";
 import LiquidButton from "@/components/LiquidButton";
 
 // Import Swiper styles
@@ -15,27 +15,33 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      image:
+        "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Empowering Supply Chains\n& Mega Infrastructure",
-      description: "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
-      primaryBtn: { text: "Our Logistics Services", href: "#services" },
-      secondaryBtn: { text: "Request a Quote", href: "#contact" },
+      description:
+        "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
+      primaryBtn: {text: "Our Logistics Services", href: "#services"},
+      secondaryBtn: {text: "Request a Quote", href: "#contact"},
     },
     {
       id: 2,
-      image: "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      image:
+        "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Efficient Cargo Transport\n& Material Handling",
-      description: "Delivering dependable supply chain logistics, on-time material transport, and end-to-end heavy equipment mobility with certified safety standards.",
-      primaryBtn: { text: "Explore Fleet Capabilities", href: "#services" },
-      secondaryBtn: { text: "Contact Support", href: "#contact" },
+      description:
+        "Delivering dependable supply chain logistics, on-time material transport, and end-to-end heavy equipment mobility with certified safety standards.",
+      primaryBtn: {text: "Explore Fleet Capabilities", href: "#services"},
+      secondaryBtn: {text: "Contact Support", href: "#contact"},
     },
     {
       id: 3,
-      image: "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      image:
+        "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1920",
       title: "Advanced Heavy Equipment\n& Fleet Logistics",
-      description: "Providing modern heavy freight haulage, certified equipment operators, and round-the-clock nationwide transportation across the Kingdom.",
-      primaryBtn: { text: "Get in Touch", href: "#contact" },
-      secondaryBtn: { text: "Learn About Us", href: "#about" },
+      description:
+        "Providing modern heavy freight haulage, certified equipment operators, and round-the-clock nationwide transportation across the Kingdom.",
+      primaryBtn: {text: "Get in Touch", href: "#contact"},
+      secondaryBtn: {text: "Learn About Us", href: "#about"},
     },
   ];
 
@@ -44,7 +50,7 @@ export default function HeroSection() {
       <Swiper
         modules={[Autoplay, Navigation, EffectFade]}
         effect="fade"
-        fadeEffect={{ crossFade: true }}
+        fadeEffect={{crossFade: true}}
         speed={1000}
         autoplay={{
           delay: 5000,

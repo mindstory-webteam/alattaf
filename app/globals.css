@@ -68,3 +68,8 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Hide floating WhatsApp button when mobile sidebar drawer is open */
+body[data-sidebar-open="true"] aside[aria-label="WhatsApp Contact"] {
+  display: none !important;
+}
