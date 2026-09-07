@@ -11,26 +11,36 @@ function AnimatedCounter({ value, suffix = "+" }: { value: number; suffix?: stri
   const ref = useRef<HTMLSpanElement | null>(null);
   const motionValue = useMotionValue(0);
   const rounded = useTransform(motionValue, (latest) => Math.round(latest));
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, amount: "some" });
 
   useEffect(() => {
     if (isInView) {
-      animate(motionValue, value, {
+      const controls = animate(motionValue, value, {
         duration: 2.2,
         ease: [0.16, 1, 0.3, 1], // smooth exponential ease-out
+        onComplete: () => {
+          if (ref.current) {
+            ref.current.textContent = `${value.toLocaleString("en-US")}${suffix}`;
+          }
+        },
       });
+      return () => controls.stop();
     }
-  }, [isInView, motionValue, value]);
+  }, [isInView, motionValue, value, suffix]);
 
   useEffect(() => {
     return rounded.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = `${latest.toLocaleString()}${suffix}`;
+        ref.current.textContent = `${latest.toLocaleString("en-US")}${suffix}`;
       }
     });
   }, [rounded, suffix]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  return (
+    <span ref={ref} className="inline-block tabular-nums">
+      0{suffix}
+    </span>
+  );
 }
 
 export default function CoverageSection() {
