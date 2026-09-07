@@ -12,7 +12,7 @@ export default function Footer() {
     {name: "Services", href: "/#services"},
     {name: "Careers", href: "/#careers"},
     {name: "Gallery", href: "/#gallery"},
-    {name: "Contact", href: "/#contact"},
+    {name: "Contact", href: "/contact"},
   ];
 
   const constructionWorks = [

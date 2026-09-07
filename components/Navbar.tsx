@@ -295,7 +295,7 @@ export default function Navbar() {
 
               {/* Contact */}
               <Link
-                href="#contact"
+                href="/contact"
                 onClick={() => setActiveItem("Contact")}
                 className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                   activeItem === "Contact"
@@ -514,7 +514,7 @@ export default function Navbar() {
 
           {/* Contact */}
           <Link
-            href="#contact"
+            href="/contact"
             onClick={() => {
               setActiveItem("Contact");
               setIsMobileMenuOpen(false);
