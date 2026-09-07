@@ -2,6 +2,7 @@
 
 import React from "react";
 import LiquidButton from "@/components/LiquidButton";
+import ScrollRevealText from "@/components/ScrollRevealText";
 
 /* ------------------------------------------------------------------
    Placeholder poster. Swap for a local still in /public when going live:
@@ -9,76 +10,14 @@ import LiquidButton from "@/components/LiquidButton";
    ------------------------------------------------------------------ */
 const media = {
   video: {
-    src: "/videos/video-cta-2.mp4",
+    src: "/videos/video-cta-1.mp4",
     poster: "https://picsum.photos/seed/aaac-cta/1920/1080",
   },
 };
 
-/* ------------------------------------------------------------------
-   Word-by-word reveal, built for dark backgrounds.
-
-   The shared ScrollRevealText colours its own characters, so forcing it
-   white kills the effect (both the dim and revealed states end up white).
-   This version keeps a colour pair: words sit at 15% opacity and rise to
-   full white when the heading scrolls into view.
-   ------------------------------------------------------------------ */
-function ScrollRevealHeading({
-  text,
-  className = "",
-}: {
-  text: string;
-  className?: string;
-}) {
-  const ref = React.useRef<HTMLHeadingElement | null>(null);
-  const [revealed, setRevealed] = React.useState(false);
-
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    // Respect reduced motion: show the finished state straight away.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setRevealed(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRevealed(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const words = text.split(" ");
-
-  return (
-    <h2 ref={ref} className={className}>
-      {words.map((word, i) => (
-        <span
-          key={`${word}-${i}`}
-          className="inline-block whitespace-pre text-white transition-opacity duration-700 ease-out"
-          style={{
-            opacity: revealed ? 1 : 0.15,
-            transitionDelay: `${i * 55}ms`,
-          }}
-        >
-          {i === words.length - 1 ? word : `${word} `}
-        </span>
-      ))}
-    </h2>
-  );
-}
-
 export default function CtaSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-950 font-sans">
+    <section className="relative w-full overflow-hidden bg-white font-sans">
       {/* Background video */}
       <div className="absolute inset-0">
         {/* Still fallback: shown when motion is reduced or the video cannot load */}
@@ -102,10 +41,10 @@ export default function CtaSection() {
           aria-hidden="true"
         />
 
-        {/* Flat base keeps every part of the frame dark enough for white text */}
-        <div className="absolute inset-0 bg-slate-950/80" />
+        {/* Flat white base keeps every part of the frame light enough for dark text */}
+        <div className="absolute inset-0 bg-white/30" />
         {/* Extra weight on the left, where the copy sits */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/75 to-slate-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/75 to-white/40" />
       </div>
 
       <div className="relative w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24 py-20 lg:py-24">
@@ -113,12 +52,12 @@ export default function CtaSection() {
           <div className="lg:col-span-7">
             <div aria-hidden="true" className="h-[3px] w-12 bg-blue-700" />
 
-            <ScrollRevealHeading
+            <ScrollRevealText
               text="Bring us the scope. We will tell you how it gets built."
-              className="mt-7 text-2xl sm:text-3xl lg:text-[32px] font-extrabold tracking-tight leading-tight text-white"
+              className="mt-7 text-2xl sm:text-3xl lg:text-[32px] font-extrabold tracking-tight leading-tight"
             />
 
-            <p className="mt-5 max-w-xl text-sm sm:text-base text-white leading-relaxed">
+            <p className="mt-5 max-w-xl text-sm sm:text-base text-slate-800 leading-relaxed">
               Send drawings, a shutdown window, or a maintenance requirement. Our team in Abqaiq
               returns a method, a crew plan, and a schedule you can hold us to — civil,
               mechanical, electrical, instrumentation, and T&amp;I under one contractor.
@@ -130,15 +69,15 @@ export default function CtaSection() {
               text="Request a quotation"
               href="/contact"
               btnColor="#1d4ed8"
-              hoverBgColor="#ffffff"
+              hoverBgColor="#0f172a"
               textColor="#ffffff"
-              hoverTextColor="#1d4ed8"
+              hoverTextColor="#ffffff"
               className="px-7 py-3.5 text-sm sm:text-base font-semibold"
             />
 
-            <a
-              href="/services"
-              className="text-sm sm:text-base font-semibold text-white underline-offset-4 transition-colors hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            
+            <a  href="/services"
+              className="text-sm sm:text-base font-semibold text-slate-900 underline-offset-4 transition-colors hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-900"
             >
               See our capabilities
             </a>

@@ -52,10 +52,20 @@ export default function AboutPageSection() {
   ];
 
   /* ----------------------------------------------------------------
+     Placeholder photos for the two portrait slots. Both are contracting
+     stock shots; swap for your own files when you have them:
+       whoWeAre: "/about-who-we-are.jpg"
+       owner:    "/owner.jpg"   <- must be the real founder portrait
+     ---------------------------------------------------------------- */
+  const pageMedia = {
+    whoWeAre: px(18966875, 1000), // crew working on an industrial site
+    owner: px(36781726, 1000), // worker in PPE — stand-in only
+  };
+
+  /* ----------------------------------------------------------------
      History media — stock photos picked to match what each block says.
      Replace with real files in /public when you have them, e.g.
        main:  "/history/plant-crew.jpg"
-       wide:  "/history/site-wide.jpg"
        video: { src: "/history/site.mp4", poster: "/history/site-poster.jpg" }
      ---------------------------------------------------------------- */
   const historyMedia = {
@@ -63,13 +73,13 @@ export default function AboutPageSection() {
     main: px(33870733),
     video: {
       // Generic sample clip. Swap for real site footage: "/history/site.mp4"
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      src: "/videos/about-1.mp4",
       poster: px(35383435, 1000), // machinery working on site
     },
     // Wide video band behind the execution-philosophy heading
     band: {
       // Swap for real site footage: "/history/philosophy-band.mp4"
-      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      src: "/videos/about-2.mp4",
       poster: px(37016212, 1800), // trucks lined up on a working site
     },
   };
@@ -125,10 +135,8 @@ export default function AboutPageSection() {
           <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-5">
               <div className="relative w-full aspect-[4/5] overflow-hidden border border-slate-200/80 bg-slate-100">
-                {/* Real crew photo. For a stock stand-in, use: src={px(36781726)} — a
-                    worker in PPE operating plant — and switch to the <img> pattern below. */}
                 <Image
-                  src="/about-who-we-are.jpg"
+                  src={pageMedia.whoWeAre}
                   alt="Al Attaf Advanced Contracting crew on site"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -236,7 +244,7 @@ export default function AboutPageSection() {
             <div className="lg:col-span-5">
               <div className="relative w-full aspect-[4/5] max-w-md overflow-hidden border border-slate-200/80 bg-slate-100">
                 <Image
-                  src="/owner.jpg"
+                  src={pageMedia.owner}
                   alt="Founder and Chairman of Al Attaf Advanced Contracting"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
