@@ -63,13 +63,13 @@ export default function AboutPageSection() {
     main: px(33870733),
     video: {
       // Generic sample clip. Swap for real site footage: "/history/site.mp4"
-      src: "/videos/about-1.mp4",
+      src: "",
       poster: px(35383435, 1000), // machinery working on site
     },
     // Wide video band behind the execution-philosophy heading
     band: {
       // Swap for real site footage: "/history/philosophy-band.mp4"
-      src: "/videos/video-cta-1.mp4",
+      src: "",
       poster: px(37016212, 1800), // trucks lined up on a working site
     },
   };

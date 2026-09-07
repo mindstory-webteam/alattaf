@@ -10,7 +10,7 @@ import LiquidButton from "@/components/LiquidButton";
    ------------------------------------------------------------------ */
 const media = {
   video: {
-    src: "/videos/video-cta-2.mp4",
+    src: "",
     poster: "https://picsum.photos/seed/aaac-cta/1920/1080",
   },
 };
