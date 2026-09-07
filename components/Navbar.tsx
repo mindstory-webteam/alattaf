@@ -313,7 +313,7 @@ export default function Navbar() {
 
               {/* Contact */}
               <Link
-                href="/contact"
+                href="/"
                 onClick={() => setActiveItem("Contact")}
                 className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                   activeItem === "Contact"
