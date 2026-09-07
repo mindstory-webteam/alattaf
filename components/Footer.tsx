@@ -40,50 +40,62 @@ export default function Footer() {
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         {/* Main Boxed Container with 1600px Max Width, Visible Outer Border & SVG Joints from frontend/public/joints */}
         <div className="relative w-full border border-slate-300 bg-[#fafafa]">
-          {/* 4 Outer Corner Joints (10x10) from frontend/public/joints */}
+          {/* 4 Outer Corner Joints (Used on all screens: sm, md, lg, xl) */}
           {/* Top-Left Corner */}
-          <div className="absolute -top-px -left-px w-[10px] h-[10px] z-30 pointer-events-none">
+          <div
+            className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
+            style={{ top: "-1px", left: "-1px" }}
+          >
             <Image
               src="/joints/top-left-corner.svg"
               alt=""
-              width={10}
-              height={10}
+              width={16}
+              height={16}
               className="block w-full h-full"
               unoptimized
             />
           </div>
 
           {/* Top-Right Corner */}
-          <div className="absolute -top-px -right-px w-[10px] h-[10px] z-30 pointer-events-none">
+          <div
+            className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
+            style={{ top: "-1px", right: "-1px" }}
+          >
             <Image
               src="/joints/top-right-corner.svg"
               alt=""
-              width={10}
-              height={10}
+              width={16}
+              height={16}
               className="block w-full h-full"
               unoptimized
             />
           </div>
 
           {/* Bottom-Left Corner */}
-          <div className="absolute -bottom-px -left-px w-[10px] h-[10px] z-30 pointer-events-none">
+          <div
+            className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
+            style={{ bottom: "-1px", left: "-1px" }}
+          >
             <Image
               src="/joints/bottom-left-corner.svg"
               alt=""
-              width={10}
-              height={10}
+              width={16}
+              height={16}
               className="block w-full h-full"
               unoptimized
             />
           </div>
 
           {/* Bottom-Right Corner */}
-          <div className="absolute -bottom-px -right-px w-[10px] h-[10px] z-30 pointer-events-none">
+          <div
+            className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
+            style={{ bottom: "-1px", right: "-1px" }}
+          >
             <Image
               src="/joints/bottom-right-corner.svg"
               alt=""
-              width={10}
-              height={10}
+              width={16}
+              height={16}
               className="block w-full h-full"
               unoptimized
             />
