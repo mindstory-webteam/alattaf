@@ -50,7 +50,7 @@ export default function HomeVisionMission() {
             <ScrollRevealText
               text={headingText}
               as="h2"
-              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-left"
             />
 
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pt-2">
