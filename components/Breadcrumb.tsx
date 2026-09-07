@@ -66,21 +66,21 @@ export default function Breadcrumb({
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-[220px] max-w-7xl flex-col justify-center px-2 pt-14 sm:h-[280px] sm:px-3 lg:h-[320px] lg:px-4">
-        <h1 className="text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-5xl">
+      <div className="relative z-10 mx-auto flex min-h-[240px] w-full max-w-7xl flex-col justify-center px-4 py-16 pt-20 sm:min-h-[280px] sm:px-8 sm:py-20 sm:pt-24 lg:min-h-[320px] lg:px-12 lg:pt-14 xl:px-16">
+        <h1 className="text-2xl font-extrabold leading-[1.15] tracking-tight text-white break-words sm:text-3xl md:text-4xl lg:text-5xl">
           {title}
         </h1>
 
         {/* <span className="mt-4 block h-[3px] w-16 bg-blue-700" /> */}
 
         {description && (
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-200 sm:text-base">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-200 sm:mt-4 sm:text-base">
             {description}
           </p>
         )}
 
-        <nav aria-label="Breadcrumb" className="mt-5">
-          <ol className="flex flex-wrap items-center gap-x-1 gap-y-1 text-sm sm:text-base">
+        <nav aria-label="Breadcrumb" className="mt-4 sm:mt-5">
+          <ol className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs sm:text-sm md:text-base">
             {trail.map((crumb, i) => {
               const isLast = i === trail.length - 1;
               return (
@@ -110,13 +110,13 @@ export default function Breadcrumb({
       </div>
 
       {showVisionLogo && (
-        <div className="pointer-events-none absolute bottom-6 right-10 z-20 sm:right-20 xl:right-24">
+        <div className="pointer-events-none absolute bottom-3 right-4 z-20 sm:bottom-6 sm:right-10 lg:right-20 xl:right-24">
           <Image
             src="/Saudi_Vision_2030_logo.svg.webp"
             alt="Saudi Vision 2030"
             width={220}
             height={150}
-            className="h-12 w-auto object-contain opacity-90 brightness-0 invert drop-shadow-lg sm:h-16 lg:h-20"
+            className="h-8 w-auto object-contain opacity-90 brightness-0 invert drop-shadow-lg sm:h-12 md:h-16 lg:h-20"
           />
         </div>
       )}

@@ -59,11 +59,11 @@ export default function AboutPageSection() {
      ---------------------------------------------------------------- */
   const pageMedia = {
     whoWeAre: px(18966875, 1000), // crew working on an industrial site
-    owner: px(36781726, 1000), // worker in PPE — stand-in only
+    owner: "/images/teamMembers/ower.jpg", // worker in PPE — stand-in only
   };
 
   /* ----------------------------------------------------------------
-     History media — stock photos picked to match what each block says.
+     History media — stock photos picked to match each block says.
      Replace with real files in /public when you have them, e.g.
        main:  "/history/plant-crew.jpg"
        video: { src: "/history/site.mp4", poster: "/history/site-poster.jpg" }
@@ -443,9 +443,11 @@ export default function AboutPageSection() {
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24 py-20 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-white leading-tight">
-                Working with Saudi Aramco since 1978
-              </h2>
+              <ScrollRevealText
+                text="Working with Saudi Aramco since 1978"
+                as="h2"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
+              />
               <p className="mt-5 text-sm sm:text-base text-blue-100 leading-relaxed">
                 Our first contracts were inside Aramco facilities, and that relationship shaped
                 how the company operates: permits before work starts, certified people on every
