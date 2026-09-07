@@ -6,6 +6,10 @@ import ScrollRevealText from "@/components/ScrollRevealText";
 import LiquidButton from "@/components/LiquidButton";
 import CountUp from "@/components/CountUp";
 
+/** Builds a Pexels stock URL from a photo id. */
+const px = (id: number, w = 1400) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+
 function CheckMark() {
   return (
     <svg
@@ -47,6 +51,29 @@ export default function AboutPageSection() {
     "Adhere to safety standards throughout.",
   ];
 
+  /* ----------------------------------------------------------------
+     History media — stock photos picked to match what each block says.
+     Replace with real files in /public when you have them, e.g.
+       main:  "/history/plant-crew.jpg"
+       wide:  "/history/site-wide.jpg"
+       video: { src: "/history/site.mp4", poster: "/history/site-poster.jpg" }
+     ---------------------------------------------------------------- */
+  const historyMedia = {
+    // "many challenging projects" — plant and heavy machinery in use
+    main: px(33870733),
+    video: {
+      // Generic sample clip. Swap for real site footage: "/history/site.mp4"
+      src: "/videos/about-1.mp4",
+      poster: px(35383435, 1000), // machinery working on site
+    },
+    // Wide video band behind the execution-philosophy heading
+    band: {
+      // Swap for real site footage: "/history/philosophy-band.mp4"
+      src: "/videos/video-cta-1.mp4",
+      poster: px(37016212, 1800), // trucks lined up on a working site
+    },
+  };
+
   const principles = [
     {
       title: "Our Vision",
@@ -80,44 +107,37 @@ export default function AboutPageSection() {
     { label: "Ownership", value: "100% Saudi-owned" },
   ];
 
-  /* Folded top-right corner, as in the reference cards */
-  const foldSize = 34;
-  const cardClip = {
-    clipPath: `polygon(0 0, calc(100% - ${foldSize}px) 0, 100% ${foldSize}px, 100% 100%, 0 100%)`,
-  };
-  const foldClip = { clipPath: "polygon(0 0, 100% 100%, 0 100%)" };
-
   return (
     <div className="w-full bg-white font-sans">
       {/* Introduction */}
       <section className="w-full py-20 lg:py-28">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
-                  Who we are
-                </h2>
-                <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-                  A contracting company built inside the Kingdom&apos;s energy sector,
-                  working to the standards it demands.
-                </p>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
+              Who we are
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
+              A contracting company built inside the Kingdom&apos;s energy sector, working to
+              the standards it demands.
+            </p>
+          </div>
 
-                <div className="mt-8">
-                  <LiquidButton
-                    text="Talk to our team"
-                    href="/contact"
-                    btnColor="#1d4ed8"
-                    hoverBgColor="#ffffffff"
-                    textColor="#ffffff"
-                    hoverTextColor="#1d4ed8"
-                    className="px-7 py-3.5 text-sm sm:text-base font-semibold"
-                  />
-                </div>
+          <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <div className="relative w-full aspect-[4/5] overflow-hidden border border-slate-200/80 bg-slate-100">
+                {/* Real crew photo. For a stock stand-in, use: src={px(36781726)} — a
+                    worker in PPE operating plant — and switch to the <img> pattern below. */}
+                <Image
+                  src="/about-who-we-are.jpg"
+                  alt="Al Attaf Advanced Contracting crew on site"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover object-center"
+                />
               </div>
             </div>
 
-            <div className="lg:col-span-8 space-y-5 text-justify">
+            <div className="lg:col-span-7 space-y-5 text-justify">
               <ScrollRevealText
                 text={introText}
                 as="h3"
@@ -145,7 +165,43 @@ export default function AboutPageSection() {
                 statements before crews mobilise, and performance is reviewed against client
                 requirements for the full duration of the contract.
               </p>
+
+              <div className="pt-3">
+                <LiquidButton
+                  text="Talk to our team"
+                  href="/contact"
+                  btnColor="#1d4ed8"
+                  hoverBgColor="#ffffffff"
+                  textColor="#ffffff"
+                  hoverTextColor="#1d4ed8"
+                  className="px-7 py-3.5 text-sm sm:text-base font-semibold"
+                />
+              </div>
             </div>
+          </div>
+
+          {/* Vision, mission, values — no heading, sits inside "Who we are" */}
+          <div className="mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-12">
+            {principles.map((item) => {
+              const accent = item.tone === "accent";
+              return (
+                <div
+                  key={item.title}
+                  className={`pt-6 border-t-2 ${
+                    accent ? "border-blue-700" : "border-slate-300"
+                  }`}
+                >
+                  <h3
+                    className={`text-lg font-bold tracking-tight ${
+                      accent ? "text-blue-700" : "text-slate-900"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.body}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -231,20 +287,70 @@ export default function AboutPageSection() {
       {/* History & philosophy */}
       <section className="w-full bg-slate-50 py-20 lg:py-28 border-y border-slate-200/70">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-            <div className="lg:col-span-4">
-              <div className="lg:sticky lg:top-28">
-                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
-                  History &amp; philosophy
-                </h2>
-                <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-                  How decades of contracting work translate into the way we run a project
-                  today.
-                </p>
+          {/* Header, centered like "Who we are" */}
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
+              History &amp; philosophy
+            </h2>
+            <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
+              How decades of contracting work translate into the way we run a project today.
+            </p>
+          </div>
+
+          {/* Photo + video on the left, narrative on the right */}
+          <div className="mt-14 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div className="lg:col-span-6">
+              <div className="relative pb-16 sm:pb-20 lg:pb-24">
+                <div className="relative aspect-[4/3] w-full overflow-hidden border border-slate-200 bg-slate-200">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={historyMedia.main}
+                    alt="Heavy plant working on an Eastern Province site"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
+                </div>
+
+                {/* Second tile is a looping video, overlapping the photo */}
+                <div className="absolute bottom-0 right-0 w-[58%] sm:w-[52%]">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border-[6px] border-slate-50 bg-slate-800">
+                    <video
+                      className="absolute inset-0 h-full w-full object-cover object-center"
+                      src={historyMedia.video.src}
+                      poster={historyMedia.video.poster}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="Site work in progress"
+                    />
+
+                    {/* Small label so the tile reads as footage, not a still */}
+                    <span className="absolute left-3 top-3 flex items-center gap-2 bg-blue-700/90 px-2.5 py-1.5 text-[11px] font-semibold text-white">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping bg-white opacity-75" />
+                        <span className="relative inline-flex h-1.5 w-1.5 bg-white" />
+                      </span>
+                      On site
+                    </span>
+                  </div>
+                </div>
+
+                {/* Founding year, anchored to the main photo */}
+                <div className="absolute left-0 bottom-6 sm:bottom-8 bg-blue-700 px-6 py-5 text-white">
+                  <p className="text-3xl sm:text-4xl font-extrabold tracking-tight tabular-nums leading-none">
+                    <CountUp end={1978} start={1900} duration={2} />
+                  </p>
+                  <p className="mt-2 text-xs sm:text-sm text-blue-100 leading-snug">
+                    First contract inside
+                    <br />
+                    an Aramco facility
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-6">
               <ScrollRevealText
                 text="AAAC has, over the years, undertaken many challenging projects and accumulated expertise, know-how, and skills in contracting maintenance work and engineering-related work."
                 as="h3"
@@ -259,86 +365,67 @@ export default function AboutPageSection() {
                 the top priority in the planning and execution of all our processes.
               </p>
 
-              <h3 className="mt-10 text-base sm:text-lg font-bold text-slate-900">
-                Our project management and execution philosophy
-              </h3>
-
-              <ul className="mt-6 border-t border-slate-200">
-                {philosophy.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-4 border-b border-slate-200 py-4"
-                  >
-                    <span className="text-blue-700">
-                      <CheckMark />
-                    </span>
-                    <span className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-8 text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                We take pride in our delivery, so clients can always be assured that only the
-                most experienced and qualified people are serving them, all the time.
-              </p>
+              <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
+                <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
+                  We take pride in our delivery, so clients can always be assured that only the
+                  most experienced and qualified people are serving them, all the time.
+                </p>
+              </blockquote>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Vision, mission, values */}
-      <section className="w-full py-20 lg:py-28">
-        <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <ScrollRevealText
-                text="Guiding principles driving turnkey excellence, safety, and sustainable industrial growth across the Kingdom."
-                as="h2"
-                className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
+          {/* Philosophy: numbered steps as cards, under a site video band */}
+          <div className="mt-16 lg:mt-24">
+            <div className="relative h-[260px] w-full overflow-hidden bg-slate-900 sm:h-[320px] lg:h-[380px]">
+              <video
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                src={historyMedia.band.src}
+                poster={historyMedia.band.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Site work in progress"
               />
-              <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed">
-                These principles shape our engineering decisions, how we build our workforce,
-                and the outcomes clients can expect on every contract.
-              </p>
-            </div>
 
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
-                {principles.map((item) => {
-                  const accent = item.tone === "accent";
-                  return (
-                    <div
-                      key={item.title}
-                      style={cardClip}
-                      className={`relative p-7 lg:p-8 transition-transform duration-300 hover:-translate-y-1 ${
-                        accent ? "bg-blue-50" : "bg-slate-100"
-                      }`}
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{ ...foldClip, width: foldSize, height: foldSize }}
-                        className={`absolute right-0 top-0 ${
-                          accent ? "bg-blue-200" : "bg-slate-300"
-                        }`}
-                      />
+              {/* Darkened from the left so the copy stays readable over any footage */}
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/70 to-slate-950/45" />
 
-                      <h3 className="text-lg font-bold tracking-tight text-slate-900">
-                        {item.title}
-                      </h3>
-                      <p
-                        className={`mt-5 text-sm leading-relaxed ${
-                          accent ? "text-blue-900/80" : "text-slate-600"
-                        }`}
-                      >
-                        {item.body}
-                      </p>
-                    </div>
-                  );
-                })}
+              <div className="absolute inset-0 flex items-center">
+                <div className="px-6 sm:px-10 lg:px-14 max-w-2xl">
+                  <h3 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-white leading-tight">
+                    Our project management and execution philosophy
+                  </h3>
+                  <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+                    Six steps that every scope passes through, from the first schedule to
+                    handover.
+                  </p>
+                </div>
               </div>
             </div>
+
+            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
+              {philosophy.map((item, idx) => (
+                <li
+                  key={item}
+                  className="group relative flex flex-col bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-slate-50"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-blue-700 transition-transform duration-300 ease-out group-hover:scale-x-100"
+                  />
+
+                  <span className="text-2xl font-extrabold tracking-tight text-blue-700 tabular-nums leading-none">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+
+                  <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
@@ -398,9 +485,6 @@ export default function AboutPageSection() {
           </div>
         </div>
       </section>
-
-    
-     
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import AboutPageSection from "@/components/AboutPageSection";
 import TeamSection from "@/components/TeamMember";
 import ResourcesSection from "@/components/ResourcesSection";
+import CtaSection from "@/components/CtaSection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
 <AboutPageSection/>
 <ResourcesSection/>
 <TeamSection/>
+<CtaSection/>
       
       
       <Footer />
