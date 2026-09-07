@@ -237,7 +237,7 @@ export default function ContactPageSection() {
                         hoverBgColor="#ffffff"
                         textColor="#ffffff"
                         hoverTextColor="#1d4ed8"
-                        className="px-6 py-2 text-xs sm:text-sm font-semibold rounded-none"
+                        className="px-6 py-2 text-xs sm:text-sm font-semibold rounded-md"
                       />
                     </div>
                   </div>
@@ -328,7 +328,7 @@ export default function ContactPageSection() {
                         hoverBgColor="#ffffff"
                         textColor="#ffffff"
                         hoverTextColor="#1d4ed8"
-                        className="w-36 sm:w-40 py-2.5 sm:py-3 text-xs font-semibold uppercase tracking-wider rounded-none cursor-pointer"
+                        className="w-36 sm:w-40 py-2.5 sm:py-3 text-xs font-semibold uppercase tracking-wider rounded-md cursor-pointer"
                       />
                     </div>
                   </form>
@@ -368,7 +368,7 @@ export default function ContactPageSection() {
                 hoverBgColor="#ffffff"
                 textColor="#ffffff"
                 hoverTextColor="#1d4ed8"
-                className="px-3.5 py-1.5 text-xs font-semibold rounded-none shadow"
+                className="px-3.5 py-1.5 text-xs font-semibold rounded-md shadow"
               />
             </div>
           </div>
