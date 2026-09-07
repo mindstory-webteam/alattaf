@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { Check, MapPin, Phone, Mail } from "lucide-react";
+import {Check, MapPin, Phone, Mail} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
 
@@ -51,17 +51,10 @@ export default function ContactPageSection() {
       {/* Top Section: CONTACT US */}
       <section className="w-full pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-          
-          {/* Main Heading */}
-          <h1 className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 uppercase text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto] mb-6 sm:mb-8">
-            CONTACT US
-          </h1>
-
           {/* 2-Column Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-14 xl:gap-16 items-stretch">
             {/* Left Column: Description with ScrollRevealText, Contact Details & Socials */}
-            <div className="lg:col-span-6 space-y-7 max-w-xl">
+            <div className="lg:col-span-6 flex flex-col justify-start lg:justify-between w-full max-w-full md:max-w-2xl lg:max-w-xl h-auto lg:h-full">
               {/* Dynamic Scroll-Driven Word-by-Word Reveal Text */}
               <ScrollRevealText
                 text={introText}
@@ -70,7 +63,7 @@ export default function ContactPageSection() {
               />
 
               {/* Contact Info & Socials Section with Corner SVGs (no border line) */}
-              <div className="relative p-6 sm:p-7 space-y-6">
+              <div className="relative p-5 sm:p-7 space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto">
                 {/* 4 Outer Corner SVGs from Footer */}
                 {/* Top-Left Corner */}
                 <div className="absolute top-0 left-0 w-[16px] h-[16px] z-30 pointer-events-none">
@@ -121,14 +114,14 @@ export default function ContactPageSection() {
                 </div>
 
                 {/* Address - with blue icon, exact location as used in footer */}
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3 min-w-0">
                   <MapPin className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <a
                       href={gmapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors leading-snug"
+                      className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors leading-snug break-words"
                     >
                       {footerAddress}
                     </a>
@@ -139,22 +132,22 @@ export default function ContactPageSection() {
                 </div>
 
                 {/* Phone - with blue icon, exact phone as used in footer */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <Phone className="w-5 h-5 text-blue-700 shrink-0" />
                   <a
                     href={`tel:${footerPhone.replace(/\s+/g, "")}`}
-                    className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors"
+                    className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors break-words"
                   >
                     {footerPhone}
                   </a>
                 </div>
 
                 {/* Email - with blue icon, exact email as used in footer */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <Mail className="w-5 h-5 text-blue-700 shrink-0" />
                   <a
                     href={`mailto:${footerEmail}`}
-                    className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors"
+                    className="inline-block text-sm sm:text-base lg:text-lg font-bold text-slate-900 hover:text-blue-700 transition-colors break-all sm:break-words"
                   >
                     {footerEmail}
                   </a>
@@ -205,105 +198,129 @@ export default function ContactPageSection() {
             </div>
 
             {/* Right Column: Contact Form Box */}
-            <div className="lg:col-span-6 w-full max-w-lg lg:ml-auto">
-              <div className="border border-[#e5e2d8] p-5 sm:p-7 bg-transparent">
-                <h2 className="text-xs sm:text-sm font-semibold text-slate-800 mb-5">
-                  Chat with us or fill out this form:
-                </h2>
+            <div className="lg:col-span-6 w-full max-w-full md:max-w-2xl lg:max-w-lg lg:ml-auto">
+              <div className="border border-[#e5e2d8] p-5 sm:p-7 lg:p-8 bg-transparent min-h-fit md:min-h-[480px] lg:min-h-[540px] flex flex-col justify-between">
+                <div className="mb-5 sm:mb-6">
+                  <h1 className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 uppercase">
+                    CONTACT US
+                  </h1>
+                  <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1">
+                    Chat with us or fill out this form:
+                  </p>
+                </div>
 
                 {submitted ? (
-                  <div className="py-6 text-center space-y-3">
-                    <div className="w-10 h-10 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center mx-auto">
-                      <Check className="w-5 h-5 stroke-[3]" />
+                  <div className="py-8 sm:py-10 my-auto text-center space-y-4">
+                    <div className="w-12 h-12 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center mx-auto">
+                      <Check className="w-6 h-6 stroke-[3]" />
                     </div>
-                    <h3 className="text-sm sm:text-base font-bold text-slate-900">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900">
                       Message Sent Successfully!
                     </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed max-w-xs mx-auto">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
                       Thank you for contacting us. We will get back to you shortly.
                     </p>
-                    <div className="pt-2">
+                    <div className="pt-3">
                       <LiquidButton
                         text="Send another message"
                         onClick={() => {
                           setSubmitted(false);
-                          setFormData({ name: "", email: "", phone: "", subject: "", project: "" });
+                          setFormData({
+                            name: "",
+                            email: "",
+                            phone: "",
+                            subject: "",
+                            project: "",
+                          });
                         }}
                         btnColor="#1d4ed8"
                         hoverBgColor="#ffffff"
                         textColor="#ffffff"
                         hoverTextColor="#1d4ed8"
-                        className="px-5 py-2 text-xs font-semibold rounded-none"
+                        className="px-6 py-2 text-xs sm:text-sm font-semibold rounded-none"
                       />
                     </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex-1 flex flex-col justify-between space-y-4 sm:space-y-5 lg:space-y-6"
+                  >
                     {/* 2 Rows, 2 Columns Field Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-4 sm:gap-y-5 lg:gap-y-6">
                       {/* Row 1, Col 1: Name */}
-                      <div className="border-b border-[#e5e2d8]">
+                      <div className="border-b border-[#e5e2d8] pb-1">
                         <input
                           type="text"
                           required
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
                           placeholder="Name"
-                          className="w-full py-2 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                          className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                         />
                       </div>
 
                       {/* Row 1, Col 2: Email */}
-                      <div className="border-b border-[#e5e2d8]">
+                      <div className="border-b border-[#e5e2d8] pb-1">
                         <input
                           type="email"
                           required
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
                           placeholder="Email"
-                          className="w-full py-2 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                          className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                         />
                       </div>
 
                       {/* Row 2, Col 1: Number */}
-                      <div className="border-b border-[#e5e2d8]">
+                      <div className="border-b border-[#e5e2d8] pb-1">
                         <input
                           type="tel"
                           required
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
                           placeholder="Number"
-                          className="w-full py-2 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                          className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                         />
                       </div>
 
                       {/* Row 2, Col 2: Subject */}
-                      <div className="border-b border-[#e5e2d8]">
+                      <div className="border-b border-[#e5e2d8] pb-1">
                         <input
                           type="text"
                           required
                           value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, subject: e.target.value })
+                          }
                           placeholder="Subject"
-                          className="w-full py-2 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                          className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
                         />
                       </div>
                     </div>
 
                     {/* Bottom: Describe your project */}
-                    <div className="border-b border-[#e5e2d8]">
+                    <div className="border-b border-[#e5e2d8] flex-1 min-h-[90px] sm:min-h-[110px] lg:min-h-[130px] flex flex-col pb-1">
                       <textarea
-                        rows={3}
+                        rows={4}
                         required
                         value={formData.project}
-                        onChange={(e) => setFormData({ ...formData, project: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, project: e.target.value })
+                        }
                         placeholder="Describe your project"
-                        className="w-full py-2 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
+                        className="w-full h-full min-h-[80px] sm:min-h-[90px] lg:min-h-[110px] py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
                       />
                     </div>
 
                     {/* Submit Button using LiquidButton */}
-                    <div className="pt-2">
+                    <div className="pt-2 sm:pt-3">
                       <LiquidButton
                         text={loading ? "Submitting..." : "Submit"}
                         type="submit"
@@ -311,14 +328,13 @@ export default function ContactPageSection() {
                         hoverBgColor="#ffffff"
                         textColor="#ffffff"
                         hoverTextColor="#1d4ed8"
-                        className="w-32 py-2 text-xs font-semibold uppercase tracking-wider rounded-none cursor-pointer"
+                        className="w-36 sm:w-40 py-2.5 sm:py-3 text-xs font-semibold uppercase tracking-wider rounded-none cursor-pointer"
                       />
                     </div>
                   </form>
                 )}
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -332,7 +348,7 @@ export default function ContactPageSection() {
           </h2>
 
           {/* Interactive OpenStreetMap container rendered with Leaflet */}
-          <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[500px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
+          <div className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] lg:h-[500px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
             <LeafletMap
               lat={25.9377}
               lng={49.6738}
@@ -342,7 +358,7 @@ export default function ContactPageSection() {
             />
 
             {/* "Open in google maps" button in Bottom Left using LiquidButton */}
-            <div className="absolute bottom-5 left-5 z-[500]">
+            <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 z-[500]">
               <LiquidButton
                 text="Open in google maps"
                 href={gmapsUrl}

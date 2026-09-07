@@ -43,6 +43,18 @@ export default function Navbar() {
     },
   ];
 
+  // Always ensure website starts at the very top (0, 0) with Navbar visible when entering
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      if (!window.location.hash) {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -50,8 +62,11 @@ export default function Navbar() {
       // When mobile menu is open, don't hide
       if (isMobileMenuOpen) return;
 
-      // If scrolling down past threshold, hide navbar
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Always keep navbar visible when at or near the top of the page (within 100px)
+      if (currentScrollY <= 100) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // If scrolling down past threshold, hide navbar
         setIsVisible(false);
       } else if (currentScrollY < lastScrollY) {
         // If scrolling up (reverse scroll), show navbar
@@ -66,6 +81,9 @@ export default function Navbar() {
 
       setLastScrollY(currentScrollY);
     };
+
+    // Run once on mount to synchronize initial scroll state
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
