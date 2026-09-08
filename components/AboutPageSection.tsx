@@ -398,7 +398,7 @@ export default function AboutPageSection() {
               />
 
               {/* Darkened from the left so the copy stays readable over any footage */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/70 to-slate-950/45" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-10 to-slate-0" />
 
               <div className="absolute inset-0 flex items-center">
                 <div className="px-6 sm:px-10 lg:px-14 max-w-2xl">
