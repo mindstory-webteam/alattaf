@@ -220,10 +220,7 @@ export default function Footer() {
                     </a>
                   </div>
 
-                  <div className="pt-1 text-[11px] text-slate-500 font-mono flex flex-wrap gap-x-3 gap-y-0.5">
-                    <span>CR: #2059000287</span>
-                    <span>Aramco Vendor: #10005728</span>
-                  </div>
+                
                 </div>
               </div>
 

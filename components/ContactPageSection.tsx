@@ -1,7 +1,6 @@
 "use client";
 
 import React, {useState} from "react";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import {Check, MapPin, Phone, Mail} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
@@ -59,60 +58,11 @@ export default function ContactPageSection() {
               <ScrollRevealText
                 text={introText}
                 as="p"
-                className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
+                className="text-[22px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
               />
 
-              {/* Contact Info & Socials Section with Corner SVGs (no border line) */}
-              <div className="relative p-5 sm:p-7 space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto">
-                {/* 4 Outer Corner SVGs from Footer */}
-                {/* Top-Left Corner */}
-                <div className="absolute top-0 left-0 w-[16px] h-[16px] z-30 pointer-events-none">
-                  <Image
-                    src="/joints/top-left-corner.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="block w-full h-full"
-                    unoptimized
-                  />
-                </div>
-
-                {/* Top-Right Corner */}
-                <div className="absolute top-0 right-0 w-[16px] h-[16px] z-30 pointer-events-none">
-                  <Image
-                    src="/joints/top-right-corner.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="block w-full h-full"
-                    unoptimized
-                  />
-                </div>
-
-                {/* Bottom-Left Corner */}
-                <div className="absolute bottom-0 left-0 w-[16px] h-[16px] z-30 pointer-events-none">
-                  <Image
-                    src="/joints/bottom-left-corner.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="block w-full h-full"
-                    unoptimized
-                  />
-                </div>
-
-                {/* Bottom-Right Corner */}
-                <div className="absolute bottom-0 right-0 w-[16px] h-[16px] z-30 pointer-events-none">
-                  <Image
-                    src="/joints/bottom-right-corner.svg"
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="block w-full h-full"
-                    unoptimized
-                  />
-                </div>
-
+              {/* Contact Info & Socials Section */}
+              <div className="space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto">
                 {/* Address - with blue icon, exact location as used in footer */}
                 <div className="flex items-start gap-3 min-w-0">
                   <MapPin className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
@@ -218,7 +168,8 @@ export default function ContactPageSection() {
                       Message Sent Successfully!
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
-                      Thank you for contacting us. We will get back to you shortly.
+                      Thank you for contacting us. We will get back to you
+                      shortly.
                     </p>
                     <div className="pt-3">
                       <LiquidButton
@@ -255,7 +206,7 @@ export default function ContactPageSection() {
                           required
                           value={formData.name}
                           onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
+                            setFormData({...formData, name: e.target.value})
                           }
                           placeholder="Name"
                           className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
@@ -269,7 +220,7 @@ export default function ContactPageSection() {
                           required
                           value={formData.email}
                           onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
+                            setFormData({...formData, email: e.target.value})
                           }
                           placeholder="Email"
                           className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
@@ -283,7 +234,7 @@ export default function ContactPageSection() {
                           required
                           value={formData.phone}
                           onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
+                            setFormData({...formData, phone: e.target.value})
                           }
                           placeholder="Number"
                           className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
@@ -297,7 +248,7 @@ export default function ContactPageSection() {
                           required
                           value={formData.subject}
                           onChange={(e) =>
-                            setFormData({ ...formData, subject: e.target.value })
+                            setFormData({...formData, subject: e.target.value})
                           }
                           placeholder="Subject"
                           className="w-full py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
@@ -312,7 +263,7 @@ export default function ContactPageSection() {
                         required
                         value={formData.project}
                         onChange={(e) =>
-                          setFormData({ ...formData, project: e.target.value })
+                          setFormData({...formData, project: e.target.value})
                         }
                         placeholder="Describe your project"
                         className="w-full h-full min-h-[80px] sm:min-h-[90px] lg:min-h-[110px] py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
@@ -356,21 +307,6 @@ export default function ContactPageSection() {
               locationName="Al Attaf Advanced Contracting Headquarters"
               address={footerAddress}
             />
-
-            {/* "Open in google maps" button in Bottom Left using LiquidButton */}
-            <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5 z-[500]">
-              <LiquidButton
-                text="Open in google maps"
-                href={gmapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                btnColor="#1d4ed8"
-                hoverBgColor="#ffffff"
-                textColor="#ffffff"
-                hoverTextColor="#1d4ed8"
-                className="px-3.5 py-1.5 text-xs font-semibold rounded-md shadow"
-              />
-            </div>
           </div>
         </div>
       </section>

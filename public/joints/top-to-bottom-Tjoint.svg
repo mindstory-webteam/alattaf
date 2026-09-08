@@ -1,5 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="10" viewBox="0 0 19 10" fill="none" class="footer_seperator_marker is-top">
-  <rect y="0" width="10" height="1" fill="#1e293b"/>
-  <rect x="9" y="0" width="10" height="1" fill="#1e293b"/>
-  <rect x="9" y="10" width="10" height="1" transform="rotate(-90 9 10)" fill="#1e293b"/>
+  <path d="M0 0H19V2H10.5V10H8.5V2H0Z" fill="#475569"/>
 </svg>
