@@ -96,9 +96,9 @@ export default function ServicesSection() {
             <ScrollRevealText
               text="Delivering turnkey engineering, industrial infrastructure, and specialized facility maintenance across Saudi Arabia."
               as="h3"
-              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900"
             />
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Backed by over 45 years of Saudi Aramco operational excellence, certified multi-discipline workforce, and stringent HSE standards powering Kingdom-wide industrial execution.
             </p>
           </div>

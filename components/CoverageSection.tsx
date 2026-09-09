@@ -77,7 +77,7 @@ export default function CoverageSection() {
           <ScrollRevealText
             text={headingText}
             as="h2"
-            className="text-[15px] sm:text-xl lg:text-[23px] font-bold leading-relaxed sm:leading-relaxed tracking-normal sm:tracking-tight max-w-4xl text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
+            className="text-[15px] sm:text-xl lg:text-[23px] font-bold leading-relaxed sm:leading-relaxed tracking-normal sm:tracking-tight max-w-4xl"
           />
 
           <div className="shrink-0 pt-1">
