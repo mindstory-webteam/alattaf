@@ -429,8 +429,7 @@ export default function Footer() {
         {/* Bottom Minimal Copyright Bar */}
         <div className="w-full pt-8 pb-4 flex items-center justify-between text-xs text-slate-500">
           <p>
-            © {new Date().getFullYear()} Al Attaf Advanced Contracting Company
-            (AAAC). All rights reserved.
+            © {new Date().getFullYear()} Al Attaf Advanced Contracting Company. All rights reserved.
           </p>
         </div>
       </div>

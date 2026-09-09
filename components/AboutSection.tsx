@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 
 export default function AboutSection() {
   const dummyList = Array.from({ length: 12 }, (_, i) => i + 1);
-  const headingText = "We take this opportunity to introduce Al Attaf Advanced Contracting Company (AAAC), a 100% Saudi-owned enterprise headquartered in Abqaiq, Kingdom of Saudi Arabia.";
+  const headingText = "We take this opportunity to introduce Al Attaf Advanced Contracting Company, a 100% Saudi-owned enterprise headquartered in Abqaiq, Kingdom of Saudi Arabia.";
 
   return (
     <section id="about" className="w-full bg-white py-20 lg:py-28 font-sans border-b border-slate-100 overflow-hidden">
