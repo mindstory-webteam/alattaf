@@ -1,10 +1,15 @@
-// src/data/services.ts  (or app/data/services.ts — keep the import path consistent)
+// app/data/services.ts
 
 export type ServiceCategoryId = "construction" | "industrial";
 
 export interface ServiceSection {
   heading: string;
   body: string;
+}
+
+export interface ServiceFaq {
+  question: string;
+  answer: string;
 }
 
 export interface Service {
@@ -21,6 +26,7 @@ export interface Service {
   highlights: string[];
   sections: ServiceSection[];
   capabilities: string[];
+  faqs: ServiceFaq[];
 }
 
 export interface ServiceCategory {
@@ -41,6 +47,30 @@ export const serviceCategories: ServiceCategory[] = [
     label: "Industrial Supply & Specialized Services",
     description:
       "Approved material supply, manpower mobilisation and specialised plant services for continuous industrial operations.",
+  },
+];
+
+/** Shared delivery process shown on every service page */
+export const serviceProcess = [
+  {
+    step: "01",
+    title: "Enquiry & site visit",
+    body: "We review your scope, drawings and specifications, then walk the site to understand access, constraints and the working window.",
+  },
+  {
+    step: "02",
+    title: "Proposal & method statement",
+    body: "You receive a priced proposal with a schedule, resource plan, method statement and the QA and safety documents the job requires.",
+  },
+  {
+    step: "03",
+    title: "Mobilisation",
+    body: "Permits, gate passes, manpower, equipment and approved materials are arranged so work starts on the agreed date, not weeks after it.",
+  },
+  {
+    step: "04",
+    title: "Execution & handover",
+    body: "Work is executed against the inspection plan, punch items are closed out, and handover includes test records and as-built documentation.",
   },
 ];
 
@@ -86,6 +116,28 @@ export const services: Service[] = [
       "Renovation and fit-out works",
       "Annual maintenance contracts",
     ],
+    faqs: [
+      {
+        question: "Can you work inside an operating plant without a shutdown?",
+        answer:
+          "Yes. Most of our civil work is done in live facilities under permit-to-work systems, with hot work permits, barricading and phased access so operations continue around us.",
+      },
+      {
+        question: "Do you handle design, or only construction?",
+        answer:
+          "We build to your issued-for-construction drawings. Where a consultant's design is not yet complete, we can coordinate with your engineer and provide shop drawings for approval.",
+      },
+      {
+        question: "What concrete testing do you provide?",
+        answer:
+          "Slump tests at pour and cube tests at 7 and 28 days through an approved third-party laboratory, with all results submitted as part of the handover package.",
+      },
+      {
+        question: "Is there a warranty on completed work?",
+        answer:
+          "Yes. A defects liability period is included in every contract, and our maintenance crews handle any callouts during that period.",
+      },
+    ],
   },
   {
     slug: "road-cutting-asphalting",
@@ -127,6 +179,28 @@ export const services: Service[] = [
       "Hot mix asphalt paving and compaction",
       "Pothole repair and resurfacing",
       "Road marking and signage",
+    ],
+    faqs: [
+      {
+        question: "Do you obtain the road opening permits?",
+        answer:
+          "We prepare the drawings, traffic management plan and supporting documents, and coordinate the application with the facility or municipality on your behalf.",
+      },
+      {
+        question: "How do you avoid damaging buried services?",
+        answer:
+          "Existing services are located by drawing review and cable detection before cutting, and excavation near a known service is completed by hand.",
+      },
+      {
+        question: "How soon can traffic use the reinstated road?",
+        answer:
+          "Once the wearing course is laid and compacted, the surface is typically ready for traffic within a few hours of cooling, depending on ambient temperature.",
+      },
+      {
+        question: "Do you take on small patch repairs?",
+        answer:
+          "Yes. Pothole repairs, speed humps and parking area patching are handled by the same crews as full paving packages.",
+      },
     ],
   },
   {
@@ -170,6 +244,28 @@ export const services: Service[] = [
       "Site welding and structural modification",
       "Blasting and painting to spec",
     ],
+    faqs: [
+      {
+        question: "Are your welders certified?",
+        answer:
+          "Yes. Welders are qualified to approved procedures, and qualification records are submitted for client review before fabrication begins.",
+      },
+      {
+        question: "What NDT can you arrange?",
+        answer:
+          "Visual, dye penetrant, magnetic particle, ultrasonic and radiographic testing through approved third-party inspection agencies, as the specification requires.",
+      },
+      {
+        question: "Do you fabricate in a workshop or on site?",
+        answer:
+          "Both. Repetitive and precision work is done in the workshop for better quality control, while modifications and tie-ins are completed on site.",
+      },
+      {
+        question: "Can you handle the lifting and cranes?",
+        answer:
+          "Yes. Lift plans, certified cranes, inspected rigging gear and licensed riggers and operators are all included in our erection scope.",
+      },
+    ],
   },
   {
     slug: "electrical-instrumentation",
@@ -211,6 +307,28 @@ export const services: Service[] = [
       "Instrument hook-up and tubing",
       "Calibration and loop testing",
       "Pre-commissioning and commissioning support",
+    ],
+    faqs: [
+      {
+        question: "Do you work in hazardous classified areas?",
+        answer:
+          "Yes. Installations in classified areas follow the applicable Ex requirements, using certified equipment, correct glanding and sealing, with technicians experienced in hazardous-area work.",
+      },
+      {
+        question: "Is calibration equipment certified?",
+        answer:
+          "All test and calibration instruments carry valid calibration certificates traceable to recognised standards, and certificates are provided with the test records.",
+      },
+      {
+        question: "Can you support commissioning?",
+        answer:
+          "Yes. We provide loop checking, functional testing and standby technicians through commissioning and initial start-up.",
+      },
+      {
+        question: "Do you supply the cables and materials?",
+        answer:
+          "We can work with free-issue material or supply approved cables, glands, trays and instruments as part of the package.",
+      },
     ],
   },
   {
@@ -254,6 +372,28 @@ export const services: Service[] = [
       "Laser shaft alignment",
       "Turnaround and shutdown support",
     ],
+    faqs: [
+      {
+        question: "Do you use laser alignment?",
+        answer:
+          "Yes. Rotating equipment is aligned with laser alignment tools and the readings are recorded as part of the handover documentation.",
+      },
+      {
+        question: "Can you mobilise for a shutdown at short notice?",
+        answer:
+          "Turnaround scopes are planned in advance where possible, but we maintain manpower and equipment reserves for short-notice and emergency mobilisation.",
+      },
+      {
+        question: "Do you provide hydrotest documentation?",
+        answer:
+          "Every hydrotest is completed against an approved procedure with pressure charts, test packs and punch closure records included in the final dossier.",
+      },
+      {
+        question: "Do you handle piping fabrication in-house?",
+        answer:
+          "Yes. Spools are fabricated in our workshop by qualified welders and delivered to site for erection and tie-in.",
+      },
+    ],
   },
   {
     slug: "general-maintenance-works",
@@ -295,6 +435,28 @@ export const services: Service[] = [
       "HVAC servicing support",
       "Painting and refurbishment",
       "24/7 call-out arrangements",
+    ],
+    faqs: [
+      {
+        question: "Do you offer annual maintenance contracts?",
+        answer:
+          "Yes. Annual contracts are priced around your asset register and visit frequency, with call-out work either included or charged against an agreed rate schedule.",
+      },
+      {
+        question: "How quickly do you respond to a breakdown?",
+        answer:
+          "Response times are agreed in the contract. For sites with a resident crew, most reactive calls are attended the same day.",
+      },
+      {
+        question: "Can one contract cover several trades?",
+        answer:
+          "That is the point of it. Civil, electrical, mechanical and finishing trades sit under one contract and one point of contact.",
+      },
+      {
+        question: "Do you provide maintenance reports?",
+        answer:
+          "Each visit is logged with the work performed, parts used and any recommendations, and reports are issued on the agreed reporting cycle.",
+      },
     ],
   },
   {
@@ -338,6 +500,28 @@ export const services: Service[] = [
       "Safety and PPE supply",
       "Expediting and inspection coordination",
     ],
+    faqs: [
+      {
+        question: "What documentation comes with the material?",
+        answer:
+          "Mill test certificates, traceability records, inspection release notes, packing lists and any certificates the purchase order specifies, compiled into one submittal package.",
+      },
+      {
+        question: "Can you source against a specific standard?",
+        answer:
+          "Yes. Material is quoted and procured against the standard stated in your enquiry, from manufacturers on the approved vendor list.",
+      },
+      {
+        question: "What are typical lead times?",
+        answer:
+          "Stock items can be delivered within days; manufactured and long-lead items depend on the vendor, and we report progress against the promised date throughout.",
+      },
+      {
+        question: "Can you arrange third-party inspection?",
+        answer:
+          "Yes. Where the order requires it, we coordinate inspection at the manufacturer's works and issue the release notes with the shipment.",
+      },
+    ],
   },
   {
     slug: "equipment-portable-office-supply",
@@ -379,6 +563,28 @@ export const services: Service[] = [
       "Compressors and welding machines",
       "Temporary power, water and lighting",
       "Operators and maintenance included",
+    ],
+    faqs: [
+      {
+        question: "Is there a minimum hire period?",
+        answer:
+          "Rates are available daily, weekly and monthly, with the minimum period depending on the equipment type and mobilisation distance.",
+      },
+      {
+        question: "Are operators included?",
+        answer:
+          "Equipment can be supplied bare or with licensed, certified operators, whichever suits your site arrangement.",
+      },
+      {
+        question: "Who handles servicing during the hire?",
+        answer:
+          "We do. Scheduled servicing, breakdown response and replacement units are covered so the equipment stays available.",
+      },
+      {
+        question: "Do portable offices come furnished?",
+        answer:
+          "They can be supplied bare or fitted out with furniture, air conditioning, power and data, and connected to site utilities on delivery.",
+      },
     ],
   },
   {
@@ -422,6 +628,28 @@ export const services: Service[] = [
       "Transport and camp accommodation",
       "Timesheet and payroll administration",
     ],
+    faqs: [
+      {
+        question: "How quickly can manpower be mobilised?",
+        answer:
+          "Personnel already under our sponsorship can usually be deployed within days; specialised trades or overseas recruitment take longer and are confirmed at quotation.",
+      },
+      {
+        question: "Who handles iqama, payroll and GOSI?",
+        answer:
+          "We do. Visas, iqama processing, payroll, GOSI, insurance, transport and accommodation all remain our responsibility throughout the assignment.",
+      },
+      {
+        question: "Can we interview or test candidates first?",
+        answer:
+          "Yes. Trade tests and client interviews can be arranged before deployment, and replacements are provided if someone is not a fit.",
+      },
+      {
+        question: "Is PPE included?",
+        answer:
+          "Standard PPE is supplied with the workforce. Site-specific or specialised protective equipment is arranged on request.",
+      },
+    ],
   },
   {
     slug: "ti-work-ac-cooling-towers",
@@ -463,6 +691,28 @@ export const services: Service[] = [
       "Basin lining and corrosion repair",
       "Fan balancing and gearbox service",
       "Water treatment system support",
+    ],
+    faqs: [
+      {
+        question: "How often should a cooling tower be inspected?",
+        answer:
+          "An annual inspection suits most units, though towers in dusty or high-load conditions benefit from a shorter interval and more frequent basin cleaning.",
+      },
+      {
+        question: "How long does the work take?",
+        answer:
+          "A clean and inspection is typically a few days per cell. Fill replacement or structural repair depends on scope and is confirmed after the survey.",
+      },
+      {
+        question: "Do you need the tower out of service?",
+        answer:
+          "Yes, the cell being worked on must be isolated and drained. On multi-cell installations we work cell by cell so partial capacity stays available.",
+      },
+      {
+        question: "What do we receive after the inspection?",
+        answer:
+          "A photographic report covering structure, fill, basin and mechanical equipment, with findings prioritised and a recommended repair scope.",
+      },
     ],
   },
   {
@@ -506,6 +756,28 @@ export const services: Service[] = [
       "CCTV and access control",
       "Annual IT support contracts",
     ],
+    faqs: [
+      {
+        question: "Do you provide ongoing support or only installation?",
+        answer:
+          "Both. Annual support contracts cover preventive visits, remote troubleshooting and on-site response alongside any new installation work.",
+      },
+      {
+        question: "Can you relocate an existing site office setup?",
+        answer:
+          "Yes. We handle decommissioning, transport, reinstallation, cabling and reconfiguration so the office is working again at the new location.",
+      },
+      {
+        question: "Do you install CCTV and access control?",
+        answer:
+          "Yes. Camera and access control installation, cabling, recorder setup and user configuration are part of our scope.",
+      },
+      {
+        question: "Do you supply the hardware?",
+        answer:
+          "We can supply and configure desktops, laptops, printers, switches and network equipment, or work with hardware you have already procured.",
+      },
+    ],
   },
 ];
 
@@ -532,4 +804,22 @@ export function getAdjacentServices(slug: string) {
     previous: index > 0 ? services[index - 1] : services[services.length - 1],
     next: index < services.length - 1 ? services[index + 1] : services[0],
   };
+}
+
+/**
+ * Related services: same category first, topped up from the other
+ * category if that category doesn't have enough entries.
+ */
+export function getRelatedServices(slug: string, limit = 3): Service[] {
+  const current = getServiceBySlug(slug);
+  if (!current) return services.slice(0, limit);
+
+  const sameCategory = services.filter(
+    (service) => service.category === current.category && service.slug !== slug
+  );
+  const others = services.filter(
+    (service) => service.category !== current.category && service.slug !== slug
+  );
+
+  return [...sameCategory, ...others].slice(0, limit);
 }
