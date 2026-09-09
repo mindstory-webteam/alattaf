@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { MapPin } from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
 

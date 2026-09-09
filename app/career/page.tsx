@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumb";
+import ScrollRevealText from "@/components/ScrollRevealText";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -19,9 +20,18 @@ export default function CareerPage() {
         showVisionLogo
       />
 
-      {/* Career Page Content will go here */}
-      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-8 lg:px-12">
-        {/* Placeholder for career listings/sections */}
+      {/* Career Page Content */}
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:py-24 sm:px-8 lg:px-12">
+        <div className="max-w-4xl space-y-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Build Your Career With Al Attaf
+          </h2>
+          <ScrollRevealText
+            text="High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys."
+            as="p"
+            className="text-base sm:text-xl font-semibold leading-relaxed"
+          />
+        </div>
       </div>
 
       <Footer />

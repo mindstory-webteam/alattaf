@@ -300,7 +300,7 @@ export default function Navbar() {
 
                 {/* Gallery */}
                 <Link
-                  href="#gallery"
+                  href="/gallery"
                   onClick={() => setActiveItem("Gallery")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Gallery"
@@ -520,7 +520,7 @@ export default function Navbar() {
 
             {/* Gallery */}
             <Link
-              href="#gallery"
+              href="/gallery"
               onClick={() => {
                 setActiveItem("Gallery");
                 setIsMobileMenuOpen(false);
