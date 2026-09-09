@@ -165,7 +165,7 @@ export default function ServicesPage() {
       {/* ---------------------------------------------------------- */}
       {/* Closing band                                                */}
       {/* ---------------------------------------------------------- */}
-      <section className="px-6 sm:px-12 lg:px-16 xl:px-24 py-16 sm:py-20 bg-slate-900">
+      {/* <section className="px-6 sm:px-12 lg:px-16 xl:px-24 py-16 sm:py-20 bg-slate-900">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           <div className="max-w-2xl">
             <ScrollRevealText
@@ -206,7 +206,7 @@ export default function ServicesPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
       <CtaSection />
       <Footer />

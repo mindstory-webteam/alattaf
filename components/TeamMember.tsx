@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 interface TeamMember {
   name: string;
@@ -65,14 +66,21 @@ export default function TeamSection() {
             as="h2"
             className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
           />
-          <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">
-            {INTRO}
-          </p>
+          <Reveal delay={100}>
+            <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">
+              {INTRO}
+            </p>
+          </Reveal>
         </div>
 
         <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 lg:gap-10 xl:gap-6">
-          {MEMBERS.map((member) => (
-            <article key={member.name} className="group flex flex-col">
+          {MEMBERS.map((member, idx) => (
+            <Reveal
+              key={member.name}
+              as="article"
+              delay={idx * 110}
+              className="group flex flex-col"
+            >
               <div className="relative w-full aspect-[4/5] overflow-hidden border border-slate-200/80 bg-slate-100">
                 {member.image ? (
                   <>
@@ -102,7 +110,7 @@ export default function TeamSection() {
                   {member.role}
                 </p>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
