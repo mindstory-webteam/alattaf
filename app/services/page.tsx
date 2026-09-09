@@ -13,6 +13,8 @@ import {
   getServicesByCategory,
   services,
 } from "@/app/data/services";
+import Footer from "@/components/Footer";
+import CtaSection from "@/components/CtaSection";
 
 export const metadata: Metadata = {
   title: "Our Services | Al Attaf Advanced Contracting Company",
@@ -175,6 +177,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <CtaSection/>
+      <Footer/>
     </main>
   );
 }

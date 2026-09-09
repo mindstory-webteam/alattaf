@@ -22,6 +22,8 @@ import {
   getAdjacentServices,
   serviceCategories,
 } from "@/app/data/services";
+import Footer from "@/components/Footer";
+import CtaSection from "@/components/CtaSection";
 
 /**
  * Next.js 15 passes `params` as a Promise.
@@ -275,6 +277,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </aside>
         </div>
       </section>
+      <CtaSection/>
+      <Footer/>
     </main>
   );
 }

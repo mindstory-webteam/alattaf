@@ -3,8 +3,23 @@
 import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {Menu, X, Phone, ChevronDown} from "lucide-react";
+import {usePathname} from "next/navigation";
+import {Menu, X, Phone, ChevronDown, ArrowRight} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
+import {serviceCategories, getServicesByCategory} from "@/app/data/services";
+
+/**
+ * Services dropdown is generated from the same data file the
+ * /services and /services/[slug] pages use, so the menu can never
+ * fall out of sync with the actual routes.
+ */
+const servicesSections = serviceCategories.map((category) => ({
+  title: category.label,
+  items: getServicesByCategory(category.id).map((service) => ({
+    name: service.title,
+    href: `/services/${service.slug}`,
+  })),
+}));
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,32 +29,31 @@ export default function Navbar() {
   const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
 
-  const servicesSections = [
-    {
-      title: "Construction & Engineering Works",
-      items: [
-        {
-          name: "Civil Works, Building Construction & Maintenance",
-          href: "#services",
-        },
-        {name: "Road Cutting & Asphalting", href: "#services"},
-        {name: "Fabrication & Erection Of Structures", href: "#services"},
-        {name: "Electrical Instrumentation", href: "#services"},
-        {name: "Mechanical Engineer", href: "#services"},
-        {name: "General Maintenance Works", href: "#services"},
-      ],
-    },
-    {
-      title: "Industrial Supply & Specialized Services",
-      items: [
-        {name: "Material Supply To Saudi Aramco", href: "#services"},
-        {name: "Supply of Equipment & Portable office", href: "#services"},
-        {name: "Manpower Supply", href: "#services"},
-        {name: "T&I Work On A/C Cooling Towers", href: "#services"},
-        {name: "Computer It Works & Maintenance", href: "#services"},
-      ],
-    },
-  ];
+  const pathname = usePathname();
+
+  // Keep the active nav item in sync with the current route
+  useEffect(() => {
+    if (!pathname) return;
+
+    if (pathname.startsWith("/services")) {
+      setActiveItem("Services");
+    } else if (pathname.startsWith("/about")) {
+      setActiveItem("About us");
+    } else if (pathname.startsWith("/contact")) {
+      setActiveItem("Contact");
+    } else if (pathname.startsWith("/careers")) {
+      setActiveItem("Careers");
+    } else if (pathname.startsWith("/gallery")) {
+      setActiveItem("Gallery");
+    } else if (pathname === "/") {
+      setActiveItem("Home");
+    }
+  }, [pathname]);
+
+  // Close the mobile drawer whenever the route changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   // Always ensure website starts at the very top (0, 0) with Navbar visible when entering
   useEffect(() => {
@@ -111,6 +125,9 @@ export default function Navbar() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isMobileMenuOpen]);
+
+  // Highlights the exact service page you are currently on
+  const isCurrentService = (href: string) => pathname === href;
 
   return (
     <>
@@ -243,8 +260,9 @@ export default function Navbar() {
 
                 {/* Services Dropdown */}
                 <div className="relative group py-2">
-                  <button
-                    type="button"
+                  {/* Label itself now navigates to the services listing page */}
+                  <Link
+                    href="/services"
                     onClick={() => setActiveItem("Services")}
                     className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg ${
                       activeItem === "Services"
@@ -254,7 +272,7 @@ export default function Navbar() {
                   >
                     <span>Services</span>
                     <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
-                  </button>
+                  </Link>
 
                   {/* Dropdown Menu Container without border radius, only text */}
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[720px] max-w-[90vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 pointer-events-none group-hover:pointer-events-auto z-50">
@@ -268,18 +286,34 @@ export default function Navbar() {
                             <ul className="space-y-1">
                               {section.items.map((item, iIdx) => (
                                 <li key={iIdx}>
-                                  <a
+                                  <Link
                                     href={item.href}
                                     onClick={() => setActiveItem("Services")}
-                                    className="block px-2.5 py-2 rounded-none text-xs font-medium text-slate-700 hover:text-slate-950 transition-colors leading-snug"
+                                    className={`block px-2.5 py-2 rounded-none text-xs font-medium transition-colors leading-snug ${
+                                      isCurrentService(item.href)
+                                        ? "text-sky-600 font-bold"
+                                        : "text-slate-700 hover:text-slate-950"
+                                    }`}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </ul>
                           </div>
                         ))}
+                      </div>
+
+                      {/* View all services */}
+                      <div className="mt-5 pt-4 border-t border-slate-100">
+                        <Link
+                          href="/services"
+                          onClick={() => setActiveItem("Services")}
+                          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
+                        >
+                          View all services
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -455,24 +489,40 @@ export default function Navbar() {
               About us
             </Link>
 
-            {/* Services Accordion */}
+            {/* Services Accordion — label navigates, chevron expands */}
             <div className="overflow-hidden rounded-xl">
-              <button
-                type="button"
-                onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)}
-                className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
+              <div
+                className={`flex items-center justify-between w-full rounded-xl text-sm font-semibold transition-all ${
                   activeItem === "Services"
                     ? "text-sky-600 font-bold"
-                    : "text-slate-700 hover:text-slate-950"
+                    : "text-slate-700"
                 }`}
               >
-                <span>Services</span>
-                <ChevronDown
-                  className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                    isServicesOpenMobile ? "rotate-180 text-sky-600" : ""
-                  }`}
-                />
-              </button>
+                <Link
+                  href="/services"
+                  onClick={() => {
+                    setActiveItem("Services");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex-1 px-4 py-3 hover:text-slate-950 transition-colors"
+                >
+                  Services
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)}
+                  className="px-3 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-xl"
+                  aria-expanded={isServicesOpenMobile}
+                  aria-label="Toggle services list"
+                >
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
+                      isServicesOpenMobile ? "rotate-180 text-sky-600" : ""
+                    }`}
+                  />
+                </button>
+              </div>
 
               {isServicesOpenMobile && (
                 <div className="pl-4 pr-1 py-1.5 space-y-3 mt-1">
@@ -483,21 +533,37 @@ export default function Navbar() {
                       </div>
                       <div className="space-y-0.5">
                         {section.items.map((item, iIdx) => (
-                          <a
+                          <Link
                             key={iIdx}
                             href={item.href}
                             onClick={() => {
                               setActiveItem("Services");
                               setIsMobileMenuOpen(false);
                             }}
-                            className="block px-2 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-950 transition-colors leading-snug"
+                            className={`block px-2 py-1.5 rounded-lg text-xs font-medium transition-colors leading-snug ${
+                              isCurrentService(item.href)
+                                ? "text-sky-600 font-bold"
+                                : "text-slate-600 hover:text-slate-950"
+                            }`}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
                   ))}
+
+                  <Link
+                    href="/services"
+                    onClick={() => {
+                      setActiveItem("Services");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="inline-flex items-center gap-2 px-2 pt-1 text-[11px] font-bold uppercase tracking-wider text-sky-600"
+                  >
+                    View all services
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               )}
             </div>
