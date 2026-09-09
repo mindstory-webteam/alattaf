@@ -44,7 +44,7 @@ export default function Footer() {
           {/* Top-Left Corner */}
           <div
             className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
-            style={{ top: "-1px", left: "-1px" }}
+            style={{top: "-1px", left: "-1px"}}
           >
             <Image
               src="/joints/top-left-corner.svg"
@@ -59,7 +59,7 @@ export default function Footer() {
           {/* Top-Right Corner */}
           <div
             className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
-            style={{ top: "-1px", right: "-1px" }}
+            style={{top: "-1px", right: "-1px"}}
           >
             <Image
               src="/joints/top-right-corner.svg"
@@ -74,7 +74,7 @@ export default function Footer() {
           {/* Bottom-Left Corner */}
           <div
             className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
-            style={{ bottom: "-1px", left: "-1px" }}
+            style={{bottom: "-1px", left: "-1px"}}
           >
             <Image
               src="/joints/bottom-left-corner.svg"
@@ -89,7 +89,7 @@ export default function Footer() {
           {/* Bottom-Right Corner */}
           <div
             className="absolute w-[16px] h-[16px] z-30 pointer-events-none"
-            style={{ bottom: "-1px", right: "-1px" }}
+            style={{bottom: "-1px", right: "-1px"}}
           >
             <Image
               src="/joints/bottom-right-corner.svg"
@@ -176,13 +176,16 @@ export default function Footer() {
             {/* Section 1: Brand, Headquarters & Socials (4 cols) */}
             <div className="xl:col-span-4 p-6 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <Link href="/" className="inline-block">
+                <Link
+                  href="/"
+                  className="inline-block group focus:outline-none"
+                >
                   <Image
                     src="/alattaf-logo.png"
                     alt="Al Attaf Advanced Contracting Company"
-                    width={160}
-                    height={44}
-                    className="h-8 w-auto object-contain"
+                    width={180}
+                    height={60}
+                    className="h-11 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </Link>
 
@@ -218,11 +221,6 @@ export default function Footer() {
                     >
                       info@alattafcompany.com
                     </a>
-                  </div>
-
-                  <div className="pt-1 text-[11px] text-slate-500 font-mono flex flex-wrap gap-x-3 gap-y-0.5">
-                    <span>CR: #2059000287</span>
-                    <span>Aramco Vendor: #10005728</span>
                   </div>
                 </div>
               </div>
