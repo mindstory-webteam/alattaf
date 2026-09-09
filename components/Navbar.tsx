@@ -287,7 +287,7 @@ export default function Navbar() {
 
                 {/* Careers */}
                 <Link
-                  href="#careers"
+                  href="/career"
                   onClick={() => setActiveItem("Careers")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Careers"
@@ -504,7 +504,7 @@ export default function Navbar() {
 
             {/* Careers */}
             <Link
-              href="#careers"
+              href="/career"
               onClick={() => {
                 setActiveItem("Careers");
                 setIsMobileMenuOpen(false);

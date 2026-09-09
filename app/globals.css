@@ -73,3 +73,12 @@ body {
 body[data-sidebar-open="true"] aside[aria-label="WhatsApp Contact"] {
   display: none !important;
 }
+
+/* Hide scrollbar for smooth touch-scroll on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
