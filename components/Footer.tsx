@@ -3,37 +3,52 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 import {Phone, Mail, MapPin} from "lucide-react";
+import {serviceCategories, getServicesByCategory} from "@/app/data/services";
+
+/**
+ * Both service columns are generated from the same data file the
+ * /services routes and the navbar use, so the footer can never link
+ * to a service page that doesn't exist.
+ */
+const [constructionCategory, industrialCategory] = serviceCategories;
+
+const constructionWorks = getServicesByCategory(constructionCategory.id).map(
+  (service) => ({
+    name: service.title,
+    href: `/services/${service.slug}`,
+  })
+);
+
+const industrialSupply = getServicesByCategory(industrialCategory.id).map(
+  (service) => ({
+    name: service.title,
+    href: `/services/${service.slug}`,
+  })
+);
 
 export default function Footer() {
+  const pathname = usePathname();
+
   const quickLinks = [
     {name: "Home", href: "/"},
-    {name: "About us", href: "/#about"},
-    {name: "Services", href: "/#services"},
-    {name: "Careers", href: "/career"},
+    {name: "About us", href: "/about"},
+    {name: "Services", href: "/services"},
+    {name: "Careers", href: "/careers"},
     {name: "Gallery", href: "/gallery"},
     {name: "Contact", href: "/contact"},
   ];
 
-  const constructionWorks = [
-    {
-      name: "Civil Works, Building Construction & Maintenance",
-      href: "/#services",
-    },
-    {name: "Road Cutting & Asphalting", href: "/#services"},
-    {name: "Fabrication & Erection Of Structures", href: "/#services"},
-    {name: "Electrical Instrumentation", href: "/#services"},
-    {name: "Mechanical Engineer", href: "/#services"},
-    {name: "General Maintenance Works", href: "/#services"},
-  ];
+  // Highlights the service page currently being viewed
+  const isActive = (href: string) => pathname === href;
 
-  const industrialSupply = [
-    {name: "Material Supply To Saudi Aramco", href: "/#services"},
-    {name: "Supply of Equipment & Portable office", href: "/#services"},
-    {name: "Manpower Supply", href: "/#services"},
-    {name: "T&I Work On A/C Cooling Towers", href: "/#services"},
-    {name: "Computer It Works & Maintenance", href: "/#services"},
-  ];
+  const linkClass = (href: string) =>
+    `block leading-snug transition-colors ${
+      isActive(href)
+        ? "text-blue-700 font-semibold"
+        : "text-slate-600 hover:text-blue-700"
+    }`;
 
   return (
     <footer className="w-full bg-[#fafafa] text-slate-600 font-sans pt-12 pb-8">
@@ -176,10 +191,7 @@ export default function Footer() {
             {/* Section 1: Brand, Headquarters & Socials (4 cols) */}
             <div className="xl:col-span-4 p-6 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <Link
-                  href="/"
-                  className="inline-block group focus:outline-none"
-                >
+                <Link href="/" className="inline-block group focus:outline-none">
                   <Image
                     src="/alattaf-logo.png"
                     alt="Al Attaf Advanced Contracting Company"
@@ -308,10 +320,7 @@ export default function Footer() {
               <ul className="space-y-2.5 text-xs sm:text-sm">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-slate-600 hover:text-blue-700 transition-colors block"
-                    >
+                    <Link href={link.href} className={linkClass(link.href)}>
                       {link.name}
                     </Link>
                   </li>
@@ -354,15 +363,12 @@ export default function Footer() {
             {/* Section 3: Construction & Engineering Works (3 cols) */}
             <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                Construction & Engineering Works
+                {constructionCategory.label}
               </h3>
               <ul className="space-y-2.5 text-xs sm:text-sm">
-                {constructionWorks.map((item, idx) => (
-                  <li key={idx}>
-                    <Link
-                      href={item.href}
-                      className="text-slate-600 hover:text-blue-700 transition-colors block leading-snug"
-                    >
+                {constructionWorks.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={linkClass(item.href)}>
                       {item.name}
                     </Link>
                   </li>
@@ -405,15 +411,12 @@ export default function Footer() {
             {/* Section 4: Industrial Supply & Specialized Services (3 cols) */}
             <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                Industrial Supply & Specialized Services
+                {industrialCategory.label}
               </h3>
               <ul className="space-y-2.5 text-xs sm:text-sm">
-                {industrialSupply.map((item, idx) => (
-                  <li key={idx}>
-                    <Link
-                      href={item.href}
-                      className="text-slate-600 hover:text-blue-700 transition-colors block leading-snug"
-                    >
+                {industrialSupply.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={linkClass(item.href)}>
                       {item.name}
                     </Link>
                   </li>
