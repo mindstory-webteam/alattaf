@@ -446,43 +446,46 @@ export default function GallerySection() {
           </div>
         </div>
 
-        {/* Category Filter Pills: Horizontally scrollable on mobile, wrapping on sm+ */}
-        <div className="-mx-4 sm:mx-0 overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 py-4 sm:py-6 md:py-8 sm:flex-wrap px-4 sm:px-0">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              const count =
-                cat.id === "all"
-                  ? galleryData.length
-                  : galleryData.filter((i) => i.category === cat.id).length;
+        {/* Category Filter Pills */}
+      </div>
 
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => handleCategoryChange(cat.id)}
-                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer ${
+      {/* Full-width scroll wrapper outside padded container so pills are never clipped */}
+      <div className="overflow-x-auto no-scrollbar w-full">
+        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 py-4 sm:py-6 md:py-8 sm:flex-wrap px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            const count =
+              cat.id === "all"
+                ? galleryData.length
+                : galleryData.filter((i) => i.category === cat.id).length;
+
+            return (
+              <button
+                key={cat.id}
+                onClick={() => handleCategoryChange(cat.id)}
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer ${
+                  isActive
+                    ? "bg-blue-700 text-white shadow-md shadow-blue-600/25 scale-[1.02]"
+                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
+                }`}
+              >
+                <span className="whitespace-nowrap">{cat.label}</span>
+                <span
+                  className={`px-1.5 py-0.5 text-[10px] sm:text-[11px] rounded-full font-bold ${
                     isActive
-                      ? "bg-blue-700 text-white shadow-md shadow-blue-600/25 scale-[1.02]"
-                      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
+                      ? "bg-blue-800 text-white"
+                      : "bg-slate-100 text-slate-600"
                   }`}
                 >
-                  <span className="whitespace-nowrap">{cat.label}</span>
-                  <span
-                    className={`px-1.5 py-0.5 text-[10px] sm:text-[11px] rounded-full font-bold ${
-                      isActive
-                        ? "bg-blue-800 text-white"
-                        : "bg-slate-100 text-slate-600"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Gallery Grid: 1 col on phones (<480px), 2 cols on small/phablet (480px-767px), 3 cols on mid/tablets/desktop (768px+) */}
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5 md:gap-6 lg:gap-8 min-h-[400px]">
           <AnimatePresence mode="wait">
