@@ -41,7 +41,7 @@ export default function Navbar() {
       setActiveItem("About us");
     } else if (pathname.startsWith("/contact")) {
       setActiveItem("Contact");
-    } else if (pathname.startsWith("/careers")) {
+    } else if (pathname.startsWith("/career")) {
       setActiveItem("Careers");
     } else if (pathname.startsWith("/gallery")) {
       setActiveItem("Gallery");
@@ -570,7 +570,7 @@ export default function Navbar() {
 
             {/* Careers */}
             <Link
-              href="#careers"
+              href="/careers"
               onClick={() => {
                 setActiveItem("Careers");
                 setIsMobileMenuOpen(false);
@@ -586,7 +586,7 @@ export default function Navbar() {
 
             {/* Gallery */}
             <Link
-              href="#gallery"
+              href="/gallery"
               onClick={() => {
                 setActiveItem("Gallery");
                 setIsMobileMenuOpen(false);

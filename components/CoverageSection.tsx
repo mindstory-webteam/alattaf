@@ -3,9 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { MapPin } from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 function AnimatedCounter({ value, suffix = "+" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement | null>(null);
@@ -96,7 +96,7 @@ export default function CoverageSection() {
         {/* Main Grid: Left Map + Right Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Saudi Arabia Map with Google Maps Red Pin */}
-          <div className="lg:col-span-6 relative flex items-center justify-center p-4 sm:p-6">
+          <Reveal className="lg:col-span-6 relative flex items-center justify-center p-4 sm:p-6" y={32} duration={900}>
             <div className="relative w-full aspect-[1000/824] max-w-[500px]">
               <Image
                 src="/sa-map.svg"
@@ -134,7 +134,7 @@ export default function CoverageSection() {
                 </svg>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Column: 2x2 Stats Grid + Location Info at Bottom */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-8 lg:space-y-10 pl-0 lg:pl-4">

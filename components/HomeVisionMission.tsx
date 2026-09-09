@@ -2,6 +2,7 @@
 
 import React from "react";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 export default function HomeVisionMission() {
   const headingText =
@@ -42,7 +43,7 @@ export default function HomeVisionMission() {
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-start">
           {/* Left Column: Section Tag & Heading */}
-          <div className="xl:col-span-4 space-y-4 max-w-3xl xl:max-w-none">
+          <Reveal className="xl:col-span-4 space-y-4 max-w-3xl xl:max-w-none">
             <span className="text-sm font-semibold tracking-wider text-slate-800 uppercase block">
               Our Vision & Values
             </span>
@@ -58,38 +59,39 @@ export default function HomeVisionMission() {
               decisions, empowering our workforce, and ensuring dependable
               project outcomes throughout Saudi Arabia.
             </p>
-          </div>
+          </Reveal>
 
           {/* Right Column: 3 Cards Grid with Paper Fold Corner in Top Right */}
-          <div className="xl:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6">
-            {cards.map((card) => (
-              <div
-                key={card.id}
-                style={{
-                  clipPath:
-                    "polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)",
-                }}
-                className={`${card.bgColor} relative p-7 sm:p-8 flex flex-col justify-start min-h-[280px] sm:min-h-[320px] transition-all duration-300 hover:shadow-md hover:-translate-y-1 group`}
-              >
-                {/* Paper Folded Flap in Top-Right */}
+          <div className="xl:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+            {cards.map((card, idx) => (
+              <Reveal key={card.id} delay={idx * 100} className="h-full">
                 <div
-                  className={`absolute top-0 right-0 w-[30px] h-[30px] ${card.foldColor} pointer-events-none transition-all duration-300`}
                   style={{
-                    clipPath: "polygon(0 0, 0 100%, 100% 100%)",
-                    filter: "drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.12))",
+                    clipPath:
+                      "polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)",
                   }}
-                />
+                  className={`${card.bgColor} relative p-7 sm:p-8 flex flex-col justify-start h-full transition-all duration-300 hover:shadow-md hover:-translate-y-1 group`}
+                >
+                  {/* Paper Folded Flap in Top-Right */}
+                  <div
+                    className={`absolute top-0 right-0 w-[30px] h-[30px] ${card.foldColor} pointer-events-none transition-all duration-300`}
+                    style={{
+                      clipPath: "polygon(0 0, 0 100%, 100% 100%)",
+                      filter: "drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.12))",
+                    }}
+                  />
 
-                {/* Content: Title & Narrative aligned at identical start position */}
-                <div className="space-y-3 sm:space-y-4 pr-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                    {card.description}
-                  </p>
+                  {/* Content: Title & Narrative aligned at identical start position */}
+                  <div className="space-y-3 sm:space-y-4 pr-2">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
