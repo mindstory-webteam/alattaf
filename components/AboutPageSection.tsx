@@ -5,6 +5,7 @@ import Image from "next/image";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import LiquidButton from "@/components/LiquidButton";
 import CountUp from "@/components/CountUp";
+import Reveal from "@/components/Reveal";
 
 /** Builds a Pexels stock URL from a photo id. */
 const px = (id: number, w = 1400) =>
@@ -110,19 +111,12 @@ export default function AboutPageSection() {
     "Certified welders, operators, and supervisors with plant-specific inductions",
   ];
 
-  const credentials = [
-    { label: "Commercial registration", value: "CR # 2059000287" },
-    { label: "Saudi Aramco vendor", value: "# 10005728 (Dhahran)" },
-    { label: "Head office", value: "Abqaiq, Eastern Province" },
-    { label: "Ownership", value: "100% Saudi-owned" },
-  ];
-
   return (
     <div className="w-full bg-white font-sans">
       {/* Introduction */}
       <section className="w-full py-20 lg:py-28">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
-          <div className="max-w-2xl mx-auto text-center">
+          <Reveal className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
               Who we are
             </h2>
@@ -130,10 +124,10 @@ export default function AboutPageSection() {
               A contracting company built inside the Kingdom&apos;s energy sector, working to
               the standards it demands.
             </p>
-          </div>
+          </Reveal>
 
           <div className="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <div className="lg:col-span-5">
+            <Reveal className="lg:col-span-5">
               <div className="relative w-full aspect-[4/5] overflow-hidden border border-slate-200/80 bg-slate-100">
                 <Image
                   src={pageMedia.whoWeAre}
@@ -143,7 +137,7 @@ export default function AboutPageSection() {
                   className="object-cover object-center"
                 />
               </div>
-            </div>
+            </Reveal>
 
             <div className="lg:col-span-7 space-y-5 text-justify">
               <ScrollRevealText
@@ -152,49 +146,58 @@ export default function AboutPageSection() {
                 className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
               />
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                Formed in 1978 (1398H), AAAC commenced operations in direct partnership with{" "}
-                <span className="text-blue-700 font-semibold">Saudi Aramco</span>, the
-                Kingdom&apos;s premier global energy and industrial enterprise. Since then we
-                have executed turnkey Civil, Mechanical, Electrical, Instrumentation, and
-                Plant Maintenance (T&amp;I) projects across Aramco facilities and major
-                industrial hubs throughout Saudi Arabia.
-              </p>
+              <Reveal delay={80}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Formed in 1978 (1398H), AAAC commenced operations in direct partnership with{" "}
+                  <span className="text-blue-700 font-semibold">Saudi Aramco</span>, the
+                  Kingdom&apos;s premier global energy and industrial enterprise. Since then we
+                  have executed turnkey Civil, Mechanical, Electrical, Instrumentation, and
+                  Plant Maintenance (T&amp;I) projects across Aramco facilities and major
+                  industrial hubs throughout Saudi Arabia.
+                </p>
+              </Reveal>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                Our work is delivered by permanent Saudi-based crews, certified equipment
-                operators, and an owned fleet, which keeps mobilisation short and
-                accountability with a single contractor from site preparation through
-                commissioning and ongoing maintenance.
-              </p>
+              <Reveal delay={140}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Our work is delivered by permanent Saudi-based crews, certified equipment
+                  operators, and an owned fleet, which keeps mobilisation short and
+                  accountability with a single contractor from site preparation through
+                  commissioning and ongoing maintenance.
+                </p>
+              </Reveal>
 
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                Safety governs how we plan every scope. HSE procedures are written into method
-                statements before crews mobilise, and performance is reviewed against client
-                requirements for the full duration of the contract.
-              </p>
+              <Reveal delay={200}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Safety governs how we plan every scope. HSE procedures are written into method
+                  statements before crews mobilise, and performance is reviewed against client
+                  requirements for the full duration of the contract.
+                </p>
+              </Reveal>
 
-              <div className="pt-3">
-                <LiquidButton
-                  text="Talk to our team"
-                  href="/contact"
-                  btnColor="#1d4ed8"
-                  hoverBgColor="#ffffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#1d4ed8"
-                  className="px-7 py-3.5 text-sm sm:text-base font-semibold"
-                />
-              </div>
+              <Reveal delay={260}>
+                <div className="pt-3">
+                  <LiquidButton
+                    text="Talk to our team"
+                    href="/contact"
+                    btnColor="#1d4ed8"
+                    hoverBgColor="#ffffffff"
+                    textColor="#ffffff"
+                    hoverTextColor="#1d4ed8"
+                    className="px-7 py-3.5 text-sm sm:text-base font-semibold"
+                  />
+                </div>
+              </Reveal>
             </div>
           </div>
 
           {/* Vision, mission, values — no heading, sits inside "Who we are" */}
           <div className="mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 lg:gap-12">
-            {principles.map((item) => {
+            {principles.map((item, idx) => {
               const accent = item.tone === "accent";
               return (
-                <div
+                <Reveal
                   key={item.title}
+                  delay={idx * 120}
                   className={`pt-6 border-t-2 ${
                     accent ? "border-blue-700" : "border-slate-300"
                   }`}
@@ -207,7 +210,7 @@ export default function AboutPageSection() {
                     {item.title}
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.body}</p>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -218,8 +221,12 @@ export default function AboutPageSection() {
       <section className="w-full bg-slate-950">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y divide-white/10 sm:divide-y-0 lg:divide-x lg:divide-white/10">
-            {stats.map((stat) => (
-              <div key={stat.label} className="py-10 lg:py-14 lg:px-10 first:lg:pl-0">
+            {stats.map((stat, idx) => (
+              <Reveal
+                key={stat.label}
+                delay={idx * 110}
+                className="py-10 lg:py-14 lg:px-10 first:lg:pl-0"
+              >
                 <p className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white tabular-nums">
                   <CountUp
                     end={stat.end}
@@ -231,7 +238,7 @@ export default function AboutPageSection() {
                 <p className="mt-2 text-xs sm:text-sm text-slate-400 leading-relaxed">
                   {stat.label}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -241,7 +248,7 @@ export default function AboutPageSection() {
       <section className="w-full py-20 lg:py-28">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-5">
+            <Reveal className="lg:col-span-5">
               <div className="relative w-full aspect-[4/5] max-w-md overflow-hidden border border-slate-200/80 bg-slate-100">
                 <Image
                   src={pageMedia.owner}
@@ -251,7 +258,7 @@ export default function AboutPageSection() {
                   className="object-cover object-center"
                 />
               </div>
-            </div>
+            </Reveal>
 
             <div className="lg:col-span-7">
               <ScrollRevealText
@@ -260,33 +267,41 @@ export default function AboutPageSection() {
                 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
               />
 
-              <p className="mt-3 text-sm sm:text-base font-semibold text-blue-700">
-                Sheikh Ali Al Attaf &middot; Founder &amp; Chairman
-              </p>
-
-              <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed">
-                The company began with one contractor, a small crew, and work inside Abqaiq at a
-                time when the Eastern Province was being built out plant by plant. That first
-                decade set the operating rule the company still runs on: take the scope you can
-                staff properly, and finish it with your own people.
-              </p>
-
-              <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Ownership has stayed in the family and in the Kingdom. Decisions on hiring,
-                equipment, and which projects to take are made by people who have worked the
-                sites themselves, which is why crews, supervisors, and fleet remain in-house
-                rather than sublet from job to job.
-              </p>
-
-              <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
-                <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
-                  We were never the largest contractor on a plant. We aimed to be the one asked
-                  back for the next shutdown.
+              <Reveal delay={80}>
+                <p className="mt-3 text-sm sm:text-base font-semibold text-blue-700">
+                  Sheikh Ali Al Attaf &middot; Founder &amp; Chairman
                 </p>
-                <footer className="mt-3 text-sm text-slate-500">
-                  Founder &amp; Chairman, Al Attaf Advanced Contracting
-                </footer>
-              </blockquote>
+              </Reveal>
+
+              <Reveal delay={140}>
+                <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  The company began with one contractor, a small crew, and work inside Abqaiq at a
+                  time when the Eastern Province was being built out plant by plant. That first
+                  decade set the operating rule the company still runs on: take the scope you can
+                  staff properly, and finish it with your own people.
+                </p>
+              </Reveal>
+
+              <Reveal delay={200}>
+                <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  Ownership has stayed in the family and in the Kingdom. Decisions on hiring,
+                  equipment, and which projects to take are made by people who have worked the
+                  sites themselves, which is why crews, supervisors, and fleet remain in-house
+                  rather than sublet from job to job.
+                </p>
+              </Reveal>
+
+              <Reveal delay={260}>
+                <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
+                  <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
+                    We were never the largest contractor on a plant. We aimed to be the one asked
+                    back for the next shutdown.
+                  </p>
+                  <footer className="mt-3 text-sm text-slate-500">
+                    Founder &amp; Chairman, Al Attaf Advanced Contracting
+                  </footer>
+                </blockquote>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -296,18 +311,20 @@ export default function AboutPageSection() {
       <section className="w-full bg-slate-50 py-20 lg:py-28 border-y border-slate-200/70">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
           {/* Header, centered like "Who we are" */}
-          <div className="max-w-2xl mx-auto text-center">
+          <Reveal className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight">
               History &amp; philosophy
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
               How decades of contracting work translate into the way we run a project today.
             </p>
-          </div>
+          </Reveal>
 
           {/* Photo + video on the left, narrative on the right */}
           <div className="mt-14 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-6">
+            {/* Reveal wraps the whole composition — the overlapping tiles inside
+                keep their own absolute positioning untouched. */}
+            <Reveal className="lg:col-span-6">
               <div className="relative pb-16 sm:pb-20 lg:pb-24">
                 <div className="relative aspect-[4/3] w-full overflow-hidden border border-slate-200 bg-slate-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -356,7 +373,7 @@ export default function AboutPageSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             <div className="lg:col-span-6">
               <ScrollRevealText
@@ -365,58 +382,67 @@ export default function AboutPageSection() {
                 className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
               />
 
-              <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                Our objective is to give clients an{" "}
-                <span className="text-blue-700 font-semibold">&ldquo;I am assured&rdquo;</span>{" "}
-                experience when we are chosen to execute their projects. Our emphasis on clear
-                communication and follow-through procedures ensures that client objectives stay
-                the top priority in the planning and execution of all our processes.
-              </p>
-
-              <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
-                <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
-                  We take pride in our delivery, so clients can always be assured that only the
-                  most experienced and qualified people are serving them, all the time.
+              <Reveal delay={100}>
+                <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Our objective is to give clients an{" "}
+                  <span className="text-blue-700 font-semibold">&ldquo;I am assured&rdquo;</span>{" "}
+                  experience when we are chosen to execute their projects. Our emphasis on clear
+                  communication and follow-through procedures ensures that client objectives stay
+                  the top priority in the planning and execution of all our processes.
                 </p>
-              </blockquote>
+              </Reveal>
+
+              <Reveal delay={180}>
+                <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
+                  <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
+                    We take pride in our delivery, so clients can always be assured that only the
+                    most experienced and qualified people are serving them, all the time.
+                  </p>
+                </blockquote>
+              </Reveal>
             </div>
           </div>
 
           {/* Philosophy: numbered steps as cards, under a site video band */}
           <div className="mt-16 lg:mt-24">
-            <div className="relative h-[260px] w-full overflow-hidden bg-slate-900 sm:h-[320px] lg:h-[380px]">
-              <video
-                className="absolute inset-0 h-full w-full object-cover object-center"
-                src={historyMedia.band.src}
-                poster={historyMedia.band.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label="Site work in progress"
-              />
+            <Reveal>
+              <div className="relative h-[260px] w-full overflow-hidden bg-slate-900 sm:h-[320px] lg:h-[380px]">
+                <video
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  src={historyMedia.band.src}
+                  poster={historyMedia.band.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Site work in progress"
+                />
 
-              {/* Darkened from the left so the copy stays readable over any footage */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-10 to-slate-0" />
+                {/* Darkened from the left so the copy stays readable over any footage */}
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-10 to-slate-0" />
 
-              <div className="absolute inset-0 flex items-center">
-                <div className="px-6 sm:px-10 lg:px-14 max-w-2xl">
-                  <h3 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-white leading-tight">
-                    Our project management and execution philosophy
-                  </h3>
-                  <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-                    Six steps that every scope passes through, from the first schedule to
-                    handover.
-                  </p>
+                <div className="absolute inset-0 flex items-center">
+                  <div className="px-6 sm:px-10 lg:px-14 max-w-2xl">
+                    <h3 className="text-xl sm:text-2xl lg:text-[28px] font-extrabold tracking-tight text-white leading-tight">
+                      Our project management and execution philosophy
+                    </h3>
+                    <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+                      Six steps that every scope passes through, from the first schedule to
+                      handover.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200 border border-slate-200">
               {philosophy.map((item, idx) => (
-                <li
+                <Reveal
                   key={item}
+                  as="li"
+                  delay={(idx % 3) * 110}
+                  y={18}
                   className="group relative flex flex-col bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-slate-50"
                 >
                   <span
@@ -431,7 +457,7 @@ export default function AboutPageSection() {
                   <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
                     {item}
                   </p>
-                </li>
+                </Reveal>
               ))}
             </ol>
           </div>
@@ -447,27 +473,37 @@ export default function AboutPageSection() {
                 text="Working with Saudi Aramco since 1978"
                 as="h2"
                 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
+                fromRgb={[96, 122, 175]}
+                toRgb={[255, 255, 255]}
               />
-              <p className="mt-5 text-sm sm:text-base text-blue-100 leading-relaxed">
-                Our first contracts were inside Aramco facilities, and that relationship shaped
-                how the company operates: permits before work starts, certified people on every
-                trade, and documentation that stands up to plant audits.
-              </p>
 
-              <div className="mt-8 border border-white/25 p-6">
-                <p className="text-xs sm:text-sm text-blue-100">Approved vendor number</p>
-                <p className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-white tabular-nums">
-                  10005728
+              <Reveal delay={100}>
+                <p className="mt-5 text-sm sm:text-base text-blue-100 leading-relaxed">
+                  Our first contracts were inside Aramco facilities, and that relationship shaped
+                  how the company operates: permits before work starts, certified people on every
+                  trade, and documentation that stands up to plant audits.
                 </p>
-                <p className="mt-1 text-sm text-blue-100">Registered in Dhahran</p>
-              </div>
+              </Reveal>
+
+              <Reveal delay={180}>
+                <div className="mt-8 border border-white/25 p-6">
+                  <p className="text-xs sm:text-sm text-blue-100">Approved vendor number</p>
+                  <p className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-white tabular-nums">
+                    10005728
+                  </p>
+                  <p className="mt-1 text-sm text-blue-100">Registered in Dhahran</p>
+                </div>
+              </Reveal>
             </div>
 
             <div className="lg:col-span-7 lg:pl-8">
               <ul className="space-y-px">
-                {aramcoScope.map((item) => (
-                  <li
+                {aramcoScope.map((item, idx) => (
+                  <Reveal
                     key={item}
+                    as="li"
+                    delay={idx * 90}
+                    y={16}
                     className="flex items-start gap-4 border-b border-white/20 py-5 first:border-t first:border-white/20"
                   >
                     <span className="text-white">
@@ -476,21 +512,23 @@ export default function AboutPageSection() {
                     <span className="text-sm sm:text-base text-white leading-relaxed">
                       {item}
                     </span>
-                  </li>
+                  </Reveal>
                 ))}
               </ul>
 
-              <div className="mt-10">
-                <LiquidButton
-                  text="Discuss a plant scope"
-                  href="/contact"
-                  btnColor="rgba(255, 255, 255, 0.12)"
-                  hoverBgColor="#ffffff"
-                  textColor="#ffffff"
-                  hoverTextColor="#1d4ed8"
-                  className="px-7 py-3.5 text-sm sm:text-base font-semibold border border-white/40"
-                />
-              </div>
+              <Reveal delay={120}>
+                <div className="mt-10">
+                  <LiquidButton
+                    text="Discuss a plant scope"
+                    href="/contact"
+                    btnColor="rgba(255, 255, 255, 0.12)"
+                    hoverBgColor="#ffffff"
+                    textColor="#ffffff"
+                    hoverTextColor="#1d4ed8"
+                    className="px-7 py-3.5 text-sm sm:text-base font-semibold border border-white/40"
+                  />
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>

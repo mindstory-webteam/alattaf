@@ -7,6 +7,7 @@ import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperClass } from "swiper";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import CountUp from "@/components/CountUp";
+import Reveal from "@/components/Reveal";
 
 import "swiper/css";
 
@@ -438,145 +439,159 @@ export default function ResourcesSection({
             className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
           />
           {intro && (
-            <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">{intro}</p>
+            <Reveal delay={100}>
+              <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">
+                {intro}
+              </p>
+            </Reveal>
           )}
         </div>
 
         {/* Equipment carousel */}
         <div className="mt-14">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
-                Equipment details
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                <span className="font-semibold text-blue-700 tabular-nums">
-                  <CountUp end={totalUnits} duration={1.8} />
-                </span>{" "}
-                units owned and operated in-house
-              </p>
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+                  Equipment details
+                </h3>
+                <p className="mt-2 text-sm text-slate-500">
+                  <span className="font-semibold text-blue-700 tabular-nums">
+                    <CountUp end={totalUnits} duration={1.8} />
+                  </span>{" "}
+                  units owned and operated in-house
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => swiper?.slidePrev()}
+                  aria-label="Previous equipment"
+                  className="flex h-10 w-10 items-center justify-center border border-slate-300 bg-white text-slate-600 transition-colors duration-300 hover:border-blue-700 hover:bg-blue-700 hover:text-white"
+                >
+                  <ArrowIcon direction="left" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => swiper?.slideNext()}
+                  aria-label="Next equipment"
+                  className="flex h-10 w-10 items-center justify-center border border-slate-300 bg-white text-slate-600 transition-colors duration-300 hover:border-blue-700 hover:bg-blue-700 hover:text-white"
+                >
+                  <ArrowIcon direction="right" />
+                </button>
+              </div>
             </div>
+          </Reveal>
 
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => swiper?.slidePrev()}
-                aria-label="Previous equipment"
-                className="flex h-10 w-10 items-center justify-center border border-slate-300 bg-white text-slate-600 transition-colors duration-300 hover:border-blue-700 hover:bg-blue-700 hover:text-white"
-              >
-                <ArrowIcon direction="left" />
-              </button>
-              <button
-                type="button"
-                onClick={() => swiper?.slideNext()}
-                aria-label="Next equipment"
-                className="flex h-10 w-10 items-center justify-center border border-slate-300 bg-white text-slate-600 transition-colors duration-300 hover:border-blue-700 hover:bg-blue-700 hover:text-white"
-              >
-                <ArrowIcon direction="right" />
-              </button>
-            </div>
-          </div>
+          {/* Reveal wraps the carousel as a whole — individual slides must not be
+              wrapped, or Swiper loses its direct children. */}
+          <Reveal delay={120}>
+            <Swiper
+              modules={[Autoplay]}
+              onSwiper={setSwiper}
+              loop
+              speed={700}
+              spaceBetween={28}
+              autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              breakpoints={{
+                0: { slidesPerView: 1.08, spaceBetween: 16 },
+                640: { slidesPerView: 1.6, spaceBetween: 20 },
+                1024: { slidesPerView: 2.2, spaceBetween: 24 },
+                1280: { slidesPerView: 2.8, spaceBetween: 28 },
+                1536: { slidesPerView: 3, spaceBetween: 28 },
+              }}
+              className="mt-8 w-full"
+            >
+              {equipment.map((item) => (
+                <SwiperSlide key={item.name} className="h-auto">
+                  <article className="group flex h-full flex-col border border-slate-200 bg-white">
+                    {/* Image area — the quantity box opens out into a full overlay on hover */}
+                    <div className="relative h-[300px] w-full overflow-hidden bg-slate-100 sm:h-[340px] lg:h-[380px]">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 62vw, (max-width: 1280px) 45vw, 36vw"
+                          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-slate-300 transition-colors duration-500 group-hover:text-blue-300">
+                          <MachineIcon className="h-16 w-16" />
+                        </div>
+                      )}
 
-          <Swiper
-            modules={[Autoplay]}
-            onSwiper={setSwiper}
-            loop
-            speed={700}
-            spaceBetween={28}
-            autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
-            breakpoints={{
-              0: { slidesPerView: 1.08, spaceBetween: 16 },
-              640: { slidesPerView: 1.6, spaceBetween: 20 },
-              1024: { slidesPerView: 2.2, spaceBetween: 24 },
-              1280: { slidesPerView: 2.8, spaceBetween: 28 },
-              1536: { slidesPerView: 3, spaceBetween: 28 },
-            }}
-            className="mt-8 w-full"
-          >
-            {equipment.map((item) => (
-              <SwiperSlide key={item.name} className="h-auto">
-                <article className="group flex h-full flex-col border border-slate-200 bg-white">
-                  {/* Image area — the quantity box opens out into a full overlay on hover */}
-                  <div className="relative h-[300px] w-full overflow-hidden bg-slate-100 sm:h-[340px] lg:h-[380px]">
-                    {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 62vw, (max-width: 1280px) 45vw, 36vw"
-                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center text-slate-300 transition-colors duration-500 group-hover:text-blue-300">
-                        <MachineIcon className="h-16 w-16" />
-                      </div>
-                    )}
-
-                    {/* Resting state: small blue quantity box in the corner */}
-                    <span className="absolute right-0 top-0 z-10 flex min-w-[58px] items-center justify-center bg-blue-700 px-4 py-2.5 text-base font-bold text-white tabular-nums transition-opacity duration-300 group-hover:opacity-0">
-                      <CountUp end={item.qty} duration={1.6} />
-                    </span>
-
-                    {/* Hover state: the same box grows from that corner to cover the image */}
-                    <div
-                      className="absolute inset-0 z-20 flex flex-col justify-end bg-blue-700/95 p-6 text-white
-                                 [clip-path:inset(0%_0%_100%_100%)] transition-[clip-path] duration-500 ease-out
-                                 group-hover:[clip-path:inset(0%_0%_0%_0%)]
-                                 motion-reduce:transition-none"
-                    >
-                      <span className="absolute right-0 top-0 flex min-w-[58px] items-center justify-center px-4 py-2.5 text-base font-bold tabular-nums">
-                        {item.qty}
+                      {/* Resting state: small blue quantity box in the corner */}
+                      <span className="absolute right-0 top-0 z-10 flex min-w-[58px] items-center justify-center bg-blue-700 px-4 py-2.5 text-base font-bold text-white tabular-nums transition-opacity duration-300 group-hover:opacity-0">
+                        <CountUp end={item.qty} duration={1.6} />
                       </span>
 
-                      <div className="translate-y-3 opacity-0 transition-all duration-500 delay-150 ease-out group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100">
-                        <p className="text-sm font-semibold uppercase tracking-wide text-blue-100">
-                          {item.model}
-                        </p>
-                        <p className="mt-3 text-base leading-relaxed">
-                          {item.description ??
-                            `${item.qty} units of ${item.name.toLowerCase()} available for immediate deployment.`}
-                        </p>
+                      {/* Hover state: the same box grows from that corner to cover the image */}
+                      <div
+                        className="absolute inset-0 z-20 flex flex-col justify-end bg-blue-700/95 p-6 text-white
+                                   [clip-path:inset(0%_0%_100%_100%)] transition-[clip-path] duration-500 ease-out
+                                   group-hover:[clip-path:inset(0%_0%_0%_0%)]
+                                   motion-reduce:transition-none"
+                      >
+                        <span className="absolute right-0 top-0 flex min-w-[58px] items-center justify-center px-4 py-2.5 text-base font-bold tabular-nums">
+                          {item.qty}
+                        </span>
+
+                        <div className="translate-y-3 opacity-0 transition-all duration-500 delay-150 ease-out group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none motion-reduce:translate-y-0 motion-reduce:opacity-100">
+                          <p className="text-sm font-semibold uppercase tracking-wide text-blue-100">
+                            {item.model}
+                          </p>
+                          <p className="mt-3 text-base leading-relaxed">
+                            {item.description ??
+                              `${item.qty} units of ${item.name.toLowerCase()} available for immediate deployment.`}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
-                    <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
-                      {item.name}
-                    </h4>
-                    <p className="mt-2 text-sm sm:text-base text-slate-500">{item.model}</p>
-                  </div>
-                </article>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                    <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
+                      <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+                        {item.name}
+                      </h4>
+                      <p className="mt-2 text-sm sm:text-base text-slate-500">{item.model}</p>
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Reveal>
         </div>
 
         {/* Site crew and labour */}
         <div className="mt-20">
-          <div className="flex flex-wrap items-baseline justify-between gap-3">
-            <h3 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
-              Site crew and labour
-            </h3>
-            <p className="text-sm text-slate-500">
-              <span className="font-semibold text-blue-700 tabular-nums">
-                <CountUp end={totalCrew} duration={2} />
-              </span>{" "}
-              workers across{" "}
-              <span className="font-semibold text-blue-700 tabular-nums">
-                <CountUp end={crew.length} duration={1.4} />
-              </span>{" "}
-              trades
-            </p>
-          </div>
+          <Reveal>
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+                Site crew and labour
+              </h3>
+              <p className="text-sm text-slate-500">
+                <span className="font-semibold text-blue-700 tabular-nums">
+                  <CountUp end={totalCrew} duration={2} />
+                </span>{" "}
+                workers across{" "}
+                <span className="font-semibold text-blue-700 tabular-nums">
+                  <CountUp end={crew.length} duration={1.4} />
+                </span>{" "}
+                trades
+              </p>
+            </div>
+          </Reveal>
 
           {/* 19 trades / 7 columns from lg up = exactly three rows */}
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7">
-            {sortedCrew.map((role) => {
+            {sortedCrew.map((role, idx) => {
               const Icon = iconForRole(role.title);
               return (
-                <div
+                <Reveal
                   key={role.title}
+                  delay={(idx % 7) * 60}
+                  y={14}
                   className="group relative flex items-center gap-3 border border-slate-200 bg-white px-4 py-4 transition-colors duration-300 hover:border-blue-700"
                 >
                   <span
@@ -594,7 +609,7 @@ export default function ResourcesSection({
                       {role.title}
                     </div>
                   </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>
