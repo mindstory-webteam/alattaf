@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidButton from "@/components/LiquidButton";
+import Reveal from "@/components/Reveal";
 
 export interface JobListing {
   id: string;
@@ -521,18 +522,18 @@ export default function CareerRolesSection() {
 
       {/* 2. Department-Wise Career Details & Roles List */}
       <div className="py-8 sm:py-10 space-y-4">
-        {filteredRoles.map((job) => {
+        {filteredRoles.map((job, idx) => {
           const isExpanded = expandedRoleId === job.id;
 
           return (
-            <div
-              key={job.id}
-              className={`rounded-2xl border transition-all duration-300 bg-white overflow-hidden ${
-                isExpanded
-                  ? "border-blue-300 shadow-md ring-1 ring-blue-100/80"
-                  : "border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-sm"
-              }`}
-            >
+            <Reveal key={job.id} delay={Math.min(idx, 4) * 60}>
+              <div
+                className={`rounded-2xl border transition-all duration-300 bg-white overflow-hidden ${
+                  isExpanded
+                    ? "border-blue-300 shadow-md ring-1 ring-blue-100/80"
+                    : "border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-sm"
+                }`}
+              >
               {/* Role Header Row */}
               <div
                 onClick={() => setExpandedRoleId(isExpanded ? null : job.id)}
@@ -650,6 +651,7 @@ export default function CareerRolesSection() {
                 </div>
               )}
             </div>
+            </Reveal>
           );
         })}
 

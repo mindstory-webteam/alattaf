@@ -446,39 +446,42 @@ export default function GallerySection() {
           </div>
         </div>
 
-        {/* Category Filter Pills: Horizontally scrollable on mobile, wrapping on sm/md/lg */}
-        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 py-4 sm:py-6 md:py-8 overflow-x-auto sm:flex-wrap no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            const count =
-              cat.id === "all"
-                ? galleryData.length
-                : galleryData.filter((i) => i.category === cat.id).length;
+        {/* Category Filter Pills: Horizontally scrollable on mobile, wrapping on sm+ */}
+        <div className="-mx-4 sm:mx-0 overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 py-4 sm:py-6 md:py-8 sm:flex-wrap px-4 sm:px-0">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              const count =
+                cat.id === "all"
+                  ? galleryData.length
+                  : galleryData.filter((i) => i.category === cat.id).length;
 
-            return (
-              <button
-                key={cat.id}
-                onClick={() => handleCategoryChange(cat.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer ${
-                  isActive
-                    ? "bg-blue-700 text-white shadow-md shadow-blue-600/25 scale-[1.02]"
-                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
-                }`}
-              >
-                <span className="whitespace-nowrap">{cat.label}</span>
-                <span
-                  className={`px-1.5 py-0.5 text-[10px] sm:text-[11px] rounded-full font-bold ${
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer ${
                     isActive
-                      ? "bg-blue-800 text-white"
-                      : "bg-slate-100 text-slate-600"
+                      ? "bg-blue-700 text-white shadow-md shadow-blue-600/25 scale-[1.02]"
+                      : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
                   }`}
                 >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
+                  <span className="whitespace-nowrap">{cat.label}</span>
+                  <span
+                    className={`px-1.5 py-0.5 text-[10px] sm:text-[11px] rounded-full font-bold ${
+                      isActive
+                        ? "bg-blue-800 text-white"
+                        : "bg-slate-100 text-slate-600"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
+
 
         {/* Gallery Grid: 1 col on phones (<480px), 2 cols on small/phablet (480px-767px), 3 cols on mid/tablets/desktop (768px+) */}
         <div className="grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5 md:gap-6 lg:gap-8 min-h-[400px]">
@@ -522,68 +525,57 @@ export default function GallerySection() {
 
         {/* Pagination Controls at Bottom (Numbers & Side Buttons) */}
         {totalPages > 1 && (
-          <div className="mt-8 sm:mt-10 md:mt-14 pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Page Count Text */}
-            <div className="text-xs sm:text-sm text-slate-500 font-medium order-2 sm:order-1 text-center sm:text-left">
-              Page <span className="font-bold text-slate-800">{currentPage}</span> of{" "}
-              <span className="font-bold text-slate-800">{totalPages}</span>
+          <div className="mt-10 md:mt-14 flex items-center justify-center gap-1">
+            {/* Previous */}
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              aria-label="Previous Page"
+              className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-150 ${
+                currentPage === 1
+                  ? "text-slate-300 cursor-not-allowed"
+                  : "text-slate-500 hover:text-slate-900 cursor-pointer"
+              }`}
+            >
+              Prev
+            </button>
+
+            {/* Number Buttons */}
+            <div className="flex items-center gap-0.5 mx-1">
+              {Array.from({ length: totalPages }, (_, index) => {
+                const pageNum = index + 1;
+                const isCurrent = pageNum === currentPage;
+
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    aria-current={isCurrent ? "page" : undefined}
+                    className={`w-9 h-9 text-sm font-medium transition-colors duration-150 cursor-pointer ${
+                      isCurrent
+                        ? "text-slate-900 font-bold underline underline-offset-4 decoration-2 decoration-blue-600"
+                        : "text-slate-400 hover:text-slate-700"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Pagination Button Group */}
-            <div className="flex items-center justify-center gap-1 sm:gap-1.5 md:gap-2 order-1 sm:order-2 flex-wrap">
-              {/* Previous Side Button */}
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                aria-label="Previous Page"
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 md:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                  currentPage === 1
-                    ? "bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed opacity-60"
-                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900 active:scale-95 shadow-sm"
-                }`}
-              >
-                <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span className="inline">Prev</span>
-              </button>
-
-              {/* Number Buttons */}
-              <div className="flex items-center gap-1 sm:gap-1.5">
-                {Array.from({ length: totalPages }, (_, index) => {
-                  const pageNum = index + 1;
-                  const isCurrent = pageNum === currentPage;
-
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => handlePageChange(pageNum)}
-                      aria-current={isCurrent ? "page" : undefined}
-                      className={`min-w-[32px] sm:min-w-[36px] md:min-w-[40px] h-8 sm:h-9 md:h-10 px-2 sm:px-3 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
-                        isCurrent
-                          ? "bg-blue-700 text-white shadow-md shadow-blue-600/30 scale-105"
-                          : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-950 active:scale-95 shadow-sm"
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Next Side Button */}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                aria-label="Next Page"
-                className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 md:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                  currentPage === totalPages
-                    ? "bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed opacity-60"
-                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900 active:scale-95 shadow-sm"
-                }`}
-              >
-                <span className="inline">Next</span>
-                <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </button>
-            </div>
+            {/* Next */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              aria-label="Next Page"
+              className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-150 ${
+                currentPage === totalPages
+                  ? "text-slate-300 cursor-not-allowed"
+                  : "text-slate-500 hover:text-slate-900 cursor-pointer"
+              }`}
+            >
+              Next
+            </button>
           </div>
         )}
       </div>

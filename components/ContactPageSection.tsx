@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import {Check, MapPin, Phone, Mail} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 // Dynamically import Leaflet map with OpenStreetMap (client-side only to avoid SSR issues)
 const LeafletMap = dynamic(() => import("@/components/LeafletMap"), {
@@ -62,8 +63,8 @@ export default function ContactPageSection() {
               />
 
               {/* Contact Info & Socials Section */}
-              <div className="space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto">
-                {/* Address - with blue icon, exact location as used in footer */}
+              <Reveal className="space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto" delay={80}>
+                {/* Address */}
                 <div className="flex items-start gap-3 min-w-0">
                   <MapPin className="w-5 h-5 text-blue-700 shrink-0 mt-0.5" />
                   <div className="min-w-0 flex-1">
@@ -81,7 +82,7 @@ export default function ContactPageSection() {
                   </div>
                 </div>
 
-                {/* Phone - with blue icon, exact phone as used in footer */}
+                {/* Phone */}
                 <div className="flex items-center gap-3 min-w-0">
                   <Phone className="w-5 h-5 text-blue-700 shrink-0" />
                   <a
@@ -92,7 +93,7 @@ export default function ContactPageSection() {
                   </a>
                 </div>
 
-                {/* Email - with blue icon, exact email as used in footer */}
+                {/* Email */}
                 <div className="flex items-center gap-3 min-w-0">
                   <Mail className="w-5 h-5 text-blue-700 shrink-0" />
                   <a
@@ -103,7 +104,7 @@ export default function ContactPageSection() {
                   </a>
                 </div>
 
-                {/* Social Media Links from Footer.tsx */}
+                {/* Social Media Links */}
                 <div className="flex items-center space-x-2 pt-1">
                   {/* Twitter / X */}
                   <a
@@ -144,11 +145,11 @@ export default function ContactPageSection() {
                     </svg>
                   </a>
                 </div>
-              </div>
+              </Reveal>
             </div>
 
             {/* Right Column: Contact Form Box */}
-            <div className="lg:col-span-6 w-full max-w-full md:max-w-2xl lg:max-w-lg lg:ml-auto">
+            <Reveal className="lg:col-span-6 w-full max-w-full md:max-w-2xl lg:max-w-lg lg:ml-auto" delay={150} y={28}>
               <div className="border border-[#e5e2d8] p-5 sm:p-7 lg:p-8 bg-transparent min-h-fit md:min-h-[480px] lg:min-h-[540px] flex flex-col justify-between">
                 <div className="mb-5 sm:mb-6">
                   <h1 className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 uppercase">
@@ -285,7 +286,7 @@ export default function ContactPageSection() {
                   </form>
                 )}
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -299,15 +300,17 @@ export default function ContactPageSection() {
           </h2>
 
           {/* Interactive OpenStreetMap container rendered with Leaflet */}
-          <div className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] lg:h-[500px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
-            <LeafletMap
-              lat={25.9377}
-              lng={49.6738}
-              zoom={15}
-              locationName="Al Attaf Advanced Contracting Headquarters"
-              address={footerAddress}
-            />
-          </div>
+          <Reveal y={24} duration={800}>
+            <div className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] lg:h-[500px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
+              <LeafletMap
+                lat={25.9377}
+                lng={49.6738}
+                zoom={15}
+                locationName="Al Attaf Advanced Contracting Headquarters"
+                address={footerAddress}
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>

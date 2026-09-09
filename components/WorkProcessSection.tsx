@@ -4,6 +4,7 @@ import React from "react";
 import { Search, Box, BadgeCheck } from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 export default function WorkProcessSection() {
   const headingText = "Engineering Excellence: Our Methodical Journey from Planning to Commissioning";
@@ -65,31 +66,30 @@ export default function WorkProcessSection() {
 
         {/* 3 Columns Process Grid matching exact image UI */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-14">
-          {steps.map((step) => {
+          {steps.map((step, idx) => {
             const IconComponent = step.icon;
             return (
-              <div
-                key={step.id}
-                className="group flex flex-col items-start transition-all duration-300"
-              >
-                {/* Top Rounded Squircle Icon Badge with light blue background and black icon */}
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#e0f2fe] border border-sky-200/80 flex items-center justify-center text-slate-900 shadow-xs mb-8 sm:mb-10 transition-transform duration-200 group-hover:scale-105">
-                  <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900" strokeWidth={2.1} />
-                </div>
+              <Reveal key={step.id} delay={idx * 120}>
+                <div className="group flex flex-col items-start transition-all duration-300">
+                  {/* Top Rounded Squircle Icon Badge with light blue background and black icon */}
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#e0f2fe] border border-sky-200/80 flex items-center justify-center text-slate-900 shadow-xs mb-8 sm:mb-10 transition-transform duration-200 group-hover:scale-105">
+                    <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900" strokeWidth={2.1} />
+                  </div>
 
-                {/* Card Content with subtle top divider */}
-                <div className="w-full pt-6 border-t border-slate-200/80">
-                  {/* Step Title (Uppercase, Bold) */}
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-wider uppercase mb-3">
-                    {step.title}
-                  </h3>
+                  {/* Card Content with subtle top divider */}
+                  <div className="w-full pt-6 border-t border-slate-200/80">
+                    {/* Step Title (Uppercase, Bold) */}
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 tracking-wider uppercase mb-3">
+                      {step.title}
+                    </h3>
 
-                  {/* Step Description */}
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {step.description}
-                  </p>
+                    {/* Step Description */}
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

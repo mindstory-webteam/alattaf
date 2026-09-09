@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 export default function AboutSection() {
   const dummyList = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -14,7 +15,7 @@ export default function AboutSection() {
         {/* Top Row: Matched Height Image on Left + Concise Content on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 items-stretch pb-16 lg:pb-20">
           {/* Left Side: Heavy Industrial Contracting Image Matching Content Height (Sharp Corners, No Hover) */}
-          <div className="lg:col-span-4 xl:col-span-4 flex">
+          <Reveal className="lg:col-span-4 xl:col-span-4 flex" y={32} duration={800}>
             <div className="relative w-full h-full min-h-[260px] sm:min-h-[300px] lg:min-h-full rounded-none overflow-hidden shadow-sm border border-slate-200/80 bg-slate-100">
               <Image
                 src="https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -25,7 +26,7 @@ export default function AboutSection() {
                 priority
               />
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Side: Detailed Company Profile Narrative */}
           <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">

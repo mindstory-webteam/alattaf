@@ -7,6 +7,7 @@ import { Autoplay } from "swiper/modules";
 import { ChevronRight } from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
+import Reveal from "@/components/Reveal";
 
 import "swiper/css";
 
@@ -105,7 +106,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Auto-scrolling Interactive Alethia-Style Service Cards Carousel */}
-        <div className="relative w-full">
+        <Reveal className="relative w-full" y={28} duration={750}>
           <Swiper
             modules={[Autoplay]}
             spaceBetween={24}
@@ -190,7 +191,7 @@ export default function ServicesSection() {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
