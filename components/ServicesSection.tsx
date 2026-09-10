@@ -55,14 +55,6 @@ export default function ServicesSection() {
     },
     {
       id: 6,
-      title: "Material Supply to Saudi Aramco",
-      category: "Industrial Supply",
-      description:
-        "Approved vendor material sourcing, industrial valves, pipes, fittings, electrical components, and certified Aramco specification supplies.",
-      image: "https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      id: 7,
       title: "Heavy Equipment & Modern Logistics Fleet",
       category: "Logistics Mobilization",
       description:

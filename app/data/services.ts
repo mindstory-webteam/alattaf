@@ -46,7 +46,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "industrial",
     label: "Industrial Supply & Specialized Services",
     description:
-      "Approved material supply, manpower mobilisation and specialised plant services for continuous industrial operations.",
+      "Heavy equipment rental, manpower mobilisation and specialised plant services for continuous industrial operations.",
   },
 ];
 
@@ -341,9 +341,9 @@ export const services: Service[] = [
     intro:
       "Our mechanical teams set, align and connect equipment, run and test piping, and keep rotating machinery in service through planned maintenance and turnaround work.",
     image:
-      "https://images.pexels.com/photos/162568/oil-industry-pump-jack-sunset-clouds-162568.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1200",
     heroImage:
-      "https://images.pexels.com/photos/162568/oil-industry-pump-jack-sunset-clouds-162568.jpeg?auto=compress&cs=tinysrgb&w=1920",
+      "https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
       "Static and rotating equipment installation",
       "Piping fabrication, erection and testing",
@@ -456,70 +456,6 @@ export const services: Service[] = [
         question: "Do you provide maintenance reports?",
         answer:
           "Each visit is logged with the work performed, parts used and any recommendations, and reports are issued on the agreed reporting cycle.",
-      },
-    ],
-  },
-  {
-    slug: "material-supply-saudi-aramco",
-    title: "Material Supply To Saudi Aramco",
-    navTitle: "Material Supply To Saudi Aramco",
-    category: "industrial",
-    excerpt:
-      "Sourcing and delivery of approved materials against Saudi Aramco specifications, standards and inspection requirements.",
-    intro:
-      "Supplying an operator like Saudi Aramco is a documentation exercise as much as a logistics one. We source from approved manufacturers, compile the certification package, and deliver on the schedule the project actually needs.",
-    image:
-      "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    heroImage:
-      "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    highlights: [
-      "Sourcing from approved manufacturers",
-      "Full certification and traceability packages",
-      "Inspection and expediting support",
-      "Scheduled delivery to site or warehouse",
-    ],
-    sections: [
-      {
-        heading: "Sourcing and compliance",
-        body: "Material is quoted against the applicable specification and sourced from vendors on the approved list. We handle technical clarifications, deviation requests and substitutions before the order is placed, so nothing is rejected at the gate.",
-      },
-      {
-        heading: "Inspection and documentation",
-        body: "Mill test certificates, material traceability records, inspection release notes and packing lists are compiled into a submittal package. Third-party inspection is arranged where the purchase order calls for it.",
-      },
-      {
-        heading: "Logistics and delivery",
-        body: "Consolidation, preservation, marking and delivery to the nominated site or warehouse, with progress reporting on long-lead items so procurement teams are never guessing about dates.",
-      },
-    ],
-    capabilities: [
-      "Piping, fittings, valves and flanges",
-      "Structural steel and fasteners",
-      "Electrical and instrumentation materials",
-      "Civil and construction consumables",
-      "Safety and PPE supply",
-      "Expediting and inspection coordination",
-    ],
-    faqs: [
-      {
-        question: "What documentation comes with the material?",
-        answer:
-          "Mill test certificates, traceability records, inspection release notes, packing lists and any certificates the purchase order specifies, compiled into one submittal package.",
-      },
-      {
-        question: "Can you source against a specific standard?",
-        answer:
-          "Yes. Material is quoted and procured against the standard stated in your enquiry, from manufacturers on the approved vendor list.",
-      },
-      {
-        question: "What are typical lead times?",
-        answer:
-          "Stock items can be delivered within days; manufactured and long-lead items depend on the vendor, and we report progress against the promised date throughout.",
-      },
-      {
-        question: "Can you arrange third-party inspection?",
-        answer:
-          "Yes. Where the order requires it, we coordinate inspection at the manufacturer's works and issue the release notes with the shipment.",
       },
     ],
   },
@@ -712,70 +648,6 @@ export const services: Service[] = [
         question: "What do we receive after the inspection?",
         answer:
           "A photographic report covering structure, fill, basin and mechanical equipment, with findings prioritised and a recommended repair scope.",
-      },
-    ],
-  },
-  {
-    slug: "computer-it-works-maintenance",
-    title: "Computer IT Works & Maintenance",
-    navTitle: "Computer IT Works & Maintenance",
-    category: "industrial",
-    excerpt:
-      "Structured cabling, network setup, hardware supply and ongoing IT support for offices, site cabins and control rooms.",
-    intro:
-      "Site IT has to survive dust, heat and constant moves. We install structured cabling and networks, supply and set up hardware, and keep it all running with support that answers when a site cabin goes offline.",
-    image:
-      "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    heroImage:
-      "https://images.pexels.com/photos/442150/pexels-photo-442150.jpeg?auto=compress&cs=tinysrgb&w=1920",
-    highlights: [
-      "Structured cabling and network installation",
-      "Hardware supply, setup and configuration",
-      "CCTV and access control systems",
-      "Ongoing support and maintenance contracts",
-    ],
-    sections: [
-      {
-        heading: "Infrastructure",
-        body: "Cat6 and fibre cabling, patch panels and racks, switches, routers and wireless access points, server room fit-out with UPS and cooling, and network configuration for site offices and control rooms.",
-      },
-      {
-        heading: "Hardware and software",
-        body: "Supply and setup of desktops, laptops, printers, scanners and peripherals, operating system and application installation, licensing, user account setup, and data migration during office moves.",
-      },
-      {
-        heading: "Support and security",
-        body: "Preventive maintenance visits, remote and on-site troubleshooting, backup configuration, antivirus and patching, plus CCTV, access control and intercom installation where the facility requires it.",
-      },
-    ],
-    capabilities: [
-      "Cat6 and fibre optic cabling",
-      "Network design and configuration",
-      "Server and rack installation",
-      "PC, laptop and printer supply",
-      "CCTV and access control",
-      "Annual IT support contracts",
-    ],
-    faqs: [
-      {
-        question: "Do you provide ongoing support or only installation?",
-        answer:
-          "Both. Annual support contracts cover preventive visits, remote troubleshooting and on-site response alongside any new installation work.",
-      },
-      {
-        question: "Can you relocate an existing site office setup?",
-        answer:
-          "Yes. We handle decommissioning, transport, reinstallation, cabling and reconfiguration so the office is working again at the new location.",
-      },
-      {
-        question: "Do you install CCTV and access control?",
-        answer:
-          "Yes. Camera and access control installation, cabling, recorder setup and user configuration are part of our scope.",
-      },
-      {
-        question: "Do you supply the hardware?",
-        answer:
-          "We can supply and configure desktops, laptops, printers, switches and network equipment, or work with hardware you have already procured.",
       },
     ],
   },

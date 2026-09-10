@@ -229,7 +229,7 @@ const galleryData: GalleryItem[] = [
     category: "industrial",
     categoryLabel: "Mechanical & Industrial",
     location: "Safaniya Onshore Plant",
-    image: "https://images.pexels.com/photos/162568/oil-pump-jack-sunset-clouds-162568.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "https://images.pexels.com/photos/247763/pexels-photo-247763.jpeg?auto=compress&cs=tinysrgb&w=1200",
     description: "Critical replacement of flare tips and ignition lines during scheduled turnaround.",
   },
   {
