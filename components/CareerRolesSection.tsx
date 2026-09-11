@@ -528,7 +528,7 @@ export default function CareerRolesSection() {
           return (
             <Reveal key={job.id} delay={Math.min(idx, 4) * 60}>
               <div
-                className={`rounded-2xl border transition-all duration-300 bg-white overflow-hidden ${
+                className={`rounded border transition-all duration-300 bg-white overflow-hidden ${
                   isExpanded
                     ? "border-blue-300 shadow-md ring-1 ring-blue-100/80"
                     : "border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-sm"

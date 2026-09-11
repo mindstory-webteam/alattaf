@@ -18,7 +18,7 @@ const media = {
 
 export default function CtaSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-white font-sans">
+    <section className="relative w-full overflow-hidden bg-white font-sans ">
       {/* Background video — deliberately NOT wrapped in Reveal, since the
           inline transform would break the absolute full-bleed layer. */}
       <div className="absolute inset-0">
@@ -52,9 +52,7 @@ export default function CtaSection() {
       <div className="relative w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24 py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-end">
           <div className="lg:col-span-7">
-            <Reveal>
-              <div aria-hidden="true" className="h-[3px] w-12 bg-blue-700" />
-            </Reveal>
+     
 
             <ScrollRevealText
               text="Bring us the scope. We will tell you how it gets built."

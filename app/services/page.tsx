@@ -4,7 +4,7 @@ import React from "react";
 import type {Metadata} from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {ArrowRight, CheckCircle2, Phone} from "lucide-react";
+import { CheckCircle2, Phone} from "lucide-react";
 
 import Breadcrumb from "@/components/Breadcrumb";
 import LiquidButton from "@/components/LiquidButton";
@@ -21,15 +21,15 @@ import {
 export const metadata: Metadata = {
   title: "Our Services | Al Attaf Advanced Contracting Company",
   description:
-    "Civil works, fabrication, electrical and instrumentation, mechanical works, equipment rental, manpower and specialised industrial services across Saudi Arabia.",
+    "Civil, electrical, mechanical, instrumentation, firefighting, HVAC systems, plant maintenance, and security systems delivered to plant standards across Saudi Arabia.",
   alternates: {canonical: "/services"},
 };
 
 const whyPoints = [
   "Approved vendor experience with major operators",
-  "Certified welders, riggers and operators",
-  "Documented QA/QC and handover packages",
-  "Fast mobilisation for shutdowns and turnarounds",
+  "Certified welders, electricians, and technicians",
+  "Documented QA/QC and turnkey handover packages",
+  "Fast mobilization for emergency turnarounds and projects",
 ];
 
 export default function ServicesPage() {
@@ -37,7 +37,7 @@ export default function ServicesPage() {
     <main className="bg-white">
       <Breadcrumb
         title="Our Services"
-        description="Construction, engineering, industrial supply and specialised services delivered to plant standards across the Kingdom."
+        description="Engineering, construction, life safety, and industrial plant maintenance delivered to plant standards across the Kingdom."
         image="https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1920"
         items={[{label: "Services"}]}
         showVisionLogo
@@ -104,16 +104,10 @@ export default function ServicesPage() {
             }`}
           >
             <div className="max-w-3xl">
-              <Reveal>
-                <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-sky-600">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </Reveal>
-
               <ScrollRevealText
                 text={category.label}
                 as="h2"
-                className="mt-3 text-2xl sm:text-3xl font-bold leading-tight tracking-tight"
+                className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight"
               />
 
               <ScrollRevealText
@@ -151,7 +145,6 @@ export default function ServicesPage() {
                       </p>
                       <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600">
                         Read more
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </span>
                     </div>
                   </Link>

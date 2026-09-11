@@ -5,28 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Phone, Mail, MapPin} from "lucide-react";
-import {serviceCategories, getServicesByCategory} from "@/app/data/services";
+import {services} from "@/app/data/services";
 
-/**
- * Both service columns are generated from the same data file the
- * /services routes and the navbar use, so the footer can never link
- * to a service page that doesn't exist.
- */
-const [constructionCategory, industrialCategory] = serviceCategories;
-
-const constructionWorks = getServicesByCategory(constructionCategory.id).map(
-  (service) => ({
-    name: service.title,
-    href: `/services/${service.slug}`,
-  })
-);
-
-const industrialSupply = getServicesByCategory(industrialCategory.id).map(
-  (service) => ({
-    name: service.title,
-    href: `/services/${service.slug}`,
-  })
-);
+const footerServices = services.map((service) => ({
+  name: service.title,
+  href: `/services/${service.slug}`,
+}));
 
 export default function Footer() {
   const pathname = usePathname();
@@ -188,96 +172,21 @@ export default function Footer() {
 
           {/* 4 Column Grid */}
           <div className="grid grid-cols-1 xl:grid-cols-12 relative z-10">
-            {/* Section 1: Brand, Headquarters & Socials (4 cols) */}
-            <div className="xl:col-span-4 p-6 sm:p-7 lg:p-8 flex flex-col justify-between space-y-4">
-              <div className="space-y-3">
-                <Link href="/" className="inline-block group focus:outline-none">
-                  <Image
-                    src="/alattaf-logo.png"
-                    alt="Al Attaf Advanced Contracting Company"
-                    width={180}
-                    height={60}
-                    className="h-11 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </Link>
+            {/* Section 1: Brand & Overview (4 cols) */}
+            <div className="xl:col-span-4 p-6 sm:p-7 lg:p-8 space-y-4">
+              <Link href="/" className="inline-block group focus:outline-none">
+                <Image
+                  src="/alattaf-logo.png"
+                  alt="Al Attaf Advanced Contracting Company"
+                  width={180}
+                  height={60}
+                  className="h-11 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
 
-                <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
-                  Turnkey industrial engineering, plant maintenance, and
-                  specialized logistics across Saudi Arabia since 1978.
-                </p>
-
-                {/* Headquarters Details */}
-                <div className="space-y-2 text-xs pt-1">
-                  <div className="flex items-start gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-blue-700 shrink-0 mt-0.5" />
-                    <span className="text-slate-600 leading-relaxed">
-                      6584-Abqaiq 33261-Taif St, Al Madiynah, Saudi Arabia
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 text-blue-700 shrink-0" />
-                    <a
-                      href="tel:+966135660243"
-                      className="text-slate-600 hover:text-blue-700 transition-colors font-medium"
-                    >
-                      00966 13 566 0243
-                    </a>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Mail className="w-3.5 h-3.5 text-blue-700 shrink-0" />
-                    <a
-                      href="mailto:info@alattafcompany.com"
-                      className="text-slate-600 hover:text-blue-700 transition-colors font-medium"
-                    >
-                      info@alattafcompany.com
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Media Links */}
-              <div className="flex items-center space-x-2 pt-1">
-                {/* Twitter / X */}
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter / X"
-                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-slate-900 hover:scale-105 transition-all duration-200"
-                >
-                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                  </svg>
-                </a>
-
-                {/* Instagram */}
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#E4405F] hover:scale-105 transition-all duration-200"
-                >
-                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                  </svg>
-                </a>
-
-                {/* Facebook */}
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#1877F2] hover:scale-105 transition-all duration-200"
-                >
-                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                  </svg>
-                </a>
-              </div>
+              <p className="max-w-sm text-xs text-slate-600 leading-relaxed">
+                Al Attaf Advanced Contracting Company delivers turnkey industrial engineering, civil construction, plant turnaround maintenance, electromechanical execution, and specialized life-safety systems across the Kingdom of Saudi Arabia.
+              </p>
             </div>
 
             {/* Horizontal Separation Divider 1 (between Section 1 & Section 2) on sm & mid screens */}
@@ -360,13 +269,13 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Section 3: Construction & Engineering Works (3 cols) */}
+            {/* Section 3: Services (3 cols) */}
             <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
               <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                {constructionCategory.label}
+                Services
               </h3>
               <ul className="space-y-2.5 text-xs sm:text-sm">
-                {constructionWorks.map((item) => (
+                {footerServices.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href} className={linkClass(item.href)}>
                       {item.name}
@@ -408,20 +317,83 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Section 4: Industrial Supply & Specialized Services (3 cols) */}
-            <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-4">
-              <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
-                {industrialCategory.label}
-              </h3>
-              <ul className="space-y-2.5 text-xs sm:text-sm">
-                {industrialSupply.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className={linkClass(item.href)}>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            {/* Section 4: Contact / Headquarters & Socials (3 cols - Right End Section) */}
+            <div className="xl:col-span-3 p-6 sm:p-7 lg:p-8 space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                  Contact Us
+                </h3>
+                <div className="space-y-3.5 text-xs sm:text-sm pt-1">
+                  <div className="flex items-start gap-2.5">
+                    <MapPin className="w-4 h-4 text-blue-700 shrink-0 mt-0.5" />
+                    <span className="text-slate-600 leading-relaxed">
+                      6584-Abqaiq 33261-Taif St, Al Madiynah, Saudi Arabia
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <Phone className="w-4 h-4 text-blue-700 shrink-0" />
+                    <a
+                      href="tel:+966135660243"
+                      className="text-slate-600 hover:text-blue-700 transition-colors font-medium"
+                    >
+                      00966 13 566 0243
+                    </a>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <Mail className="w-4 h-4 text-blue-700 shrink-0" />
+                    <a
+                      href="mailto:info@alattafcompany.com"
+                      className="text-slate-600 hover:text-blue-700 transition-colors font-medium"
+                    >
+                      info@alattafcompany.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media Links */}
+              <div className="flex items-center space-x-2 pt-1">
+                {/* Twitter / X */}
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter / X"
+                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-slate-900 hover:scale-105 transition-all duration-200"
+                >
+                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                </a>
+
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#E4405F] hover:scale-105 transition-all duration-200"
+                >
+                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+
+                {/* Facebook */}
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="w-7 h-7 rounded-md bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#1877F2] hover:scale-105 transition-all duration-200"
+                >
+                  <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>

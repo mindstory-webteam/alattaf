@@ -5,7 +5,7 @@ import type {Metadata} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {ArrowLeft, ArrowRight, Check, CheckCircle2, Phone} from "lucide-react";
+import {ArrowLeft, Check, CheckCircle2, Phone} from "lucide-react";
 
 import Breadcrumb from "@/components/Breadcrumb";
 import LiquidButton from "@/components/LiquidButton";
@@ -115,9 +115,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
               className="mt-4 text-3xl sm:text-4xl lg:text-[42px] font-bold leading-[1.15] tracking-tight"
             />
 
-            <Reveal delay={80}>
-              <div className="mt-6 h-1 w-16 bg-sky-600" />
-            </Reveal>
 
             <ScrollRevealText
               text={service.intro}
@@ -369,7 +366,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
               >
                 View all services
-                <ArrowRight className="w-4 h-4" />
               </Link>
             </Reveal>
           </div>
@@ -399,7 +395,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                     </p>
                     <span className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600">
                       Read more
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </span>
                   </div>
                 </Link>
@@ -440,7 +435,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                       {next.navTitle}
                     </span>
                   </span>
-                  <ArrowRight className="w-4 h-4 mt-1 shrink-0 text-sky-600 transition-transform group-hover:translate-x-1 sm:order-2" />
                 </Link>
               )}
             </nav>

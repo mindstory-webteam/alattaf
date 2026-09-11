@@ -4,21 +4,14 @@ import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {Menu, X, Phone, ChevronDown, ArrowRight} from "lucide-react";
+import {Menu, X, Phone, ChevronDown} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
-import {serviceCategories, getServicesByCategory} from "@/app/data/services";
+import {services} from "@/app/data/services";
 
-/**
- * Services dropdown is generated from the same data file the
- * /services and /services/[slug] pages use, so the menu can never
- * fall out of sync with the actual routes.
- */
-const servicesSections = serviceCategories.map((category) => ({
-  title: category.label,
-  items: getServicesByCategory(category.id).map((service) => ({
-    name: service.title,
-    href: `/services/${service.slug}`,
-  })),
+const navServices = services.map((service) => ({
+  name: service.title,
+  href: `/services/${service.slug}`,
+  description: service.excerpt,
 }));
 
 export default function Navbar() {
@@ -260,7 +253,6 @@ export default function Navbar() {
 
                 {/* Services Dropdown */}
                 <div className="relative group py-2">
-                  {/* Label itself now navigates to the services listing page */}
                   <Link
                     href="/services"
                     onClick={() => setActiveItem("Services")}
@@ -274,45 +266,35 @@ export default function Navbar() {
                     <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
                   </Link>
 
-                  {/* Dropdown Menu Container without border radius, only text */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[720px] max-w-[90vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2 pointer-events-none group-hover:pointer-events-auto z-50">
-                    <div className="bg-white text-slate-800 rounded-none shadow-2xl border border-slate-200 p-6 overflow-hidden">
-                      <div className="grid grid-cols-2 gap-6">
-                        {servicesSections.map((section, sIdx) => (
-                          <div key={sIdx} className="space-y-3">
-                            <div className="pb-2 border-b border-slate-100 text-xs font-bold text-sky-600 uppercase tracking-wider">
-                              {section.title}
+                  {/* Dropdown Menu Container */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[640px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1.5 pointer-events-none group-hover:pointer-events-auto z-50">
+                    <div className="bg-white text-slate-800 shadow-lg border border-slate-200 p-4 overflow-hidden">
+                      <div className="grid grid-cols-2 gap-2">
+                        {navServices.map((item, iIdx) => (
+                          <Link
+                            key={iIdx}
+                            href={item.href}
+                            onClick={() => setActiveItem("Services")}
+                            className="group/item block p-2.5 rounded-lg transition-colors text-left"
+                          >
+                            <div className="text-sm font-semibold text-slate-900 group-hover/item:text-sky-600 transition-colors">
+                              {item.name}
                             </div>
-                            <ul className="space-y-1">
-                              {section.items.map((item, iIdx) => (
-                                <li key={iIdx}>
-                                  <Link
-                                    href={item.href}
-                                    onClick={() => setActiveItem("Services")}
-                                    className={`block px-2.5 py-2 rounded-none text-xs font-medium transition-colors leading-snug ${
-                                      isCurrentService(item.href)
-                                        ? "text-sky-600 font-bold"
-                                        : "text-slate-700 hover:text-slate-950"
-                                    }`}
-                                  >
-                                    {item.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                            <p className="text-xs text-slate-500 line-clamp-2 leading-snug mt-1 group-hover/item:text-slate-700">
+                              {item.description}
+                            </p>
+                          </Link>
                         ))}
                       </div>
 
-                      {/* View all services */}
-                      <div className="mt-5 pt-4 border-t border-slate-100">
+                      {/* View all services footer */}
+                      <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-2">
                         <Link
                           href="/services"
                           onClick={() => setActiveItem("Services")}
-                          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-600 hover:text-sky-700 transition-colors"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors"
                         >
                           View all services
-                          <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                       </div>
                     </div>
@@ -525,32 +507,28 @@ export default function Navbar() {
               </div>
 
               {isServicesOpenMobile && (
-                <div className="pl-4 pr-1 py-1.5 space-y-3 mt-1">
-                  {servicesSections.map((section, sIdx) => (
-                    <div key={sIdx} className="space-y-1">
-                      <div className="text-[11px] font-bold text-sky-600 uppercase tracking-wider px-2 py-1">
-                        {section.title}
+                <div className="pl-2 pr-1 py-1.5 space-y-1 mt-1">
+                  {navServices.map((item, iIdx) => (
+                    <Link
+                      key={iIdx}
+                      href={item.href}
+                      onClick={() => {
+                        setActiveItem("Services");
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`block p-2.5 rounded-lg transition-colors ${
+                        isCurrentService(item.href)
+                          ? "bg-slate-100"
+                          : "hover:bg-slate-50"
+                      }`}
+                    >
+                      <div className="text-xs font-semibold text-slate-900">
+                        {item.name}
                       </div>
-                      <div className="space-y-0.5">
-                        {section.items.map((item, iIdx) => (
-                          <Link
-                            key={iIdx}
-                            href={item.href}
-                            onClick={() => {
-                              setActiveItem("Services");
-                              setIsMobileMenuOpen(false);
-                            }}
-                            className={`block px-2 py-1.5 rounded-lg text-xs font-medium transition-colors leading-snug ${
-                              isCurrentService(item.href)
-                                ? "text-sky-600 font-bold"
-                                : "text-slate-600 hover:text-slate-950"
-                            }`}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                      <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                        {item.description}
+                      </p>
+                    </Link>
                   ))}
 
                   <Link
@@ -559,10 +537,9 @@ export default function Navbar() {
                       setActiveItem("Services");
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center gap-2 px-2 pt-1 text-[11px] font-bold uppercase tracking-wider text-sky-600"
+                    className="inline-flex items-center gap-2 px-2.5 pt-2 text-[11px] font-bold uppercase tracking-wider text-sky-600"
                   >
                     View all services
-                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               )}
