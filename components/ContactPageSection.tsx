@@ -77,7 +77,7 @@ export default function ContactPageSection() {
                       {footerAddress}
                     </a>
                     <p className="text-xs sm:text-sm text-slate-500 font-normal mt-1">
-                      Sunday – Friday | 8:00 am - 5:00 pm
+                      Sunday – Friday , 8:00 am - 5:00 pm
                     </p>
                   </div>
                 </div>

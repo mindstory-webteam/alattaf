@@ -22,6 +22,8 @@ export default function Footer() {
     {name: "Careers", href: "/careers"},
     {name: "Gallery", href: "/gallery"},
     {name: "Contact", href: "/contact"},
+    {name: "Privacy Policy", href: "/privacy-policy"},
+    {name: "Terms & Conditions", href: "/terms-and-conditions"},
   ];
 
   // Highlights the service page currently being viewed
@@ -398,11 +400,35 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Minimal Copyright Bar */}
-        <div className="w-full pt-8 pb-4 flex items-center justify-between text-xs text-slate-500">
-          <p>
+        {/* Bottom Minimal Copyright Bar: Designed by on Left, Copyright in Center */}
+        <div className="w-full pt-8 pb-4 grid grid-cols-1 md:grid-cols-3 items-center gap-4 text-xs text-slate-500">
+          {/* Left: Designed by MindPixel */}
+          <div className="order-2 md:order-1 flex items-center justify-center md:justify-start">
+            <a
+              href="https://mindpixel.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors focus:outline-none group"
+              aria-label="Designed by MindPixel"
+            >
+              <span>Designed by</span>
+              <Image
+                src="/mindpixel.webp"
+                alt="MindPixel"
+                width={70}
+                height={14}
+                className="h-2.5 sm:h-3 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              />
+            </a>
+          </div>
+
+          {/* Center: Copyright */}
+          <p className="order-1 md:order-2 text-center text-slate-500">
             © {new Date().getFullYear()} Al Attaf Advanced Contracting Company. All rights reserved.
           </p>
+
+          {/* Right: Empty spacer to keep Center perfectly balanced on md+ */}
+          <div className="hidden md:block md:order-3" aria-hidden="true" />
         </div>
       </div>
     </footer>
