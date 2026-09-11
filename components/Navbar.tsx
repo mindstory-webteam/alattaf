@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -17,10 +17,12 @@ const navServices = services.map((service) => ({
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
+
+  const lastScrollY = useRef(0);
+  const isInitialLoad = useRef(true);
 
   const pathname = usePathname();
 
@@ -48,51 +50,109 @@ export default function Navbar() {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  // Always ensure website starts at the very top (0, 0) with Navbar visible when entering
+  // Always ensure website starts at the very top (0, 0) with Navbar visible when entering or navigating
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
-      }
-      if (!window.location.hash) {
-        window.scrollTo({top: 0, left: 0, behavior: "instant"});
-      }
+    if (typeof window === "undefined") return;
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
     }
-  }, []);
+
+    isInitialLoad.current = true;
+    setIsVisible(true);
+
+    const resetToTop = () => {
+      if (!window.location.hash) {
+        document.documentElement.style.scrollBehavior = "auto";
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        lastScrollY.current = 0;
+        setIsVisible(true);
+        requestAnimationFrame(() => {
+          document.documentElement.style.scrollBehavior = "";
+        });
+      }
+    };
+
+    resetToTop();
+
+    // Multi-interval check to counter any delayed mobile browser scroll restoration or layout shifts
+    const t1 = setTimeout(resetToTop, 50);
+    const t2 = setTimeout(resetToTop, 150);
+    const t3 = setTimeout(resetToTop, 300);
+
+    // Release initial load lock after the page has fully settled
+    const lockTimer = setTimeout(() => {
+      isInitialLoad.current = false;
+      lastScrollY.current = window.scrollY;
+    }, 1000);
+
+    const handlePageShow = () => {
+      resetToTop();
+      setIsVisible(true);
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(lockTimer);
+      window.removeEventListener("pageshow", handlePageShow);
+    };
+  }, [pathname]);
 
   useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // When mobile menu is open, don't hide
-      if (isMobileMenuOpen) return;
+      // Only update state if boolean value changed
+      setIsScrolled((prev) => {
+        const next = currentScrollY > 20;
+        return prev !== next ? next : prev;
+      });
 
-      // Always keep navbar visible when at or near the top of the page (within 100px)
-      if (currentScrollY <= 100) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // If scrolling down past threshold, hide navbar
-        setIsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
-        // If scrolling up (reverse scroll), show navbar
-        setIsVisible(true);
+      // When mobile menu is open, never hide
+      if (isMobileMenuOpen) {
+        setIsVisible((prev) => (!prev ? true : prev));
+        lastScrollY.current = currentScrollY;
+        return;
       }
 
-      if (currentScrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      // During initial load grace period, keep visible
+      if (isInitialLoad.current) {
+        setIsVisible((prev) => (!prev ? true : prev));
+        lastScrollY.current = currentScrollY;
+        return;
       }
 
-      setLastScrollY(currentScrollY);
+      // Always keep navbar visible when at or near the top of the page (within 120px)
+      if (currentScrollY <= 120) {
+        setIsVisible((prev) => (!prev ? true : prev));
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      const diff = currentScrollY - lastScrollY.current;
+
+      // Only hide if the user made an intentional downward scroll gesture of > 15px past 150px
+      if (diff > 15 && currentScrollY > 150) {
+        setIsVisible((prev) => (prev ? false : prev));
+      } else if (diff < -5) {
+        // Any upward scroll immediately restores navbar
+        setIsVisible((prev) => (!prev ? true : prev));
+      }
+
+      lastScrollY.current = currentScrollY;
     };
-
-    // Run once on mount to synchronize initial scroll state
-    handleScroll();
 
     window.addEventListener("scroll", handleScroll, {passive: true});
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY, isMobileMenuOpen]);
+  }, [isMobileMenuOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
