@@ -463,7 +463,7 @@ export default function GallerySection() {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer border ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer border ${
                   isActive
                     ? "bg-blue-700 text-white border-blue-700"
                     : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:text-slate-900"
@@ -497,7 +497,7 @@ export default function GallerySection() {
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.25, delay: index * 0.03 }}
                 onClick={() => openLightbox(item)}
-                className="group relative cursor-pointer overflow-hidden rounded-xl sm:rounded-2xl bg-slate-100 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 aspect-[4/3] w-full"
+                className="group relative cursor-pointer overflow-hidden rounded sm:rounded bg-slate-100 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 aspect-[4/3] w-full"
               >
                 <Image
                   src={item.image}
