@@ -572,7 +572,7 @@ export default function CareerRolesSection() {
                     hoverBgColor="#ffffff"
                     textColor="#ffffff"
                     hoverTextColor="#1d4ed8"
-                    className="px-4 py-2 text-xs sm:text-sm rounded-xl font-semibold border border-blue-700 shadow-sm"
+                    className="px-4 py-2 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm"
                   />
 
                   <button
@@ -582,7 +582,7 @@ export default function CareerRolesSection() {
                       setExpandedRoleId(isExpanded ? null : job.id);
                     }}
                     aria-label="Toggle details"
-                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
                   >
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
@@ -645,7 +645,7 @@ export default function CareerRolesSection() {
                       hoverBgColor="#ffffff"
                       textColor="#ffffff"
                       hoverTextColor="#1d4ed8"
-                      className="px-5 py-2 text-xs sm:text-sm rounded-xl font-semibold border border-blue-700 shadow-sm"
+                      className="px-5 py-2 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm"
                     />
                   </div>
                 </div>

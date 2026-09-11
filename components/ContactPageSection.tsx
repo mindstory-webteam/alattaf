@@ -150,7 +150,7 @@ export default function ContactPageSection() {
 
             {/* Right Column: Contact Form Box */}
             <Reveal className="lg:col-span-6 w-full max-w-full md:max-w-2xl lg:max-w-lg lg:ml-auto" delay={150} y={28}>
-              <div className="border border-[#e5e2d8] p-5 sm:p-7 lg:p-8 bg-transparent min-h-fit md:min-h-[480px] lg:min-h-[540px] flex flex-col justify-between">
+              <div className="border border-[#e5e2d8] p-5 sm:p-7 lg:p-8 bg-transparent min-h-fit md:min-h-[420px] lg:min-h-[460px] flex flex-col justify-between">
                 <div className="mb-5 sm:mb-6">
                   <h1 className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 uppercase">
                     CONTACT US
@@ -258,16 +258,16 @@ export default function ContactPageSection() {
                     </div>
 
                     {/* Bottom: Describe your project */}
-                    <div className="border-b border-[#e5e2d8] flex-1 min-h-[90px] sm:min-h-[110px] lg:min-h-[130px] flex flex-col pb-1">
+                    <div className="border-b border-[#e5e2d8] flex-1 min-h-[80px] sm:min-h-[95px] lg:min-h-[105px] flex flex-col pb-1">
                       <textarea
-                        rows={4}
+                        rows={3}
                         required
                         value={formData.project}
                         onChange={(e) =>
                           setFormData({...formData, project: e.target.value})
                         }
                         placeholder="Describe your project"
-                        className="w-full h-full min-h-[80px] sm:min-h-[90px] lg:min-h-[110px] py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
+                        className="w-full h-full min-h-[70px] sm:min-h-[80px] lg:min-h-[90px] py-2 sm:py-2.5 lg:py-3 bg-transparent text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none resize-none"
                       />
                     </div>
 
@@ -301,7 +301,7 @@ export default function ContactPageSection() {
 
           {/* Interactive OpenStreetMap container rendered with Leaflet */}
           <Reveal y={24} duration={800}>
-            <div className="relative w-full h-[320px] sm:h-[400px] md:h-[450px] lg:h-[500px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
+            <div className="relative w-full h-[240px] sm:h-[280px] md:h-[320px] lg:h-[360px] border border-[#e5e2d8] overflow-hidden bg-slate-100">
               <LeafletMap
                 lat={25.9377}
                 lng={49.6738}

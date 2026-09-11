@@ -16,8 +16,8 @@ export default function ScrollRevealText({
   text,
   as: Component = "h2",
   className = "",
-  startViewport = 0.90,
-  endViewport = 0.35,
+  startViewport = 0.50,
+  endViewport = 0.20,
   fromRgb = [161, 161, 170],
   toRgb = [15, 23, 42],
 }: ScrollRevealTextProps) {

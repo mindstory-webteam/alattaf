@@ -463,10 +463,10 @@ export default function GallerySection() {
               <button
                 key={cat.id}
                 onClick={() => handleCategoryChange(cat.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shrink-0 sm:shrink cursor-pointer border ${
                   isActive
-                    ? "bg-blue-700 text-white shadow-md shadow-blue-600/25 scale-[1.02]"
-                    : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 hover:text-slate-900"
+                    ? "bg-blue-700 text-white border-blue-700"
+                    : "bg-white text-slate-700 border-slate-200 hover:bg-slate-100 hover:text-slate-900"
                 }`}
               >
                 <span className="whitespace-nowrap">{cat.label}</span>
