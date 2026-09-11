@@ -5,8 +5,17 @@ import Image from "next/image";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
 
+const brandLogos = [
+  { name: "Saudi Aramco", src: "/brands/aramco.png" },
+  { name: "SABIC", src: "/brands/sabic.png" },
+  { name: "Saipem", src: "/brands/saipem.png" },
+  { name: "YASREF", src: "/brands/yasref.png" },
+  { name: "MASCO", src: "/brands/masco.png" },
+  { name: "SRACO", src: "/brands/sraco.png" },
+];
+
 export default function AboutSection() {
-  const dummyList = Array.from({ length: 12 }, (_, i) => i + 1);
+  const marqueeLogos = [...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos];
   const headingText = "We take this opportunity to introduce Al Attaf Advanced Contracting Company, a 100% Saudi-owned enterprise headquartered in Abqaiq, Kingdom of Saudi Arabia.";
 
   return (
@@ -47,25 +56,25 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Bottom Row: Infinite Auto-Scrolling Brand Logos Marquee using dummy-logo.png */}
+        {/* Bottom Row: Infinite Auto-Scrolling Brand Logos Marquee */}
         <div className="pt-8 border-t border-slate-100">
           <div className="relative w-full overflow-hidden">
             {/* Left & Right subtle gradient shadows */}
             <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-28 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-28 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-            <div className="animate-marquee flex items-center space-x-8 sm:space-x-12 py-3">
-              {dummyList.concat(dummyList).map((_, idx) => (
+            <div className="animate-marquee flex items-center space-x-6 sm:space-x-8 py-3">
+              {marqueeLogos.map((brand, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center px-10 py-5 sm:px-12 sm:py-6 rounded-xl bg-slate-50 border border-slate-200/70 shrink-0 hover:bg-white hover:border-slate-300 transition-all duration-200 opacity-80 hover:opacity-100"
+                  className="flex items-center justify-center w-[170px] sm:w-[200px] h-[75px] sm:h-[85px] px-6 py-4 rounded-xl bg-slate-50 border border-slate-200/70 shrink-0 hover:bg-white hover:border-slate-300 transition-all duration-200 shadow-2xs hover:shadow-xs group"
                 >
                   <Image
-                    src="/alattaf-logo.png"
-                    alt="Al Attaf Brand Logo"
-                    width={220}
-                    height={80}
-                    className="h-10 sm:h-12 lg:h-14 w-auto object-contain"
+                    src={brand.src}
+                    alt={brand.name}
+                    width={160}
+                    height={60}
+                    className="max-h-9 sm:max-h-11 max-w-[130px] sm:max-w-[150px] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-105"
                   />
                 </div>
               ))}

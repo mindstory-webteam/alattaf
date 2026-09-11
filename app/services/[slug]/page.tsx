@@ -5,7 +5,7 @@ import type {Metadata} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import {ArrowLeft, Check, CheckCircle2, Phone} from "lucide-react";
+import { Check, CheckCircle2, Phone} from "lucide-react";
 
 import Breadcrumb from "@/components/Breadcrumb";
 import LiquidButton from "@/components/LiquidButton";
@@ -410,7 +410,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
                   href={`/services/${previous.slug}`}
                   className="group flex items-start gap-3 max-w-xs"
                 >
-                  <ArrowLeft className="w-4 h-4 mt-1 shrink-0 text-sky-600 transition-transform group-hover:-translate-x-1" />
                   <span>
                     <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       Previous
