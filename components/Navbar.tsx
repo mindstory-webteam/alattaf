@@ -397,14 +397,14 @@ export default function Navbar() {
                         : "opacity-0 invisible translate-y-1.5 pointer-events-none"
                     }`}
                   >
-                    <div className="bg-white text-slate-800 shadow-lg border border-slate-200 p-4 overflow-hidden rounded-xl">
+                    <div className="bg-white text-slate-800 shadow-lg border border-slate-200 p-4 overflow-hidden rounded">
                       <div className="grid grid-cols-2 gap-2">
                         {navServices.map((item, iIdx) => (
                           <Link
                             key={iIdx}
                             href={item.href}
                             onClick={handleServiceClick}
-                            className={`group/item block p-2.5 rounded-lg transition-colors text-left ${
+                            className={`group/item block p-2.5 rounded transition-colors text-left ${
                               isCurrentService(item.href)
                                 ? "bg-slate-50"
                                 : "hover:bg-slate-50"
