@@ -47,11 +47,11 @@ export default function AboutSection() {
             />
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-              Formed in 1978 (1398H), AAAC commenced operations in direct partnership with <span className="text-blue-700 font-semibold">Saudi Aramco</span>, the Kingdom&apos;s premier global energy and industrial enterprise. Over more than 45 years of continuous operational growth, we have built a trusted legacy executing turnkey Civil, Mechanical, Electrical, Instrumentation, and Plant Maintenance (T&amp;I) projects across Aramco facilities and major industrial hubs throughout Saudi Arabia.
+              Formed in 1978 (1398H), AAAC carries out specialized subcontract works for <span className="text-blue-700 font-semibold">Saudi Aramco</span> projects and major industrial developments across the Kingdom. Over more than 45 years of continuous operational growth, we have built a trusted track record executing subcontract packages across Civil, Mechanical, Electrical, Instrumentation, and Plant Maintenance (T&amp;I) for Aramco facilities and industrial hubs throughout Saudi Arabia.
             </p>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-              Headquartered in Abqaiq, Al Attaf Advanced Contracting is officially registered with the Saudi Ministry of Commerce (<span className="text-blue-700 font-semibold">CR # 2059000287</span>) and recognized as an approved contractor under <span className="text-blue-700 font-semibold">Saudi Aramco Vendor # 10005728</span> (Dhahran), upholding top-tier Saudi engineering governance, certified HSE standards, and dependable Kingdom-wide project delivery.
+              Headquartered in Abqaiq, Al Attaf Advanced Contracting is officially registered with the Saudi Ministry of Commerce (<span className="text-blue-700 font-semibold">CR # 2059000287</span>) and recognized under <span className="text-blue-700 font-semibold">Saudi Aramco Vendor # 10005728</span> (Dhahran), upholding top-tier Saudi engineering governance, certified HSE standards, and dependable Kingdom-wide subcontract delivery.
             </p>
           </div>
         </div>

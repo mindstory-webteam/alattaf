@@ -19,7 +19,7 @@ export default function FaqSection() {
       id: "faq-2",
       question: "Is AAAC officially approved by Saudi Aramco and industrial partners?",
       answer:
-        "Yes. AAAC is officially recognized as an approved contractor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287).",
+        "Yes. AAAC is officially recognized as an approved vendor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287) to execute specialized subcontract scopes.",
     },
     {
       id: "faq-3",

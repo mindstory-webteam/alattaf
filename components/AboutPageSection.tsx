@@ -104,8 +104,8 @@ export default function AboutPageSection() {
   ];
 
   const aramcoScope = [
-    "Approved contractor under Saudi Aramco vendor # 10005728, Dhahran",
-    "Civil, mechanical, electrical, and instrumentation scopes inside operating plants",
+    "Approved vendor under Saudi Aramco Vendor # 10005728, Dhahran",
+    "Specialized subcontract works across civil, mechanical, electrical, and instrumentation scopes",
     "Turnaround and inspection (T&I) crews mobilised for shutdown windows",
     "Work permits, JSAs, and method statements issued to Aramco procedure",
     "Certified welders, operators, and supervisors with plant-specific inductions",
