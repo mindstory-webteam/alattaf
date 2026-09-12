@@ -19,12 +19,40 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpenMobile, setIsServicesOpenMobile] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
 
   const lastScrollY = useRef(0);
   const isInitialLoad = useRef(true);
+  const servicesDropdownRef = useRef<HTMLDivElement | null>(null);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pathname = usePathname();
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setIsServicesDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setIsServicesDropdownOpen(false);
+    }, 150);
+  };
+
+  const handleServiceClick = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+      dropdownTimeoutRef.current = null;
+    }
+    setIsServicesDropdownOpen(false);
+    setIsMobileMenuOpen(false);
+    setIsServicesOpenMobile(false);
+    setActiveItem("Services");
+  };
 
   // Keep the active nav item in sync with the current route
   useEffect(() => {
@@ -45,9 +73,11 @@ export default function Navbar() {
     }
   }, [pathname]);
 
-  // Close the mobile drawer whenever the route changes
+  // Close menus whenever the route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsServicesDropdownOpen(false);
+    setIsServicesOpenMobile(false);
   }, [pathname]);
 
   // Always ensure website starts at the very top (0, 0) with Navbar visible when entering or navigating
@@ -168,16 +198,40 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Close mobile sidebar on Escape key
+  // Close menus on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
+      if (e.key === "Escape") {
+        if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+        if (isServicesDropdownOpen) setIsServicesDropdownOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, isServicesDropdownOpen]);
+
+  // Close desktop dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsServicesDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (dropdownTimeoutRef.current) {
+        clearTimeout(dropdownTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // Highlights the exact service page you are currently on
   const isCurrentService = (href: string) => pathname === href;
@@ -312,10 +366,15 @@ export default function Navbar() {
                 </Link>
 
                 {/* Services Dropdown */}
-                <div className="relative group py-2">
+                <div
+                  ref={servicesDropdownRef}
+                  className="relative py-2"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <Link
                     href="/services"
-                    onClick={() => setActiveItem("Services")}
+                    onClick={handleServiceClick}
                     className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg ${
                       activeItem === "Services"
                         ? "text-sky-600 font-bold"
@@ -323,21 +382,41 @@ export default function Navbar() {
                     }`}
                   >
                     <span>Services</span>
-                    <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isServicesDropdownOpen ? "rotate-180 text-sky-600" : ""
+                      }`}
+                    />
                   </Link>
 
                   {/* Dropdown Menu Container */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[640px] max-w-[95vw] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1.5 pointer-events-none group-hover:pointer-events-auto z-50">
-                    <div className="bg-white text-slate-800 shadow-lg border border-slate-200 p-4 overflow-hidden">
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[640px] max-w-[95vw] transition-all duration-200 transform z-50 ${
+                      isServicesDropdownOpen
+                        ? "opacity-100 visible translate-y-0 pointer-events-auto"
+                        : "opacity-0 invisible translate-y-1.5 pointer-events-none"
+                    }`}
+                  >
+                    <div className="bg-white text-slate-800 shadow-lg border border-slate-200 p-4 overflow-hidden rounded-xl">
                       <div className="grid grid-cols-2 gap-2">
                         {navServices.map((item, iIdx) => (
                           <Link
                             key={iIdx}
                             href={item.href}
-                            onClick={() => setActiveItem("Services")}
-                            className="group/item block p-2.5 rounded-lg transition-colors text-left"
+                            onClick={handleServiceClick}
+                            className={`group/item block p-2.5 rounded-lg transition-colors text-left ${
+                              isCurrentService(item.href)
+                                ? "bg-slate-50"
+                                : "hover:bg-slate-50"
+                            }`}
                           >
-                            <div className="text-sm font-semibold text-slate-900 group-hover/item:text-sky-600 transition-colors">
+                            <div
+                              className={`text-sm font-semibold transition-colors ${
+                                isCurrentService(item.href)
+                                  ? "text-sky-600"
+                                  : "text-slate-900 group-hover/item:text-sky-600"
+                              }`}
+                            >
                               {item.name}
                             </div>
                             <p className="text-xs text-slate-500 line-clamp-2 leading-snug mt-1 group-hover/item:text-slate-700">
@@ -351,7 +430,7 @@ export default function Navbar() {
                       <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-2">
                         <Link
                           href="/services"
-                          onClick={() => setActiveItem("Services")}
+                          onClick={handleServiceClick}
                           className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors"
                         >
                           View all services
@@ -572,10 +651,7 @@ export default function Navbar() {
                     <Link
                       key={iIdx}
                       href={item.href}
-                      onClick={() => {
-                        setActiveItem("Services");
-                        setIsMobileMenuOpen(false);
-                      }}
+                      onClick={handleServiceClick}
                       className={`block p-2.5 rounded-lg transition-colors ${
                         isCurrentService(item.href)
                           ? "bg-slate-100"
@@ -593,10 +669,7 @@ export default function Navbar() {
 
                   <Link
                     href="/services"
-                    onClick={() => {
-                      setActiveItem("Services");
-                      setIsMobileMenuOpen(false);
-                    }}
+                    onClick={handleServiceClick}
                     className="inline-flex items-center gap-2 px-2.5 pt-2 text-[11px] font-bold uppercase tracking-wider text-sky-600"
                   >
                     View all services
