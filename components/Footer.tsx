@@ -187,7 +187,10 @@ export default function Footer() {
               </Link>
 
               <p className="max-w-sm text-xs text-slate-600 leading-relaxed">
-                Al Attaf Advanced Contracting Company delivers turnkey industrial engineering, civil construction, plant turnaround maintenance, electromechanical execution, and specialized life-safety systems across the Kingdom of Saudi Arabia.
+                Al Attaf Advanced Contracting Company delivers turnkey
+                industrial engineering, civil construction, plant turnaround
+                maintenance, electromechanical execution, and specialized
+                life-safety systems across the Kingdom of Saudi Arabia.
               </p>
             </div>
 
@@ -405,7 +408,7 @@ export default function Footer() {
           {/* Left: Designed by MindPixel */}
           <div className="order-2 md:order-1 flex items-center justify-center md:justify-start">
             <a
-              href="https://mindpixel.in"
+              href="https://www.mpxcode.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors focus:outline-none group"
@@ -424,7 +427,8 @@ export default function Footer() {
 
           {/* Center: Copyright */}
           <p className="order-1 md:order-2 text-center text-slate-500">
-            © {new Date().getFullYear()} Al Attaf Advanced Contracting Company. All rights reserved.
+            © {new Date().getFullYear()} Al Attaf Advanced Contracting Company.
+            All rights reserved.
           </p>
 
           {/* Right: Empty spacer to keep Center perfectly balanced on md+ */}

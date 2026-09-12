@@ -49,11 +49,9 @@ export default function CtaSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/75 to-white/40" />
       </div>
 
-      <div className="relative w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24 py-20 lg:py-24">
+      <div className="relative w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24 pt-20 lg:pt-24 pb-32 sm:pb-36 lg:pb-44">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 lg:items-end">
           <div className="lg:col-span-7">
-     
-
             <ScrollRevealText
               text="Bring us the scope. We will tell you how it gets built."
               className="mt-7 text-2xl sm:text-3xl lg:text-[32px] font-extrabold tracking-tight leading-tight"
@@ -61,9 +59,10 @@ export default function CtaSection() {
 
             <Reveal delay={120}>
               <p className="mt-5 max-w-xl text-sm sm:text-base text-slate-800 leading-relaxed">
-                Send drawings, a shutdown window, or a maintenance requirement. Our team in Abqaiq
-                returns a method, a crew plan, and a schedule you can hold us to — civil,
-                mechanical, electrical, instrumentation, and T&amp;I under one contractor.
+                Send drawings, a shutdown window, or a maintenance requirement.
+                Our team in Abqaiq returns a method, a crew plan, and a schedule
+                you can hold us to — civil, mechanical, electrical,
+                instrumentation, and T&amp;I under one contractor.
               </p>
             </Reveal>
           </div>
