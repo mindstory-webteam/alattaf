@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
 
 const brandLogos = [
@@ -39,12 +38,9 @@ export default function AboutSection() {
 
           {/* Right Side: Detailed Company Profile Narrative */}
           <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">
-            {/* Dynamic Scroll-Driven Word-by-Word Ash to Black Heading */}
-            <ScrollRevealText
-              text={headingText}
-              as="h2"
-              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
-            />
+            <h2 className="text-[16px] sm:text-xl lg:text-[25px] font-bold text-slate-900 leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]">
+              {headingText}
+            </h2>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
               Formed in 1978 (1398H), AAAC carries out specialized subcontract works for <span className="text-blue-700 font-semibold">Saudi Aramco</span> projects and major industrial developments across the Kingdom. Over more than 45 years of continuous operational growth, we have built a trusted track record executing subcontract packages across Civil, Mechanical, Electrical, Instrumentation, and Plant Maintenance (T&amp;I) for Aramco facilities and industrial hubs throughout Saudi Arabia.

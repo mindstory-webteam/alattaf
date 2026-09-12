@@ -1,5 +1,4 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import ScrollRevealText from "@/components/ScrollRevealText";
 import CareerRolesSection from "@/components/CareerRolesSection";
 import Footer from "@/components/Footer";
 
@@ -27,11 +26,9 @@ export default function CareerPage() {
           <h2 className="text-xl sm:text-2xl lg:text-[25px] font-bold text-slate-900 tracking-tight leading-snug">
             Build Your Career With Al Attaf
           </h2>
-          <ScrollRevealText
-            text="High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys."
-            as="p"
-            className="text-base sm:text-xl font-semibold leading-relaxed"
-          />
+          <p className="text-base sm:text-xl font-semibold text-slate-800 leading-relaxed">
+            High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys.
+          </p>
         </div>
 
         {/* Tab Bar Filter (Department Counts + All Locations Dropdown), Roles List & Application Form */}

@@ -9,7 +9,6 @@ import {
   MapPin,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ScrollRevealText from "@/components/ScrollRevealText";
 
 export interface GalleryItem {
   id: number;
@@ -427,11 +426,9 @@ export default function GallerySection() {
             <h2 className="text-xl sm:text-2xl lg:text-[25px] font-bold text-slate-900 tracking-tight leading-snug">
               Executing Precision Across Saudi Arabia
             </h2>
-            <ScrollRevealText
-              text="High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys."
-              as="p"
-              className="mt-2 text-xs sm:text-sm md:text-base font-medium max-w-2xl leading-relaxed"
-            />
+            <p className="mt-2 text-xs sm:text-sm md:text-base font-medium text-slate-600 max-w-2xl leading-relaxed">
+              High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys.
+            </p>
           </div>
 
           {/* Results Summary */}

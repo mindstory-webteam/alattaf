@@ -4,7 +4,6 @@ import React, {useState} from "react";
 import dynamic from "next/dynamic";
 import {Check, MapPin, Phone, Mail} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
-import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
 
 // Dynamically import Leaflet map with OpenStreetMap (client-side only to avoid SSR issues)
@@ -55,12 +54,9 @@ export default function ContactPageSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-14 xl:gap-16 items-stretch">
             {/* Left Column: Description with ScrollRevealText, Contact Details & Socials */}
             <div className="lg:col-span-6 flex flex-col justify-start lg:justify-between w-full max-w-full md:max-w-2xl lg:max-w-xl h-auto lg:h-full">
-              {/* Dynamic Scroll-Driven Word-by-Word Reveal Text */}
-              <ScrollRevealText
-                text={introText}
-                as="p"
-                className="text-[22px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
-              />
+              <p className="text-[22px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]">
+                {introText}
+              </p>
 
               {/* Contact Info & Socials Section */}
               <Reveal className="space-y-5 sm:space-y-6 mt-8 sm:mt-10 lg:mt-auto" delay={80}>
