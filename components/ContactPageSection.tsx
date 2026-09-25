@@ -54,7 +54,7 @@ export default function ContactPageSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-14 xl:gap-16 items-stretch">
             {/* Left Column: Description with ScrollRevealText, Contact Details & Socials */}
             <div className="lg:col-span-6 flex flex-col justify-start lg:justify-between w-full max-w-full md:max-w-2xl lg:max-w-xl h-auto lg:h-full">
-              <p className="text-[22px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900 text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]">
+              <p className="text-[22px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-slate-900">
                 {introText}
               </p>
 

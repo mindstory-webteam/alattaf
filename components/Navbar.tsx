@@ -4,7 +4,7 @@ import React, {useState, useEffect, useRef} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {Menu, X, Phone, ChevronDown} from "lucide-react";
+import {Menu, X, ChevronDown} from "lucide-react";
 import LiquidButton from "@/components/LiquidButton";
 import {services} from "@/app/data/services";
 
@@ -495,13 +495,6 @@ export default function Navbar() {
 
               {/* Mobile Hamburger Button */}
               <div className="flex lg:hidden items-center space-x-3">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center p-2 rounded-lg text-sky-600 bg-sky-50 text-sm font-medium hover:bg-sky-100 transition-colors"
-                  aria-label="Contact"
-                >
-                  <Phone className="w-4 h-4" />
-                </a>
 
                 <button
                   type="button"
