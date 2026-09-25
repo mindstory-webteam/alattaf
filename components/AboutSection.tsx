@@ -18,7 +18,7 @@ const brandLogos: BrandItem[] = [
   {
     name: "CCC",
     src: "/brands/ccc.png",
-    className: "max-h-12 sm:max-h-14 max-w-[155px] sm:max-w-[175px] scale-125 group-hover:scale-130",
+    className: "max-h-7 sm:max-h-8 max-w-[110px] sm:max-w-[130px] group-hover:scale-105",
   },
   { name: "YASREF", src: "/brands/yasref.png" },
   { name: "MASCO", src: "/brands/masco.png" },
@@ -77,7 +77,7 @@ export default function AboutSection() {
               {marqueeLogos.map((brand, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center w-[170px] sm:w-[200px] h-[75px] sm:h-[85px] px-6 py-4 rounded-xl bg-slate-50 border border-slate-200/70 shrink-0 hover:bg-white hover:border-slate-300 transition-all duration-200 shadow-2xs hover:shadow-xs group"
+                  className="flex items-center justify-center w-[170px] sm:w-[200px] h-[75px] sm:h-[85px] px-6 py-4 rounded-xl bg-slate-50 border border-slate-200/70 shrink-0 hover:bg-white hover:border-slate-300 transition-all duration-200 shadow-2xs hover:shadow-xs group overflow-hidden"
                 >
                   <Image
                     src={brand.src}
