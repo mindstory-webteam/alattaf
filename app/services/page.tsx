@@ -21,7 +21,7 @@ import {
 export const metadata: Metadata = {
   title: "Our Services | Al Attaf Advanced Contracting Company",
   description:
-    "Civil, electrical, mechanical, instrumentation, firefighting, HVAC systems, plant maintenance, and security systems delivered to plant standards across Saudi Arabia.",
+    "Civil, electrical, mechanical, instrumentation, fire & safety engineering, HVAC systems, plant maintenance, and security systems delivered to plant standards across Saudi Arabia.",
   alternates: {canonical: "/services"},
 };
 

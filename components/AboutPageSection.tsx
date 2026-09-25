@@ -37,10 +37,10 @@ export default function AboutPageSection() {
     "Al Attaf Advanced Contracting Company is a 100% Saudi-owned enterprise headquartered in Abqaiq, built over four decades of continuous work inside the Kingdom's energy and industrial facilities.";
 
   const stats = [
-    { end: 1978, start: 1900, label: "Founded (1398H)" },
-    { end: 45, suffix: "+", label: "Years of operations" },
-    { end: 5, label: "Core disciplines" },
-    { end: 24, suffix: "/7", label: "Kingdom-wide support" },
+    {end: 1978, start: 1900, label: "Founded (1398H)"},
+    {end: 45, suffix: "+", label: "Years of operations"},
+    {end: 5, label: "Core disciplines"},
+    {end: 24, suffix: "/7", label: "Kingdom-wide support"},
   ];
 
   const philosophy = [
@@ -61,6 +61,7 @@ export default function AboutPageSection() {
   const pageMedia = {
     whoWeAre: px(18966875, 1000), // crew working on an industrial site
     owner: "/images/teamMembers/ower.jpg", // worker in PPE — stand-in only
+    ceo: "/images/teamMembers/per-2.jpg",
   };
 
   /* ----------------------------------------------------------------
@@ -121,8 +122,8 @@ export default function AboutPageSection() {
               Who we are
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-              A contracting company built inside the Kingdom&apos;s energy sector, working to
-              the standards it demands.
+              A contracting company built inside the Kingdom&apos;s energy
+              sector, working to the standards it demands.
             </p>
           </Reveal>
 
@@ -148,29 +149,35 @@ export default function AboutPageSection() {
 
               <Reveal delay={80}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                  Formed in 1978 (1398H), AAAC commenced operations in direct partnership with{" "}
-                  <span className="text-blue-700 font-semibold">Saudi Aramco</span>, the
-                  Kingdom&apos;s premier global energy and industrial enterprise. Since then we
-                  have executed turnkey Civil, Mechanical, Electrical, Instrumentation, and
-                  Plant Maintenance (T&amp;I) projects across Aramco facilities and major
+                  Formed in 1978 (1398H), AAAC commenced operations in direct
+                  partnership with{" "}
+                  <span className="text-blue-700 font-semibold">
+                    Saudi Aramco
+                  </span>
+                  , the Kingdom&apos;s premier global energy and industrial
+                  enterprise. Since then we have executed turnkey Civil,
+                  Mechanical, Electrical, Instrumentation, and Plant Maintenance
+                  (T&amp;I) projects across Aramco facilities and major
                   industrial hubs throughout Saudi Arabia.
                 </p>
               </Reveal>
 
               <Reveal delay={140}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                  Our work is delivered by permanent Saudi-based crews, certified equipment
-                  operators, and an owned fleet, which keeps mobilisation short and
-                  accountability with a single contractor from site preparation through
-                  commissioning and ongoing maintenance.
+                  Our work is delivered by permanent Saudi-based crews,
+                  certified equipment operators, and an owned fleet, which keeps
+                  mobilisation short and accountability with a single contractor
+                  from site preparation through commissioning and ongoing
+                  maintenance.
                 </p>
               </Reveal>
 
               <Reveal delay={200}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                  Safety governs how we plan every scope. HSE procedures are written into method
-                  statements before crews mobilise, and performance is reviewed against client
-                  requirements for the full duration of the contract.
+                  Safety governs how we plan every scope. HSE procedures are
+                  written into method statements before crews mobilise, and
+                  performance is reviewed against client requirements for the
+                  full duration of the contract.
                 </p>
               </Reveal>
 
@@ -209,7 +216,9 @@ export default function AboutPageSection() {
                   >
                     {item.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{item.body}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                    {item.body}
+                  </p>
                 </Reveal>
               );
             })}
@@ -244,15 +253,15 @@ export default function AboutPageSection() {
         </div>
       </section>
 
-      {/* The owner */}
-      <section className="w-full py-20 lg:py-28">
+      {/* Message from the CEO */}
+      <section id="ceo-message" className="w-full py-20 lg:py-28">
         <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <Reveal className="lg:col-span-5">
-              <div className="relative w-full aspect-[4/5] max-w-md overflow-hidden border border-slate-200/80 bg-slate-100">
+              <div className="relative w-full aspect-[4/5] max-w-md overflow-hidden border border-slate-200/80 bg-slate-100 shadow-sm">
                 <Image
                   src={pageMedia.owner}
-                  alt="Founder and Chairman of Al Attaf Advanced Contracting"
+                  alt="CEO of Al Attaf Advanced Contracting Company (AACC)"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-center"
@@ -260,46 +269,62 @@ export default function AboutPageSection() {
               </div>
             </Reveal>
 
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7 space-y-4">
               <ScrollRevealText
-                text="The man behind the company"
+                text="Message from the CEO"
                 as="h2"
-                className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight leading-tight"
+                className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-slate-900 leading-tight"
               />
 
-              <Reveal delay={80}>
-                <p className="mt-3 text-sm sm:text-base font-semibold text-blue-700">
-                  Sheikh Ali Al Attaf &middot; Founder &amp; Chairman
+              <Reveal delay={60}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  For more than 40 years, Al Attaf Advanced Contracting Company
+                  (AACC) has been delivering reliable construction solutions
+                  across industrial, building, and infrastructure projects in
+                  the Kingdom of Saudi Arabia.
                 </p>
               </Reveal>
 
-              <Reveal delay={140}>
-                <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed">
-                  The company began with one contractor, a small crew, and work inside Abqaiq at a
-                  time when the Eastern Province was being built out plant by plant. That first
-                  decade set the operating rule the company still runs on: take the scope you can
-                  staff properly, and finish it with your own people.
+              <Reveal delay={110}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Our long-standing experience with Saudi Aramco projects has
+                  strengthened our commitment to the highest standards of
+                  quality, safety, integrity, and project performance. We take
+                  pride in our proven track record and our ability to deliver
+                  projects with professionalism, reliability, and a strong
+                  commitment to our clients.
                 </p>
               </Reveal>
 
-              <Reveal delay={200}>
-                <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Ownership has stayed in the family and in the Kingdom. Decisions on hiring,
-                  equipment, and which projects to take are made by people who have worked the
-                  sites themselves, which is why crews, supervisors, and fleet remain in-house
-                  rather than sublet from job to job.
+              <Reveal delay={160}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  Our executive team brings more than 30 years of combined
+                  industry experience, providing the leadership, technical
+                  expertise, and practical knowledge required to successfully
+                  execute challenging projects.
+                </p>
+              </Reveal>
+
+              <Reveal delay={210}>
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
+                  As Saudi Arabia moves forward with Vision 2030, AACC is
+                  committed to contributing to the Kingdom&apos;s growth by
+                  delivering sustainable, efficient, and high-quality
+                  construction solutions while developing local capabilities and
+                  creating long-term value for our clients and partners.
                 </p>
               </Reveal>
 
               <Reveal delay={260}>
-                <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
-                  <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
-                    We were never the largest contractor on a plant. We aimed to be the one asked
-                    back for the next shutdown.
+                <blockquote className="mt-5 border-l-4 border-blue-700 bg-slate-50 p-4 sm:p-5 rounded-r-xl border border-slate-200/80 shadow-2xs">
+                  <p className="text-sm sm:text-base font-semibold text-slate-900 leading-relaxed italic">
+                    &ldquo;Our commitment is simple: Build with Excellence.
+                    Deliver with Integrity. Create Lasting Value.&rdquo;
                   </p>
-                  <footer className="mt-3 text-sm text-slate-500">
-                    Founder &amp; Chairman, Al Attaf Advanced Contracting
-                  </footer>
+                  <div className="mt-2.5 pt-2 border-t border-slate-200/70 text-xs sm:text-sm text-slate-600">
+                    <span className="font-bold text-slate-900">CEO</span>{" "}
+                    &middot; Al Attaf Advanced Contracting Company (AACC)
+                  </div>
                 </blockquote>
               </Reveal>
             </div>
@@ -316,7 +341,8 @@ export default function AboutPageSection() {
               History &amp; philosophy
             </h2>
             <p className="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed">
-              How decades of contracting work translate into the way we run a project today.
+              How decades of contracting work translate into the way we run a
+              project today.
             </p>
           </Reveal>
 
@@ -385,18 +411,22 @@ export default function AboutPageSection() {
               <Reveal delay={100}>
                 <p className="mt-6 text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
                   Our objective is to give clients an{" "}
-                  <span className="text-blue-700 font-semibold">&ldquo;I am assured&rdquo;</span>{" "}
-                  experience when we are chosen to execute their projects. Our emphasis on clear
-                  communication and follow-through procedures ensures that client objectives stay
-                  the top priority in the planning and execution of all our processes.
+                  <span className="text-blue-700 font-semibold">
+                    &ldquo;I am assured&rdquo;
+                  </span>{" "}
+                  experience when we are chosen to execute their projects. Our
+                  emphasis on clear communication and follow-through procedures
+                  ensures that client objectives stay the top priority in the
+                  planning and execution of all our processes.
                 </p>
               </Reveal>
 
               <Reveal delay={180}>
                 <blockquote className="mt-8 border-l-2 border-blue-700 pl-6">
                   <p className="text-base sm:text-lg font-medium text-slate-900 leading-relaxed">
-                    We take pride in our delivery, so clients can always be assured that only the
-                    most experienced and qualified people are serving them, all the time.
+                    We take pride in our delivery, so clients can always be
+                    assured that only the most experienced and qualified people
+                    are serving them, all the time.
                   </p>
                 </blockquote>
               </Reveal>
@@ -428,8 +458,8 @@ export default function AboutPageSection() {
                       Our project management and execution philosophy
                     </h3>
                     <p className="mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-                      Six steps that every scope passes through, from the first schedule to
-                      handover.
+                      Six steps that every scope passes through, from the first
+                      schedule to handover.
                     </p>
                   </div>
                 </div>
@@ -479,19 +509,24 @@ export default function AboutPageSection() {
 
               <Reveal delay={100}>
                 <p className="mt-5 text-sm sm:text-base text-blue-100 leading-relaxed">
-                  Our first contracts were inside Aramco facilities, and that relationship shaped
-                  how the company operates: permits before work starts, certified people on every
-                  trade, and documentation that stands up to plant audits.
+                  Our first contracts were inside Aramco facilities, and that
+                  relationship shaped how the company operates: permits before
+                  work starts, certified people on every trade, and
+                  documentation that stands up to plant audits.
                 </p>
               </Reveal>
 
               <Reveal delay={180}>
                 <div className="mt-8 border border-white/25 p-6">
-                  <p className="text-xs sm:text-sm text-blue-100">Approved vendor number</p>
+                  <p className="text-xs sm:text-sm text-blue-100">
+                    Approved vendor number
+                  </p>
                   <p className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-white tabular-nums">
                     10005728
                   </p>
-                  <p className="mt-1 text-sm text-blue-100">Registered in Dhahran</p>
+                  <p className="mt-1 text-sm text-blue-100">
+                    Registered in Dhahran
+                  </p>
                 </div>
               </Reveal>
             </div>

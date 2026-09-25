@@ -2,12 +2,24 @@
 
 import React from "react";
 import Image from "next/image";
+import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
 
-const brandLogos = [
+interface BrandItem {
+  name: string;
+  src: string;
+  className?: string;
+}
+
+const brandLogos: BrandItem[] = [
   { name: "Saudi Aramco", src: "/brands/aramco.png" },
   { name: "SABIC", src: "/brands/sabic.png" },
   { name: "Saipem", src: "/brands/saipem.png" },
+  {
+    name: "CCC",
+    src: "/brands/ccc.png",
+    className: "max-h-12 sm:max-h-14 max-w-[155px] sm:max-w-[175px] scale-125 group-hover:scale-130",
+  },
   { name: "YASREF", src: "/brands/yasref.png" },
   { name: "MASCO", src: "/brands/masco.png" },
   { name: "SRACO", src: "/brands/sraco.png" },
@@ -38,9 +50,11 @@ export default function AboutSection() {
 
           {/* Right Side: Detailed Company Profile Narrative */}
           <div className="lg:col-span-8 xl:col-span-8 flex flex-col justify-center space-y-4 lg:pl-2 text-justify">
-            <h2 className="text-[16px] sm:text-xl lg:text-[25px] font-bold text-slate-900 leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]">
-              {headingText}
-            </h2>
+            <ScrollRevealText
+              text={headingText}
+              as="h2"
+              className="text-[16px] sm:text-xl lg:text-[25px] font-bold leading-relaxed sm:leading-snug tracking-normal sm:tracking-tight text-justify [text-align:justify] [text-justify:inter-word] [text-align-last:left] hyphens-auto [hyphens:auto]"
+            />
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
               Formed in 1978 (1398H), AAAC carries out specialized subcontract works for <span className="text-blue-700 font-semibold">Saudi Aramco</span> projects and major industrial developments across the Kingdom. Over more than 45 years of continuous operational growth, we have built a trusted track record executing subcontract packages across Civil, Mechanical, Electrical, Instrumentation, and Plant Maintenance (T&amp;I) for Aramco facilities and industrial hubs throughout Saudi Arabia.
@@ -70,7 +84,9 @@ export default function AboutSection() {
                     alt={brand.name}
                     width={160}
                     height={60}
-                    className="max-h-9 sm:max-h-11 max-w-[130px] sm:max-w-[150px] w-auto h-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                    className={`w-auto h-auto object-contain transition-transform duration-200 ${
+                      brand.className || "max-h-9 sm:max-h-11 max-w-[130px] sm:max-w-[150px] group-hover:scale-105"
+                    }`}
                   />
                 </div>
               ))}

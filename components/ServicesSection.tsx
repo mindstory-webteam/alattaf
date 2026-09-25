@@ -18,7 +18,7 @@ const categoryTags: Record<string, string> = {
   electrical: "ELECTRICAL SYSTEMS",
   mechanical: "MECHANICAL & PIPING",
   instrumentation: "INSTRUMENTATION & CONTROL",
-  firefighting: "FIRE PROTECTION & SAFETY",
+  firefighting: "FIRE & SAFETY ENGINEERING",
   "hvac-system": "INDUSTRIAL HVAC",
   "plant-maintenance": "PLANT RELIABILITY",
   "security-systems": "SECURITY & ACCESS",

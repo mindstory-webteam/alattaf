@@ -46,7 +46,7 @@ export const serviceCategories: ServiceCategory[] = [
     id: "industrial",
     label: "Specialized & Maintenance Systems",
     description:
-      "Industrial firefighting, HVAC climate control, plant turnaround maintenance, and HCIS-compliant security systems for critical infrastructure.",
+      "Industrial fire & safety engineering, HVAC climate control, plant turnaround maintenance, and HCIS-compliant security systems for critical infrastructure.",
   },
 ];
 
@@ -348,137 +348,141 @@ export const services: Service[] = [
   },
 
   /* ------------------------------------------------------------------ */
-  /* 5. Firefighting                                                    */
+  /* 5. Fire & Safety Engineering                                        */
   /* ------------------------------------------------------------------ */
   {
     slug: "firefighting",
-    title: "Firefighting",
-    navTitle: "Firefighting",
+    title: "Fire & Safety Engineering",
+    navTitle: "Fire & Safety Engineering",
     category: "industrial",
     excerpt:
-      "Industrial fire suppression networks, deluge systems, foam proportioning skids, hydrants, fire pumps, and Civil Defense certified life safety.",
+      "Installation, inspection, testing, commissioning and maintenance of fire and life safety systems, P.E. certification, and GAP analysis to SBC, NFPA, and IBC codes.",
     intro:
-      "Al Attaf designs, supplies, installs, and commissions comprehensive industrial fire protection and firefighting systems in strict accordance with NFPA standards, Saudi Civil Defense requirements, and Saudi Aramco safety regulations. We protect industrial complexes, refineries, and personnel with certified rapid-response systems.",
+      "AAAC provides installation, inspection, testing, commissioning and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom. We provide fire protection design and construction P.E. certification services. We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes.",
     image:
       "https://images.pexels.com/photos/280014/pexels-photo-280014.jpeg?auto=compress&cs=tinysrgb&w=1200",
     heroImage:
       "https://images.pexels.com/photos/280014/pexels-photo-280014.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
-      "Underground and above-ground firewater distribution mains & hydrants",
-      "High & low expansion foam skids for hydrocarbon storage tank protection",
-      "Automated deluge spray systems, fire monitors & sprinkler networks",
-      "UL/FM certified fire pump packages (diesel, electric & jockey) testing",
+      "Fire water systems network, hydrants, pumps & sprinkler systems",
+      "Fire protection design and construction P.E. certification services",
+      "GAP analysis of existing systems with SBC, IBC, NFPA & IFC codes",
+      "Installation, inspection, testing, commissioning & maintenance",
     ],
     sections: [
       {
-        heading: "Complete Fire Suppression Infrastructure",
-        body: "We construct robust fire protection networks, including buried HDPE / coated carbon steel firewater ring mains, sectional post indicator valves (PIVs), outdoor fire hydrants, monitor towers, and rapid deluge systems designed to cool critical process equipment during emergency events.",
+        heading: "Fire & Life Safety Systems Installation & Maintenance",
+        body: "AAAC provides comprehensive installation, inspection, testing, commissioning, and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom.",
       },
       {
-        heading: "Specialized Foam & Clean Agent Gas Systems",
-        body: "For flammable liquid tank farms and electrical control rooms, water is insufficient. We install bladder tank foam proportioners, foam chambers, and gaseous clean-agent fire extinguishing systems (FM-200, Novec 1230, CO2) that extinguish fires within seconds without damaging delicate electronics.",
+        heading: "Fire Protection Design & P.E. Certification",
+        body: "We provide fire protection design and construction P.E. (Professional Engineer) certification services, ensuring strict compliance with local authorities, Saudi Civil Defense requirements, and international safety mandates.",
       },
       {
-        heading: "Civil Defense Certification & Commissioning",
-        body: "We handle complete hydraulic calculations, flow testing, fire pump performance curve tests, and hydrostatic pressure testing. We prepare official documentation and coordinate directly with Saudi Civil Defense inspectors for official facility approval.",
+        heading: "GAP Analysis & International Code Compliance",
+        body: "We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes, delivering actionable roadmaps to resolve non-conformances and ensure full protection.",
       },
     ],
     capabilities: [
-      "Firewater underground ring mains, sectional valves, hydrants & hose reels",
-      "Automatic wet, dry, and pre-action sprinkler systems for buildings & warehouses",
-      "Deluge water spray cooling systems for transformers, vessels & process skids",
-      "Low, medium, and high-expansion foam systems for storage tank terminals",
-      "Clean agent gaseous fire suppression (FM-200, Novec 1230) for server rooms",
-      "UL/FM certified fire pump package installation, testing, and alignment",
+      "Fire water systems network, hydrants, underground mains & distribution piping",
+      "UL/FM fire water pumps installation, testing, commissioning & maintenance",
+      "Fire water sprinkler systems (wet, dry, deluge, and pre-action)",
+      "Fire protection design and construction P.E. certification services",
+      "GAP analysis of existing fire and safety systems (SBC, IBC, NFPA, IFC)",
+      "Inspection, testing, refilling, and maintenance of fire extinguishers",
+      "Foam suppression systems for hydrocarbon storage tanks and process units",
+      "Clean agent gaseous fire suppression (FM-200, Novec 1230) for control rooms & substations",
     ],
     faqs: [
       {
-        question: "Are your firefighting installations approved by Saudi Civil Defense?",
+        question: "Do you provide P.E. certification for fire protection designs?",
         answer:
-          "Yes. All our designs, materials, and installations comply fully with Saudi Civil Defense (Salamah) standards and international NFPA codes.",
+          "Yes. We provide certified fire protection design and construction P.E. (Professional Engineer) certification services ensuring complete compliance with Saudi Civil Defense and international standards.",
       },
       {
-        question: "What tests are performed on fire pumps?",
+        question: "What standards are used during your fire & safety GAP analysis?",
         answer:
-          "We perform full churn pressure, 100% rated flow, and 150% overload capacity curve testing in accordance with NFPA 20, verifying engine/motor performance.",
+          "Our GAP analyses are conducted in strict conjunction with the Saudi Building Code (SBC), International Building Code (IBC), NFPA, International Fire Code (IFC), and other international standards and codes.",
       },
       {
-        question: "Can you service existing industrial fire protection networks?",
+        question: "What fire and life safety systems do you install and maintain?",
         answer:
-          "Yes. We provide preventive maintenance, flow-rate testing of hydrants, sprinkler head replacement, valve exercising, and foam quality laboratory testing.",
+          "We provide installation, inspection, testing, commissioning, and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers, and deluge systems across the Kingdom.",
       },
       {
-        question: "What suppression system is recommended for electrical switchgear rooms?",
+        question: "Can you evaluate and upgrade existing facility fire systems?",
         answer:
-          "We install clean agent systems like Novec 1230 or FM-200, which rapidly extinguish electrical fires without leaving residue or conducting electricity.",
+          "Yes. We perform GAP analysis on existing facilities to identify deficiencies against SBC, IBC, and NFPA codes, followed by turnkey retrofit and maintenance services.",
       },
     ],
   },
 
   /* ------------------------------------------------------------------ */
-  /* 6. HVAC system                                                     */
+  /* 6. HVAC Systems Installation, Testing and Commissioning            */
   /* ------------------------------------------------------------------ */
   {
     slug: "hvac-system",
-    title: "HVAC system",
-    navTitle: "HVAC system",
+    title: "HVAC Systems Installation, Testing and Commissioning",
+    navTitle: "HVAC Systems",
     category: "industrial",
     excerpt:
-      "Industrial HVAC engineering, chiller plants, air handling units, duct fabrication, substation positive pressurization, and climate control.",
+      "Professional HVAC installation, testing, and commissioning for centrifugal & air-cooled chillers, cooling towers, AHUs, chilled water piping, ductwork, DDC, and BMS controls.",
     intro:
-      "Engineered to withstand extreme Middle Eastern ambient temperatures exceeding 50°C, Al Attaf delivers turnkey industrial and commercial HVAC solutions. From substation positive pressurization units to heavy air-cooled chillers, cleanrooms, and automated ductwork, our systems maintain optimal climate and air purity.",
+      "Al Attaf Advanced Contracting Company (AACC) provides professional HVAC installation testing and commissioning services for industrial, commercial, and infrastructure projects. Our capabilities include design validation, value engineering, installation, testing, commissioning, and maintenance of HVAC systems, including centrifugal chillers, air cooled chillers, cooling towers, air handling units, fan coil units, packaged air conditioning units, chilled water piping systems, chilled water pumps and associated system auxiliaries, ductwork, ventilation, and associated controls including DDC controls, BMS systems etc. With extensive experience in demanding project environments, AACC is committed to delivering reliable, energy-efficient, and high-quality HVAC solutions while maintaining the highest standards of safety, quality, and project execution.",
     image:
       "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1200",
     heroImage:
       "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
-      "Industrial chillers, air handling units (AHUs) & rooftop package units",
-      "GI & PIR automated ductwork fabrication, thermal insulation & cladding",
-      "Substation & control room positive pressurization units (PPU)",
-      "Testing, Adjusting, and Balancing (TAB) and indoor air quality certification",
+      "Centrifugal & air-cooled chillers, cooling towers, AHUs & FCUs",
+      "Chilled water piping systems, pumps & associated auxiliaries",
+      "Ductwork, ventilation, and industrial air distribution networks",
+      "DDC controls, BMS automation, testing and commissioning",
     ],
     sections: [
       {
-        heading: "Industrial & Heavy Commercial Climate Control",
-        body: "We install and commission high-capacity chilled water systems, cooling towers, DX split systems, and packaged rooftop units. Our piping crews install insulated chilled water piping, balancing valves, and variable-speed circulation pumps for maximum energy efficiency.",
+        heading: "HVAC Systems Installation, Testing & Commissioning",
+        body: "Al Attaf Advanced Contracting Company (AACC) provides professional HVAC installation, testing, and commissioning services for industrial, commercial, and infrastructure projects across the Kingdom. Our capabilities span end-to-end execution—from design validation and value engineering to turnkey installation, Testing, Adjusting & Balancing (TAB), and lifecycle maintenance.",
       },
       {
-        heading: "Substation Pressurization & Corrosive Filtration",
-        body: "In dusty and sulfur-rich plant environments, electrical switchgear requires clean air and positive pressure to prevent corrosive gas ingress. We install specialized positive pressurization units (PPUs) with deep-bed chemical filtration to protect sensitive copper busbars and electronics.",
+        heading: "Chillers, Cooling Towers & Chilled Water Infrastructure",
+        body: "We install, test, and commission heavy-duty central cooling equipment including centrifugal chillers, air-cooled chillers, cooling towers, packaged air conditioning units, insulated chilled water piping systems, variable-flow chilled water pumps, and associated system auxiliaries engineered for reliable operation in demanding project environments.",
       },
       {
-        heading: "Testing, Adjusting & Balancing (TAB)",
-        body: "Every HVAC installation undergoes rigorous air and hydronic balancing. We measure air velocities, static pressures, temperature differentials, and sound levels, issuing comprehensive TAB reports that verify system performance against design specifications.",
+        heading: "Air Distribution, DDC & Building Management Systems (BMS)",
+        body: "Our HVAC specialists deliver complete air-side systems including air handling units (AHUs), fan coil units (FCUs), precision-fabricated ductwork, and ventilation systems. We integrate modern Direct Digital Control (DDC) systems and Building Management Systems (BMS) to achieve optimal energy efficiency, indoor air quality, and centralized facility management.",
       },
     ],
     capabilities: [
-      "Water-cooled and air-cooled industrial chiller installation and piping",
-      "High-speed CNC automated galvanized sheet metal and PIR duct fabrication",
-      "Positive pressurization and chemical carbon filtration for substations",
-      "Cleanroom environmental control, HEPA filtration & laminar flow units",
-      "Certified hydronic and airflow Testing, Adjusting & Balancing (TAB)",
-      "Preventive maintenance, chiller descaling, and compressor overhauls",
+      "Design validation, value engineering, and turnkey HVAC installation",
+      "Centrifugal chillers, air-cooled chillers, and industrial cooling towers",
+      "Air handling units (AHUs), fan coil units (FCUs) & packaged AC units",
+      "Chilled water piping networks, chilled water pumps, and auxiliaries",
+      "Ductwork fabrication, thermal insulation, and ventilation networks",
+      "Direct Digital Control (DDC) and Building Management Systems (BMS)",
+      "Testing, Adjusting, and Balancing (TAB) and indoor air quality certification",
+      "Substation positive pressurization units (PPU) and chemical filtration",
     ],
     faqs: [
       {
-        question: "Can your HVAC systems withstand 50°C+ ambient temperatures?",
+        question: "What HVAC equipment does AACC install, test, and commission?",
         answer:
-          "Yes. Our industrial equipment selections are specifically de-rated and engineered for Gulf ambient conditions of 50°C to 55°C, ensuring continuous cooling without thermal tripping.",
+          "AACC handles centrifugal chillers, air-cooled chillers, cooling towers, air handling units (AHUs), fan coil units (FCUs), packaged air conditioning units, chilled water piping systems, chilled water pumps, auxiliaries, ductwork, ventilation, and DDC/BMS control systems.",
       },
       {
-        question: "Why is positive pressurization needed in plant substations?",
+        question: "Do you provide design validation and value engineering for HVAC?",
         answer:
-          "Positive pressurization prevents toxic and corrosive gases (like H2S and SO2) and fine desert dust from entering control rooms, preventing electrical shorts and contact degradation.",
+          "Yes. Our engineering team provides comprehensive design validation and value engineering to optimize equipment sizing, energy consumption, and lifecycle cost before procurement and installation.",
       },
       {
-        question: "Do you manufacture ductwork locally?",
+        question: "Do you install and commission DDC controls and BMS systems?",
         answer:
-          "Yes. We operate automated CNC sheet metal plasma cutting and lock-forming lines for GI ductwork built strictly to SMACNA and DW144 standards.",
+          "Yes. We configure and commission Direct Digital Controls (DDC) and integrate complete Building Management Systems (BMS) for real-time monitoring and energy-efficient automation.",
       },
       {
-        question: "What maintenance contracts do you offer for HVAC systems?",
+        question: "What project sectors does AACC serve with HVAC solutions?",
         answer:
-          "We offer 24/7 annual maintenance contracts covering regular coil washing, filter replacements, refrigerant checks, motor belt tensioning, and emergency repairs.",
+          "We provide professional HVAC services for industrial plants, oil & gas facilities, commercial developments, and infrastructure projects across the Kingdom, adhering to the highest safety and quality standards.",
       },
     ],
   },

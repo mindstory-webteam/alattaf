@@ -40,8 +40,12 @@ export default function ScrollRevealText({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [startViewport, endViewport]);
 
   const [fromR, fromG, fromB] = fromRgb;
