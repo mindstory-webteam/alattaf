@@ -18,7 +18,7 @@ const media = {
 
 export default function CtaSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-white font-sans ">
+    <section className="relative w-full overflow-hidden bg-white font-sans mb-16 sm:mb-20 lg:mb-24">
       {/* Background video — deliberately NOT wrapped in Reveal, since the
           inline transform would break the absolute full-bleed layer. */}
       <div className="absolute inset-0">
