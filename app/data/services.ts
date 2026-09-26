@@ -568,7 +568,7 @@ export const services: Service[] = [
     intro:
       "Protecting vital industrial assets, petrochemical plants, and national infrastructure requires rigorous physical and electronic security. Al Attaf engineers, installs, and integrates turnkey security systems adhering strictly to High Commission for Industrial Security (HCIS) directives and Saudi standards.",
     image:
-      "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/security-systems/security-systems.png",
     heroImage:
       "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
