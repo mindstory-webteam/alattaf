@@ -5,7 +5,7 @@ import type {Metadata} from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {notFound} from "next/navigation";
-import { Check, CheckCircle2, Phone} from "lucide-react";
+import { Check, CheckCircle2, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 
 import Breadcrumb from "@/components/Breadcrumb";
 import LiquidButton from "@/components/LiquidButton";
@@ -369,43 +369,6 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
               </Reveal>
             ))}
           </div>
-
-          {/* Prev / next */}
-          <Reveal delay={80}>
-            <nav className="mt-14 border-t border-slate-200 pt-8 flex flex-col sm:flex-row gap-6 sm:gap-4 sm:items-center sm:justify-between">
-              {previous && (
-                <Link
-                  href={`/services/${previous.slug}`}
-                  className="group flex items-start gap-3 max-w-xs"
-                >
-                  <span>
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      Previous
-                    </span>
-                    <span className="block text-sm font-semibold text-slate-800 group-hover:text-sky-600 transition-colors leading-snug">
-                      {previous.navTitle}
-                    </span>
-                  </span>
-                </Link>
-              )}
-
-              {next && (
-                <Link
-                  href={`/services/${next.slug}`}
-                  className="group flex items-start gap-3 max-w-xs sm:text-right sm:ml-auto"
-                >
-                  <span className="sm:order-1">
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      Next
-                    </span>
-                    <span className="block text-sm font-semibold text-slate-800 group-hover:text-sky-600 transition-colors leading-snug">
-                      {next.navTitle}
-                    </span>
-                  </span>
-                </Link>
-              )}
-            </nav>
-          </Reveal>
         </section>
       )}
 
@@ -416,6 +379,62 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
       {/* ============================================================ */}
       {service.faqs && service.faqs.length > 0 && (
         <FaqSection faqs={service.faqs} />
+      )}
+
+      {/* ============================================================ */}
+      {/* 07 — Previous / Next Service Navigation                       */}
+      {/* ============================================================ */}
+      {(previous || next) && (
+        <section className="bg-[#fafafa] pb-12 sm:pb-16 font-sans">
+          <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
+            <Reveal delay={60}>
+              <nav
+                aria-label="Service navigation"
+                className="pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row gap-6 sm:gap-4 sm:items-center sm:justify-between"
+              >
+                {previous ? (
+                  <Link
+                    href={`/services/${previous.slug}`}
+                    className="group flex items-center gap-3.5 max-w-xs transition-colors"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-slate-200 shadow-xs text-slate-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-200">
+                      <ChevronLeft className="w-5 h-5 transition-transform duration-200 group-hover:-translate-x-0.5" />
+                    </span>
+                    <div>
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        Previous
+                      </span>
+                      <span className="block text-sm sm:text-base font-semibold text-slate-900 group-hover:text-blue-700 transition-colors leading-snug">
+                        {previous.navTitle}
+                      </span>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="hidden sm:block" />
+                )}
+
+                {next && (
+                  <Link
+                    href={`/services/${next.slug}`}
+                    className="group flex items-center gap-3.5 max-w-xs sm:text-right sm:ml-auto transition-colors"
+                  >
+                    <div className="sm:order-1">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        Next
+                      </span>
+                      <span className="block text-sm sm:text-base font-semibold text-slate-900 group-hover:text-blue-700 transition-colors leading-snug">
+                        {next.navTitle}
+                      </span>
+                    </div>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-slate-200 shadow-xs text-slate-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-200 sm:order-2">
+                      <ChevronRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                )}
+              </nav>
+            </Reveal>
+          </div>
+        </section>
       )}
 
       <Footer />
