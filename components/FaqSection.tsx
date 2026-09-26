@@ -5,57 +5,93 @@ import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidButton from "@/components/LiquidButton";
 
-export default function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(1); // Item 2 open by default
+export interface FaqItem {
+  id?: string;
+  question: string;
+  answer: string;
+}
 
-  const faqs = [
-    {
-      id: "faq-1",
-      question: "What specialized contracting services does AAAC provide?",
-      answer:
-        "Al Attaf Advanced Contracting delivers turnkey Civil Works, Mechanical & Industrial Piping, Electrical & Instrumentation, Structural Steel Erection, and Plant Maintenance (T&I) across industrial facilities in Saudi Arabia.",
-    },
-    {
-      id: "faq-2",
-      question: "Is AAAC officially approved by Saudi Aramco and industrial partners?",
-      answer:
-        "Yes. AAAC is officially recognized as an approved vendor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287) to execute specialized subcontract scopes.",
-    },
-    {
-      id: "faq-3",
-      question: "What safety, HSE, and quality inspection benchmarks do you enforce?",
-      answer:
-        "We maintain uncompromising safety protocols aligned strictly with Saudi Aramco Safety Management Systems (SMS), ISO quality standards, and rigorous Non-Destructive Testing (NDT) inspection procedures.",
-    },
-    {
-      id: "faq-4",
-      question: "Can AAAC mobilize heavy equipment and skilled workforce Kingdom-wide?",
-      answer:
-        "Yes. With our centralized headquarters in Abqaiq and dedicated logistics fleet, we rapidly deploy over 1,770+ certified technicians, heavy machinery, and portable site units across all industrial cities.",
-    },
-    {
-      id: "faq-5",
-      question: "How do we request a project estimate, site survey, or tender partnership?",
-      answer:
-        "You can reach out directly to our contracts and engineering team via our contact form, email at info@alattafcompany.com, or phone at 00966 13 566 0243 for prompt RFQ review and consultations.",
-    },
-  ];
+export interface FaqSectionProps {
+  faqs?: FaqItem[];
+  title?: React.ReactNode;
+  subtitle?: string;
+  className?: string;
+  defaultOpenIndex?: number | null;
+}
+
+const defaultFaqs: FaqItem[] = [
+  {
+    id: "faq-1",
+    question: "What specialized contracting services does AAAC provide?",
+    answer:
+      "Al Attaf Advanced Contracting delivers turnkey Civil Works, Mechanical & Industrial Piping, Electrical & Instrumentation, Structural Steel Erection, and Plant Maintenance (T&I) across industrial facilities in Saudi Arabia.",
+  },
+  {
+    id: "faq-2",
+    question: "Is AAAC officially approved by Saudi Aramco and industrial partners?",
+    answer:
+      "Yes. AAAC is officially recognized as an approved vendor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287) to execute specialized subcontract scopes.",
+  },
+  {
+    id: "faq-3",
+    question: "What safety, HSE, and quality inspection benchmarks do you enforce?",
+    answer:
+      "We maintain uncompromising safety protocols aligned strictly with Saudi Aramco Safety Management Systems (SMS), ISO quality standards, and rigorous Non-Destructive Testing (NDT) inspection procedures.",
+  },
+  {
+    id: "faq-4",
+    question: "Can AAAC mobilize heavy equipment and skilled workforce Kingdom-wide?",
+    answer:
+      "Yes. With our centralized headquarters in Abqaiq and dedicated logistics fleet, we rapidly deploy over 1,770+ certified technicians, heavy machinery, and portable site units across all industrial cities.",
+  },
+  {
+    id: "faq-5",
+    question: "How do we request a project estimate, site survey, or tender partnership?",
+    answer:
+      "You can reach out directly to our contracts and engineering team via our contact form, email at info@alattafcompany.com, or phone at 00966 13 566 0243 for prompt RFQ review and consultations.",
+  },
+];
+
+export default function FaqSection({
+  faqs,
+  title,
+  subtitle,
+  className = "",
+  defaultOpenIndex,
+}: FaqSectionProps = {}) {
+  const activeFaqs = faqs && faqs.length > 0 ? faqs : defaultFaqs;
+  const initialIndex =
+    defaultOpenIndex !== undefined ? defaultOpenIndex : faqs ? 0 : 1;
+  const [openIndex, setOpenIndex] = useState<number | null>(initialIndex);
+
+  React.useEffect(() => {
+    setOpenIndex(
+      defaultOpenIndex !== undefined ? defaultOpenIndex : faqs ? 0 : 1
+    );
+  }, [faqs, defaultOpenIndex]);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
   return (
-    <section id="faq" className="w-full bg-[#fafafa] py-16 sm:py-20 lg:py-28 font-sans overflow-hidden">
+    <section
+      id="faq"
+      className={`w-full bg-[#fafafa] py-16 sm:py-20 lg:py-28 font-sans overflow-hidden ${className}`}
+    >
       <div className="w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Heading & Contact Card */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-8">
             <div>
               {/* Title */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-slate-900 tracking-tight leading-tight">
-                Frequently Asked <br className="hidden sm:inline" /> Questions
-              </h2>
+              {title ? (
+                title
+              ) : (
+                <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-slate-900 tracking-tight leading-tight">
+                  Frequently Asked <br className="hidden sm:inline" /> Questions
+                </h2>
+              )}
             </div>
 
             {/* Bottom Callout: Still have a question? */}
@@ -64,12 +100,13 @@ export default function FaqSection() {
                 Still have a question?
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xs">
-                Don&apos;t worry, we&apos;re free for consultations and technical RFQ reviews.
+                {subtitle ||
+                  "Don't worry, we're free for consultations and technical RFQ reviews."}
               </p>
               <div className="pt-2">
                 <LiquidButton
                   text="Contact Us"
-                  href="#contact"
+                  href="/contact"
                   btnColor="#1d4ed8"
                   hoverBgColor="#ffffff"
                   textColor="#ffffff"
@@ -82,11 +119,12 @@ export default function FaqSection() {
 
           {/* Right Column: Accordion List (Without numbers) */}
           <div className="lg:col-span-7 space-y-3.5 sm:space-y-4">
-            {faqs.map((faq, index) => {
+            {activeFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
+              const faqKey = faq.id || `faq-${index}-${faq.question.slice(0, 15)}`;
               return (
                 <div
-                  key={faq.id}
+                  key={faqKey}
                   className={`rounded-2xl transition-all duration-200 border ${
                     isOpen
                       ? "bg-white border-slate-300 shadow-sm"

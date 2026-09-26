@@ -11,7 +11,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import LiquidButton from "@/components/LiquidButton";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
-import ServiceFaqAccordion from "@/components/ServiceFaqAccordion";
+import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
 import {
@@ -309,39 +309,7 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
       </section>
 
       {/* ============================================================ */}
-      {/* 05 — FAQ                                                      */}
-      {/* ============================================================ */}
-      <section className="px-6 sm:px-12 lg:px-16 xl:px-24 py-16 sm:py-20 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-4 lg:sticky lg:top-28">
-            <Reveal>
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-sky-600">
-                FAQ
-              </span>
-            </Reveal>
-
-            <ScrollRevealText
-              text="Questions we get asked about this service"
-              as="h2"
-              className="mt-3 text-2xl sm:text-3xl font-bold leading-tight tracking-tight"
-            />
-
-            <Reveal delay={100}>
-              <p className="mt-5 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Something specific to your site or specification? Get in touch
-                and we&apos;ll answer it directly.
-              </p>
-            </Reveal>
-          </div>
-
-          <Reveal delay={120} className="lg:col-span-8">
-            <ServiceFaqAccordion faqs={service.faqs} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* 06 — Related services                                         */}
+      {/* 05 — Related services                                         */}
       {/* ============================================================ */}
       {relatedServices.length > 0 && (
         <section className="px-6 sm:px-12 lg:px-16 xl:px-24 py-16 sm:py-20 bg-slate-50">
@@ -442,6 +410,14 @@ export default async function ServiceDetailPage({params}: ServicePageProps) {
       )}
 
       <CtaSection />
+
+      {/* ============================================================ */}
+      {/* 06 — FAQ                                                      */}
+      {/* ============================================================ */}
+      {service.faqs && service.faqs.length > 0 && (
+        <FaqSection faqs={service.faqs} />
+      )}
+
       <Footer />
     </main>
   );
