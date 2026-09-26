@@ -88,7 +88,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf executes civil contracting packages end-to-end across Saudi Arabia—from mass excavation, dewatering, and shoring through heavy industrial equipment foundations, reinforced concrete framing, asphalt road paving, and structural maintenance. Executed under stringent Saudi Aramco and Royal Commission safety protocols.",
     image:
-      "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/civil/civil.png",
     heroImage:
       "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -224,7 +224,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf's mechanical division delivers precision industrial piping fabrication, heavy structural erection, rotating machinery installation, and high-pressure system testing. Our welders and fitters operate under ASME Section IX and Aramco standards for onshore and offshore facilities.",
     image:
-      "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/mechanical/mechanical.jpg",
     heroImage:
       "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -292,7 +292,7 @@ export const services: Service[] = [
     intro:
       "We provide turnkey instrumentation and process control services across the energy, petrochemical, and industrial manufacturing sectors. From precision sensor installation and Swagelok stainless impulse tubing to DCS loop checks and automated control valve tuning, our certified technicians ensure total process reliability.",
     image:
-      "https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/instrumentation/instrumentation.png",
     heroImage:
       "https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -360,7 +360,7 @@ export const services: Service[] = [
     intro:
       "AAAC provides installation, inspection, testing, commissioning and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom. We provide fire protection design and construction P.E. certification services. We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes.",
     image:
-      "https://images.pexels.com/photos/280014/pexels-photo-280014.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/fire&saftey/fireandsaftey.png",
     heroImage:
       "https://images.pexels.com/photos/280014/pexels-photo-280014.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -430,7 +430,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf Advanced Contracting Company (AACC) provides professional HVAC installation testing and commissioning services for industrial, commercial, and infrastructure projects. Our capabilities include design validation, value engineering, installation, testing, commissioning, and maintenance of HVAC systems, including centrifugal chillers, air cooled chillers, cooling towers, air handling units, fan coil units, packaged air conditioning units, chilled water piping systems, chilled water pumps and associated system auxiliaries, ductwork, ventilation, and associated controls including DDC controls, BMS systems etc. With extensive experience in demanding project environments, AACC is committed to delivering reliable, energy-efficient, and high-quality HVAC solutions while maintaining the highest standards of safety, quality, and project execution.",
     image:
-      "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/Hvac/hvac-system.jpg",
     heroImage:
       "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -500,7 +500,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf is a premier contractor for industrial plant turnarounds, planned shutdowns (T&I), and long-term routine maintenance across Saudi Arabia. Our multi-discipline crews work around the clock during shutdown windows to overhaul critical static and rotating assets with zero compromise on safety.",
     image:
-      "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/plant-maintenance/plantmaintenance.jpg",
     heroImage:
       "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
