@@ -12,6 +12,8 @@ import ScrollRevealText from "@/components/ScrollRevealText";
 import Reveal from "@/components/Reveal";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
+import FaqSection from "@/components/FaqSection";
+import { defaultFaqs } from "@/app/data/faqs";
 import {
   serviceCategories,
   getServicesByCategory,
@@ -33,8 +35,23 @@ const whyPoints = [
 ];
 
 export default function ServicesPage() {
+  /* FAQ rich-results schema */
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: defaultFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <main className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Breadcrumb
         title="Our Services"
         description="Engineering, construction, life safety, and industrial plant maintenance delivered to plant standards across the Kingdom."
@@ -202,6 +219,7 @@ export default function ServicesPage() {
       </section> */}
 
       <CtaSection />
+      <FaqSection />
       <Footer />
     </main>
   );
