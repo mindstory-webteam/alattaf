@@ -292,8 +292,55 @@ const defaultCrew: CrewRole[] = [
   { title: "Unskilled labour", count: 20 },
 ];
 
-/* Placeholder photos — swap each one for the real machine, e.g. "/equipment/dump-truck.jpg" */
 const defaultEquipment: EquipmentItem[] = [
+  {
+    name: "Roller compactor",
+    model: "12 ton",
+    qty: 2,
+    description:
+      "Compacts sub-base and surface layers to the density called for in the specification.",
+    image: "/equipment/compactor.avif",
+  },
+  {
+    name: "Motor grader",
+    model: "14G Cat",
+    qty: 2,
+    description:
+      "Fine grading of roads, platforms and pipeline right of way to finished level.",
+    image: "/equipment/motor-grader.avif",
+  },
+  {
+    name: "Backhoe loader",
+    model: "JCB with basket",
+    qty: 2,
+    description:
+      "Trenching, backfilling, and elevated access basket work around live services and tight corridors.",
+    image: "/equipment/backhoe-loader-with-basket.avif",
+  },
+  {
+    name: "Load-haul-dump loader",
+    model: "966 E & F Cat / LHD",
+    qty: 4,
+    description:
+      "Loads trucks, shifts stockpiled material, and underground/surface muck handling across the site.",
+    image: "/equipment/load-haul-dump-loader.avif",
+  },
+  {
+    name: "Telehandler",
+    model: "17m Reach, JCB / Cat",
+    qty: 3,
+    description:
+      "Telescopic high-reach material placement, pallet handling, and versatile multi-level site lifting.",
+    image: "/equipment/telehandler.avif",
+  },
+  {
+    name: "Face drilling rig",
+    model: "Hydraulic Jumbo",
+    qty: 2,
+    description:
+      "Heavy underground tunneling, blast-hole excavation drilling, and mechanized rock bolting operations.",
+    image: "/equipment/face-drilling-rig.avif",
+  },
   {
     name: "Dump truck",
     model: "16 cu.m",
@@ -322,24 +369,6 @@ const defaultEquipment: EquipmentItem[] = [
       "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
-    name: "Roller compactor",
-    model: "12 ton",
-    qty: 2,
-    description:
-      "Compacts sub-base and surface layers to the density called for in the specification.",
-    image:
-      "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  },
-  {
-    name: "Wheel loader",
-    model: "966 E & F Cat",
-    qty: 4,
-    description:
-      "Loads trucks, shifts stockpiled material and handles general clean-up across the site.",
-    image:
-      "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  },
-  {
     name: "Bulldozer",
     model: "155 D Komatsu",
     qty: 2,
@@ -349,52 +378,16 @@ const defaultEquipment: EquipmentItem[] = [
       "https://images.pexels.com/photos/906494/pexels-photo-906494.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
-    name: "Grader",
-    model: "14G Cat",
-    qty: 2,
-    description:
-      "Fine grading of roads, platforms and pipeline right of way to finished level.",
-    image:
-      "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  },
-  {
-    name: "Backhoe loader",
-    model: "JCB",
-    qty: 2,
-    description:
-      "Trenching, backfilling and careful digging around live services and tight corners.",
-    image:
-      "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  },
-  {
-    name: "Low bed trailer",
-    model: "50 ton",
-    qty: 1,
-    description: "Shifts tracked plant between sites without tearing up the road surface.",
-  },
-  {
-    name: "Hand loader",
-    model: "2 ton",
-    qty: 2,
-    description: "Small lifts and material handling inside plants and tight yards.",
-  },
-  {
-    name: "Generator",
-    model: "135 KVA, 60 Hz",
-    qty: 2,
-    description: "Temporary power for welding sets, site lighting and portable offices.",
-  },
-  {
     name: "Excavator",
     model: "Komatsu PC200",
     qty: 3,
     description: "Deep excavation, pipeline trenching and foundation work.",
   },
   {
-    name: "Portable office",
-    model: "Aramco standard",
-    qty: 4,
-    description: "Site offices to Aramco standard for supervision, permits and toolbox talks.",
+    name: "Low bed trailer",
+    model: "50 ton",
+    qty: 1,
+    description: "Shifts tracked plant between sites without tearing up the road surface.",
   },
   {
     name: "Boom truck",
@@ -407,6 +400,24 @@ const defaultEquipment: EquipmentItem[] = [
     model: "Cat",
     qty: 2,
     description: "Loading, breaking and clearing where larger plant cannot reach.",
+  },
+  {
+    name: "Generator",
+    model: "135 KVA, 60 Hz",
+    qty: 2,
+    description: "Temporary power for welding sets, site lighting and portable offices.",
+  },
+  {
+    name: "Portable office",
+    model: "Aramco standard",
+    qty: 4,
+    description: "Site offices to Aramco standard for supervision, permits and toolbox talks.",
+  },
+  {
+    name: "Hand loader",
+    model: "2 ton",
+    qty: 2,
+    description: "Small lifts and material handling inside plants and tight yards.",
   },
 ];
 
