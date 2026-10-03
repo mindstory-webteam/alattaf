@@ -18,7 +18,7 @@ export default function ScrollRevealText({
   className = "",
   startViewport = 0.85,
   endViewport = 0.50,
-  fromRgb = [161, 161, 170],
+  fromRgb = [71, 85, 105],
   toRgb = [15, 23, 42],
 }: ScrollRevealTextProps) {
   const containerRef = useRef<HTMLElement | null>(null);

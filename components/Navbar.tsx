@@ -345,7 +345,7 @@ export default function Navbar() {
                   onClick={() => setActiveItem("Home")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Home"
-                      ? "text-sky-600 font-bold"
+                      ? "text-sky-700 font-bold"
                       : "text-slate-800 hover:text-slate-950"
                   }`}
                 >
@@ -358,7 +358,7 @@ export default function Navbar() {
                   onClick={() => setActiveItem("About us")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "About us"
-                      ? "text-sky-600 font-bold"
+                      ? "text-sky-700 font-bold"
                       : "text-slate-800 hover:text-slate-950"
                   }`}
                 >
@@ -377,14 +377,14 @@ export default function Navbar() {
                     onClick={handleServiceClick}
                     className={`inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg ${
                       activeItem === "Services"
-                        ? "text-sky-600 font-bold"
+                        ? "text-sky-700 font-bold"
                         : "text-slate-800 hover:text-slate-950"
                     }`}
                   >
                     <span>Services</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
-                        isServicesDropdownOpen ? "rotate-180 text-sky-600" : ""
+                        isServicesDropdownOpen ? "rotate-180 text-sky-700" : ""
                       }`}
                     />
                   </Link>
@@ -413,8 +413,8 @@ export default function Navbar() {
                             <div
                               className={`text-sm font-semibold transition-colors ${
                                 isCurrentService(item.href)
-                                  ? "text-sky-600"
-                                  : "text-slate-900 group-hover/item:text-sky-600"
+                                  ? "text-sky-700"
+                                  : "text-slate-900 group-hover/item:text-sky-700"
                               }`}
                             >
                               {item.name}
@@ -431,7 +431,7 @@ export default function Navbar() {
                         <Link
                           href="/services"
                           onClick={handleServiceClick}
-                          className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700 transition-colors"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-sky-700 hover:text-sky-800 transition-colors"
                         >
                           View all services
                         </Link>
@@ -446,7 +446,7 @@ export default function Navbar() {
                   onClick={() => setActiveItem("Careers")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Careers"
-                      ? "text-sky-600 font-bold"
+                      ? "text-sky-700 font-bold"
                       : "text-slate-800 hover:text-slate-950"
                   }`}
                 >
@@ -459,7 +459,7 @@ export default function Navbar() {
                   onClick={() => setActiveItem("Gallery")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Gallery"
-                      ? "text-sky-600 font-bold"
+                      ? "text-sky-700 font-bold"
                       : "text-slate-800 hover:text-slate-950"
                   }`}
                 >
@@ -472,7 +472,7 @@ export default function Navbar() {
                   onClick={() => setActiveItem("Contact")}
                   className={`relative px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg group ${
                     activeItem === "Contact"
-                      ? "text-sky-600 font-bold"
+                      ? "text-sky-700 font-bold"
                       : "text-slate-800 hover:text-slate-950"
                   }`}
                 >
@@ -580,7 +580,7 @@ export default function Navbar() {
               }}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeItem === "Home"
-                  ? "text-sky-600 font-bold"
+                  ? "text-sky-700 font-bold"
                   : "text-slate-700 hover:text-slate-950"
               }`}
             >
@@ -596,7 +596,7 @@ export default function Navbar() {
               }}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeItem === "About us"
-                  ? "text-sky-600 font-bold"
+                  ? "text-sky-700 font-bold"
                   : "text-slate-700 hover:text-slate-950"
               }`}
             >
@@ -608,7 +608,7 @@ export default function Navbar() {
               <div
                 className={`flex items-center justify-between w-full rounded-xl text-sm font-semibold transition-all ${
                   activeItem === "Services"
-                    ? "text-sky-600 font-bold"
+                    ? "text-sky-700 font-bold"
                     : "text-slate-700"
                 }`}
               >
@@ -632,7 +632,7 @@ export default function Navbar() {
                 >
                   <ChevronDown
                     className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                      isServicesOpenMobile ? "rotate-180 text-sky-600" : ""
+                      isServicesOpenMobile ? "rotate-180 text-sky-700" : ""
                     }`}
                   />
                 </button>
@@ -663,7 +663,7 @@ export default function Navbar() {
                   <Link
                     href="/services"
                     onClick={handleServiceClick}
-                    className="inline-flex items-center gap-2 px-2.5 pt-2 text-[11px] font-bold uppercase tracking-wider text-sky-600"
+                    className="inline-flex items-center gap-2 px-2.5 pt-2 text-[11px] font-bold uppercase tracking-wider text-sky-700"
                   >
                     View all services
                   </Link>
@@ -680,7 +680,7 @@ export default function Navbar() {
               }}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeItem === "Careers"
-                  ? "text-sky-600 font-bold"
+                  ? "text-sky-700 font-bold"
                   : "text-slate-700 hover:text-slate-950"
               }`}
             >
@@ -696,7 +696,7 @@ export default function Navbar() {
               }}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeItem === "Gallery"
-                  ? "text-sky-600 font-bold"
+                  ? "text-sky-700 font-bold"
                   : "text-slate-700 hover:text-slate-950"
               }`}
             >
@@ -712,7 +712,7 @@ export default function Navbar() {
               }}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 activeItem === "Contact"
-                  ? "text-sky-600 font-bold"
+                  ? "text-sky-700 font-bold"
                   : "text-slate-700 hover:text-slate-950"
               }`}
             >
@@ -727,7 +727,7 @@ export default function Navbar() {
               <div>
                 <a
                   href="tel:+966135660243"
-                  className="hover:text-sky-600 transition-colors"
+                  className="hover:text-sky-700 transition-colors"
                 >
                   00966 13 566 0243
                 </a>
@@ -736,7 +736,7 @@ export default function Navbar() {
               <div>
                 <a
                   href="mailto:info@alattafcompany.com"
-                  className="hover:text-sky-600 transition-colors"
+                  className="hover:text-sky-700 transition-colors"
                 >
                   info@alattafcompany.com
                 </a>
