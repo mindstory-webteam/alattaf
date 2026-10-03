@@ -529,7 +529,7 @@ export default function Navbar() {
         />
 
         {/* Slide-over Sidebar Panel from Right */}
-        <aside
+        <div
           className={`fixed inset-y-0 right-0 z-[100] w-[85vw] max-w-xs sm:max-w-sm bg-white shadow-2xl flex flex-col h-full transform transition-transform duration-300 ease-in-out border-l border-slate-100 ${
             isMobileMenuOpen
               ? "translate-x-0"
@@ -802,7 +802,7 @@ export default function Navbar() {
               />
             </div>
           </div>
-        </aside>
+        </div>
       </div>
     </>
   );

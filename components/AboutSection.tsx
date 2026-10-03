@@ -43,7 +43,6 @@ export default function AboutSection() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 34vw"
                 className="object-cover object-center"
-                priority
               />
             </div>
           </Reveal>

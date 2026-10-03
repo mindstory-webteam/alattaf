@@ -15,7 +15,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "/banner/banner-1.png",
+      image: "/banner/banner-1.webp",
       title: "Empowering Supply Chains\n& Mega Infrastructure",
       description:
         "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
@@ -25,7 +25,7 @@ export default function HeroSection() {
 
     {
       id: 2,
-      image: "/banner/banner-3.png",
+      image: "/banner/banner-3.webp",
       title: "Advanced Heavy Equipment\n& Fleet Logistics",
       description:
         "Providing modern heavy freight haulage, certified equipment operators, and round-the-clock nationwide transportation across the Kingdom.",
@@ -34,7 +34,7 @@ export default function HeroSection() {
     },
         {
       id: 3,
-      image: "/banner/banner-2.png",
+      image: "/banner/banner-2.webp",
       title: "Efficient Cargo Transport\n& Material Handling",
       description:
         "Delivering dependable supply chain logistics, on-time material transport, and end-to-end heavy equipment mobility with certified safety standards.",
@@ -66,7 +66,8 @@ export default function HeroSection() {
                 alt={slide.title}
                 fill
                 priority={slide.id === 1}
-                sizes="100vw"
+                quality={80}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
                 className="object-cover object-center"
               />
               {/* Dark Gradient Overlay for Maximum Readability */}

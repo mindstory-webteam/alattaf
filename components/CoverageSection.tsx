@@ -104,7 +104,6 @@ export default function CoverageSection() {
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain object-center"
-                priority
               />
 
               {/* Google Maps Style Red Pin for Abqaiq Location */}
