@@ -88,7 +88,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf executes civil contracting packages end-to-end across Saudi Arabia—from mass excavation, dewatering, and shoring through heavy industrial equipment foundations, reinforced concrete framing, asphalt road paving, and structural maintenance. Executed under stringent Saudi Aramco and Royal Commission safety protocols.",
     image:
-      "/civil/civil.png",
+      "/civil/civil.webp",
     heroImage:
       "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -224,7 +224,7 @@ export const services: Service[] = [
     intro:
       "Al Attaf's mechanical division delivers precision industrial piping fabrication, heavy structural erection, rotating machinery installation, and high-pressure system testing. Our welders and fitters operate under ASME Section IX and Aramco standards for onshore and offshore facilities.",
     image:
-      "/mechanical/mechanical.jpg",
+      "/mechanical/mechanical.webp",
     heroImage:
       "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -292,7 +292,7 @@ export const services: Service[] = [
     intro:
       "We provide turnkey instrumentation and process control services across the energy, petrochemical, and industrial manufacturing sectors. From precision sensor installation and Swagelok stainless impulse tubing to DCS loop checks and automated control valve tuning, our certified technicians ensure total process reliability.",
     image:
-      "/instrumentation/instrumentation.png",
+      "/instrumentation/instrumentation.webp",
     heroImage:
       "https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -360,7 +360,7 @@ export const services: Service[] = [
     intro:
       "AAAC provides installation, inspection, testing, commissioning and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom. We provide fire protection design and construction P.E. certification services. We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes.",
     image:
-      "/fire&saftey/fireandsaftey.png",
+      "/fire&saftey/fireandsaftey.webp",
     heroImage:
       "https://images.pexels.com/photos/280014/pexels-photo-280014.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [
@@ -568,7 +568,7 @@ export const services: Service[] = [
     intro:
       "Protecting vital industrial assets, petrochemical plants, and national infrastructure requires rigorous physical and electronic security. Al Attaf engineers, installs, and integrates turnkey security systems adhering strictly to High Commission for Industrial Security (HCIS) directives and Saudi standards.",
     image:
-      "/security-systems/security-systems.png",
+      "/security-systems/security-systems.webp",
     heroImage:
       "https://images.pexels.com/photos/430208/pexels-photo-430208.jpeg?auto=compress&cs=tinysrgb&w=1920",
     highlights: [

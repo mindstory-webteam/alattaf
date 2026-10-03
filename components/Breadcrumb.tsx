@@ -114,8 +114,10 @@ export default function Breadcrumb({
           <Image
             src="/Saudi_Vision_2030_logo.svg.webp"
             alt="Saudi Vision 2030"
-            width={220}
-            height={150}
+            width={120}
+            height={80}
+            sizes="(max-width: 640px) 105px, (max-width: 1024px) 150px, 200px"
+            quality={70}
             className="h-8 w-auto object-contain opacity-90 brightness-0 invert drop-shadow-lg sm:h-12 md:h-16 lg:h-20"
           />
         </div>

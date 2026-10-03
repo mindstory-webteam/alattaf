@@ -66,8 +66,8 @@ export default function HeroSection() {
                 alt={slide.title}
                 fill
                 priority={slide.id === 1}
-                quality={80}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+                quality={70}
+                sizes="100vw"
                 className="object-cover object-center"
               />
               {/* Dark Gradient Overlay for Maximum Readability */}
@@ -119,8 +119,10 @@ export default function HeroSection() {
         <Image
           src="/Saudi_Vision_2030_logo.svg.webp"
           alt="Saudi Vision 2030 Logo"
-          width={220}
-          height={150}
+          width={120}
+          height={80}
+          sizes="(max-width: 640px) 105px, (max-width: 1024px) 150px, 200px"
+          quality={70}
           className="h-10 sm:h-14 md:h-18 lg:h-22 w-auto object-contain drop-shadow-lg brightness-0 invert opacity-90"
         />
       </div>

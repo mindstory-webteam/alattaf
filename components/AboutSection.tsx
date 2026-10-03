@@ -12,17 +12,17 @@ interface BrandItem {
 }
 
 const brandLogos: BrandItem[] = [
-  { name: "Saudi Aramco", src: "/brands/aramco.png" },
-  { name: "SABIC", src: "/brands/sabic.png" },
-  { name: "Saipem", src: "/brands/saipem.png" },
+  { name: "Saudi Aramco", src: "/brands/aramco.webp" },
+  { name: "SABIC", src: "/brands/sabic.webp" },
+  { name: "Saipem", src: "/brands/saipem.webp" },
   {
     name: "CCC",
-    src: "/brands/ccc.png",
+    src: "/brands/ccc.webp",
     className: "max-h-7 sm:max-h-8 max-w-[110px] sm:max-w-[130px] group-hover:scale-105",
   },
-  { name: "YASREF", src: "/brands/yasref.png" },
-  { name: "MASCO", src: "/brands/masco.png" },
-  { name: "SRACO", src: "/brands/sraco.png" },
+  { name: "YASREF", src: "/brands/yasref.webp" },
+  { name: "MASCO", src: "/brands/masco.webp" },
+  { name: "SRACO", src: "/brands/sraco.webp" },
 ];
 
 export default function AboutSection() {
@@ -81,8 +81,10 @@ export default function AboutSection() {
                   <Image
                     src={brand.src}
                     alt={brand.name}
-                    width={160}
-                    height={60}
+                    width={120}
+                    height={45}
+                    sizes="(max-width: 640px) 105px, 140px"
+                    quality={70}
                     className={`w-auto h-auto object-contain transition-transform duration-200 ${
                       brand.className || "max-h-9 sm:max-h-11 max-w-[130px] sm:max-w-[150px] group-hover:scale-105"
                     }`}
