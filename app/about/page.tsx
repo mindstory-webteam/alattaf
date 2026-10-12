@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import Footer from "@/components/Footer";
 import AboutPageSection from "@/components/AboutPageSection";
+import CertificatesSection from "@/components/CertificatesSection";
 import TeamSection from "@/components/TeamMember";
 import ResourcesSection from "@/components/ResourcesSection";
 
@@ -17,9 +18,9 @@ export default function Home() {
 
       <AboutPageSection />
       <ResourcesSection />
+      <CertificatesSection />
       <TeamSection />
       <Footer />
     </div>
   );
 }
-

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 636" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad14" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbfcfa"/>
+      <stop offset="100%" stop-color="#eff5f0"/>
+    </linearGradient>
+    <linearGradient id="goldBorder14" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c59b27"/>
+      <stop offset="30%" stop-color="#f3e5ab"/>
+      <stop offset="60%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#d4af37"/>
+    </linearGradient>
+    <linearGradient id="greenAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#144d32"/>
+      <stop offset="100%" stop-color="#247852"/>
+    </linearGradient>
+    <radialGradient id="greenSeal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe885"/>
+      <stop offset="60%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </radialGradient>
+    <filter id="shadow14" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="636" fill="url(#bgGrad14)"/>
+
+  <!-- Guilloche Rings -->
+  <g opacity="0.04" stroke="#144d32" stroke-width="1" fill="none">
+    <circle cx="450" cy="318" r="140"/>
+    <circle cx="450" cy="318" r="200"/>
+    <circle cx="450" cy="318" r="260"/>
+  </g>
+
+  <!-- Borders -->
+  <rect x="24" y="24" width="852" height="588" fill="none" stroke="url(#goldBorder14)" stroke-width="6"/>
+  <rect x="36" y="36" width="828" height="564" fill="none" stroke="#144d32" stroke-width="2"/>
+  <rect x="42" y="42" width="816" height="552" fill="none" stroke="url(#goldBorder14)" stroke-width="1" stroke-dasharray="6,4"/>
+
+  <!-- Corner Ornaments -->
+  <g fill="url(#goldBorder14)">
+    <path d="M24 24 L60 24 L60 30 L30 30 L30 60 L24 60 Z"/>
+    <circle cx="42" cy="42" r="4"/>
+    <path d="M876 24 L840 24 L840 30 L870 30 L870 60 L876 60 Z"/>
+    <circle cx="858" cy="42" r="4"/>
+    <path d="M24 612 L60 612 L60 606 L30 606 L30 576 L24 576 Z"/>
+    <circle cx="42" cy="594" r="4"/>
+    <path d="M876 612 L840 612 L840 606 L870 606 L870 576 L876 576 Z"/>
+    <circle cx="858" cy="594" r="4"/>
+  </g>
+
+  <!-- Top Certification Emblem -->
+  <g transform="translate(450, 95)" text-anchor="middle">
+    <circle cx="0" cy="0" r="26" fill="#144d32"/>
+    <circle cx="0" cy="0" r="22" fill="none" stroke="url(#goldBorder14)" stroke-width="2"/>
+    <!-- Leaf/Eco Motif -->
+    <path d="M0 -14 C12 -6 12 12 0 16 C-12 12 -12 -6 0 -14 Z" fill="url(#goldBorder14)"/>
+    <line x1="0" y1="-8" x2="0" y2="12" stroke="#144d32" stroke-width="1.5"/>
+  </g>
+
+  <!-- Header -->
+  <text x="450" y="150" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="28" font-weight="bold" fill="#144d32" letter-spacing="4" text-anchor="middle">
+    CERTIFICATE OF REGISTRATION
+  </text>
+  <text x="450" y="174" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="12" font-weight="600" fill="#c59b27" letter-spacing="6" text-anchor="middle">
+    ENVIRONMENTAL MANAGEMENT SYSTEM
+  </text>
+
+  <line x1="320" y1="188" x2="580" y2="188" stroke="url(#goldBorder14)" stroke-width="2"/>
+
+  <!-- Presentation text -->
+  <text x="450" y="222" font-family="'Inter', sans-serif" font-size="13" font-style="italic" fill="#555" text-anchor="middle">
+    This is to certify that the Environmental Management System of
+  </text>
+
+  <!-- Company Name -->
+  <text x="450" y="260" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="26" font-weight="bold" fill="#144d32" letter-spacing="2" text-anchor="middle">
+    AL ATTAF ADVANCED CONTRACTING CO.
+  </text>
+  <text x="450" y="284" font-family="'Inter', sans-serif" font-size="12" fill="#666" text-anchor="middle">
+    Kingdom of Saudi Arabia • Commercial Reg: 2050119842
+  </text>
+
+  <text x="450" y="322" font-family="'Inter', sans-serif" font-size="13" font-style="italic" fill="#555" text-anchor="middle">
+    conforms to the requirements of the international standard
+  </text>
+
+  <!-- Standard Box -->
+  <g transform="translate(230, 340)">
+    <rect width="440" height="66" rx="8" fill="url(#greenAccent)" filter="url(#shadow14)"/>
+    <rect x="3" y="3" width="434" height="60" rx="6" fill="none" stroke="url(#goldBorder14)" stroke-width="1.5"/>
+    <text x="220" y="36" font-family="'Cinzel', 'Georgia', serif" font-size="24" font-weight="bold" fill="#ffffff" letter-spacing="3" text-anchor="middle">
+      ISO 14001:2015
+    </text>
+    <text x="220" y="54" font-family="'Inter', sans-serif" font-size="11" font-weight="500" fill="#f3e5ab" letter-spacing="2" text-anchor="middle">
+      ENVIRONMENTAL MANAGEMENT STANDARD
+    </text>
+  </g>
+
+  <!-- Scope -->
+  <text x="450" y="435" font-family="'Inter', sans-serif" font-size="11.5" fill="#444" text-anchor="middle">
+    Scope: Environmental stewardship, energy efficiency, waste minimization, and site ecology
+  </text>
+  <text x="450" y="453" font-family="'Inter', sans-serif" font-size="11.5" fill="#444" text-anchor="middle">
+    in industrial construction, heavy mechanical maintenance, and oil &amp; gas projects.
+  </text>
+
+  <!-- Seal -->
+  <g transform="translate(140, 500)" filter="url(#shadow14)">
+    <path d="M-12 18 L-22 65 L0 52 L22 65 L12 18 Z" fill="#996515"/>
+    <path d="M-8 18 L-16 60 L0 48 L16 60 L8 18 Z" fill="#c59b27"/>
+    <circle cx="0" cy="0" r="42" fill="url(#greenSeal)"/>
+    <circle cx="0" cy="0" r="37" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="0" y="-8" font-family="'Inter', sans-serif" font-size="8.5" font-weight="bold" fill="#3a2500" text-anchor="middle">CERTIFIED</text>
+    <text x="0" y="8" font-family="'Cinzel', serif" font-size="15" font-weight="bold" fill="#1b4526" text-anchor="middle">EMS</text>
+    <text x="0" y="21" font-family="'Inter', sans-serif" font-size="7.5" font-weight="bold" fill="#3a2500" text-anchor="middle">VERIFIED</text>
+  </g>
+
+  <!-- Certificate Details Left-Center -->
+  <g transform="translate(250, 495)" font-family="'Inter', sans-serif" font-size="10.5" fill="#555">
+    <text x="0" y="0"><tspan font-weight="bold" fill="#144d32">Certificate No:</tspan> EMS-SA-14001-2024</text>
+    <text x="0" y="18"><tspan font-weight="bold" fill="#144d32">Initial Issue:</tspan> 20 March 2021</text>
+    <text x="0" y="36"><tspan font-weight="bold" fill="#144d32">Valid Until:</tspan> 19 March 2027</text>
+  </g>
+
+  <!-- Signatures / Stamps Right -->
+  <g transform="translate(720, 510)" text-anchor="middle">
+    <path d="M-90 -15 Q-55 -40 -15 -18 T45 -28 T85 -8" fill="none" stroke="#144d32" stroke-width="2"/>
+    <line x1="-90" y1="5" x2="90" y2="5" stroke="#999" stroke-width="1"/>
+    <text x="0" y="22" font-family="'Inter', sans-serif" font-size="11" font-weight="bold" fill="#144d32">Lead Auditor &amp; Registrar</text>
+    <text x="0" y="36" font-family="'Inter', sans-serif" font-size="9" fill="#777">Environmental Certification Board</text>
+  </g>
+
+  <text x="450" y="588" font-family="'Inter', sans-serif" font-size="9" fill="#999" text-anchor="middle" letter-spacing="1">
+    AUTHENTIC DOCUMENT • VERIFIED BY ACCREDITATION COUNCIL • AL ATTAF INDUSTRIAL SERVICES
+  </text>
+</svg>
