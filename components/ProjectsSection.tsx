@@ -11,22 +11,35 @@ import Reveal from "@/components/Reveal";
 
 import "swiper/css";
 
+interface ProjectItem {
+  id: number;
+  title: string;
+  client: string;
+  status: "completed" | "ongoing";
+  statusLabel: string;
+  location: string;
+  category: string;
+  image: string;
+  imageFit?: "cover" | "contain";
+}
+
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState<"all" | "ongoing" | "completed">("all");
 
   const headingText =
     "Crafting the Future, Honoring the Past. Our portfolio is a testament to our exceptional skills and proficiency in handling complex challenges, consistently delivering outstanding turnkey results across Saudi Arabia.";
 
-  const allProjects = [
+  const allProjects: ProjectItem[] = [
     {
       id: 1,
-      title: "Aramco Gas Plant Infrastructure",
-      client: "Saudi Aramco",
+      title: "Modular Industrial Piping & Valve Skid Assembly",
+      client: "SABIC & Industrial Affiliates",
       status: "completed",
       statusLabel: "Completed Project",
-      location: "Abqaiq, Eastern Province",
-      category: "Civil & Mechanical Works",
-      image: "https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=800",
+      location: "Jubail Industrial City",
+      category: "Mechanical & Piping EPC",
+      image: "/projects/Industrial Piping Valve Skid Assembly.png",
+      imageFit: "contain",
     },
     {
       id: 2,
@@ -40,13 +53,14 @@ export default function ProjectsSection() {
     },
     {
       id: 3,
-      title: "Substation Electromechanical Systems",
-      client: "Saudi Electricity Company (SEC)",
+      title: "Heavy-Gauge Industrial Pipeline & Pressure Vessel Supply",
+      client: "Saudi Aramco",
       status: "completed",
       statusLabel: "Completed Project",
-      location: "Dhahran & Dammam",
-      category: "Electrical & Instrumentation",
-      image: "https://images.pexels.com/photos/159358/construction-site-build-construction-work-159358.jpeg?auto=compress&cs=tinysrgb&w=800",
+      location: "Abqaiq, Eastern Province",
+      category: "Civil & Mechanical Works",
+      image: "/projects/382603b9-ac73-4880-9869-128436ab1586 - Copy.png",
+      imageFit: "cover",
     },
     {
       id: 4,
@@ -60,13 +74,47 @@ export default function ProjectsSection() {
     },
     {
       id: 5,
-      title: "Plant Turnaround & T&I Cooling Towers",
-      client: "Industrial Enterprise",
+      title: "Industrial Piping Spool Hydrostatic Testing & Assembly",
+      client: "Saudi Aramco Project Services",
       status: "completed",
       statusLabel: "Completed Project",
-      location: "Ras Tanura",
+      location: "Ras Tanura & Dhahran",
       category: "Plant Maintenance & T&I",
-      image: "https://images.pexels.com/photos/585419/pexels-photo-585419.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/projects/c97457d0-631e-42ba-b93b-4dce3779d1c6 - Copy.png",
+      imageFit: "cover",
+    },
+    {
+      id: 6,
+      title: "High-Pressure Industrial Flanged Valve Supply & Installation",
+      client: "YASREF / Petrochemical Facilities",
+      status: "completed",
+      statusLabel: "Completed Project",
+      location: "Yanbu Industrial City",
+      category: "Fire & Safety Engineering",
+      image: "/projects/5afe43a1-d4b9-4a93-895d-7b8927c99f75.png",
+      imageFit: "contain",
+    },
+    {
+      id: 7,
+      title: "Highway Solar Street Lighting Infrastructure Installation",
+      client: "Saudi Electricity Company (SEC)",
+      status: "completed",
+      statusLabel: "Completed Project",
+      location: "Eastern Province Highway Corridor",
+      category: "Electrical & Instrumentation",
+      image: "/projects/8a99c8ad-1256-4536-bca1-6c71b03480a5.png",
+      imageFit: "cover",
+    },
+    {
+      id: 8,
+      title: "Turnkey Solar Street Lighting & Highway Electrification",
+      client: "Eastern Province Municipalities",
+      status: "completed",
+      statusLabel: "Completed Project",
+      location: "Dammam - Al Ahsa Highway",
+      category: "Electrical Systems & Renewable Energy",
+      image: "/projects/14cb7a62-a510-4a99-9a71-4c16f097cff6 - Copy (1).png",
+      imageFit: "cover",
     },
   ];
 
@@ -150,10 +198,11 @@ export default function ProjectsSection() {
         {/* Auto-scrolling Project Cards Carousel */}
         <Reveal className="relative w-full" y={28} duration={750}>
           <Swiper
+            key={activeFilter}
             modules={[Autoplay]}
             spaceBetween={24}
             slidesPerView={1}
-            loop={true}
+            loop={filteredProjects.length > 3}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -173,15 +222,23 @@ export default function ProjectsSection() {
           >
             {filteredProjects.map((project) => (
               <SwiperSlide key={project.id} className="!h-auto flex">
-                <div className="relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-none overflow-hidden shadow-sm h-full">
+                <div className="group relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-none overflow-hidden shadow-sm h-full">
                   {/* Image Container */}
-                  <div className="relative w-full aspect-[16/10] shrink-0 overflow-hidden bg-slate-100 rounded-none">
+                  <div
+                    className={`relative w-full aspect-[16/10] shrink-0 overflow-hidden ${
+                      project.imageFit === "contain" ? "bg-white p-4" : "bg-slate-100"
+                    } rounded-none flex items-center justify-center`}
+                  >
                     <Image
                       src={project.image}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover object-center"
+                      className={`${
+                        project.imageFit === "contain"
+                          ? "object-contain p-2"
+                          : "object-cover object-center"
+                      } transition-transform duration-500 group-hover:scale-105`}
                     />
                   </div>
 
