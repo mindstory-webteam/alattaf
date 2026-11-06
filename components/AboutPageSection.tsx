@@ -89,17 +89,17 @@ export default function AboutPageSection() {
   const principles = [
     {
       title: "Our Vision",
-      body: "To be the Kingdom's foremost multidisciplinary contracting partner, recognised for engineering benchmarks, sustainable infrastructure, and a direct contribution to Saudi Vision 2030.",
+      body: "Building Saudi Excellence through safe, reliable, and innovative contracting and industrial services, advancing local capabilities, economic growth, sustainability, and the Kingdom’s Vision 2030.",
       tone: "muted" as const,
     },
     {
       title: "Our Mission",
-      body: "To deliver turnkey civil, mechanical, electromechanical, and plant maintenance solutions with uncompromised safety, technical agility, and enduring value for Saudi Aramco and industrial partners.",
+      body: "Delivering safe, reliable engineering, construction, maintenance, and industrial services through skilled teams, technical excellence, and disciplined execution, creating lasting value and supporting Saudi Arabia’s development.",
       tone: "accent" as const,
     },
     {
       title: "Our Core Values",
-      body: "Integrity in every contract, certified HSE vigilance, operational transparency, and collaboration across each project phase from engineering through to final handover.",
+      body: "Building Saudi Excellence for a Sustainable Future through safety, integrity, quality, reliability, local talent, client partnerships, innovation, and sustainability, aligned with Saudi Vision 2030.",
       tone: "muted" as const,
     },
   ];
@@ -216,7 +216,7 @@ export default function AboutPageSection() {
                   >
                     {item.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600 whitespace-pre-line">
                     {item.body}
                   </p>
                 </Reveal>

@@ -13,7 +13,7 @@ export default function HomeVisionMission() {
       id: "vision",
       title: "Our Vision",
       description:
-        "To be the Kingdom's foremost multidisciplinary contracting partner, recognized for pioneering engineering benchmarks, sustainable infrastructure, and pivotal contributions to Saudi Vision 2030.",
+        "Building Saudi Excellence through safe, reliable, and innovative contracting and industrial services, advancing local capabilities, economic growth, sustainability, and the Kingdom’s Vision 2030.",
       bgColor: "bg-[#f4f4f5]",
       foldColor: "bg-[#dcdcdc]",
     },
@@ -21,7 +21,7 @@ export default function HomeVisionMission() {
       id: "mission",
       title: "Our Mission",
       description:
-        "To deliver turnkey civil, mechanical, electromechanical, and plant maintenance solutions with uncompromised safety, technological agility, and enduring value for Saudi Aramco and industrial partners.",
+        "Delivering safe, reliable engineering, construction, maintenance, and industrial services through skilled teams, technical excellence, and disciplined execution, creating lasting value and supporting Saudi Arabia’s development.",
       bgColor: "bg-[#e0f2fe]", // Light blue
       foldColor: "bg-[#bae6fd]",
     },
@@ -29,7 +29,7 @@ export default function HomeVisionMission() {
       id: "values",
       title: "Our Core Values",
       description:
-        "Upholding unwavering integrity, certified HSE vigilance, operational transparency, and collaborative synergy across every project phase from engineering to final handover.",
+        "Building Saudi Excellence for a Sustainable Future through safety, integrity, quality, reliability, local talent, client partnerships, innovation, and sustainability, aligned with Saudi Vision 2030.",
       bgColor: "bg-[#ebebeb]",
       foldColor: "bg-[#d1d5db]",
     },
