@@ -9,6 +9,7 @@ interface Certificate {
   image: string;
   code: string;
   standard: string;
+  aspectClass: string;
 }
 
 const certificates: Certificate[] = [
@@ -16,36 +17,41 @@ const certificates: Certificate[] = [
     id: "iso-9001",
     title: "ISO 9001:2015",
     standard: "Quality Management System",
-    code: "QMS-SA-9001-2024",
-    image: "/certificates/iso-9001.svg",
+    code: "SISTEMA-KSA/ADC-Q11795",
+    image: "/certificates/3.jpeg",
+    aspectClass: "aspect-[210/297]",
   },
   {
     id: "iso-14001",
     title: "ISO 14001:2015",
-    standard: "Environmental Management",
-    code: "EMS-SA-14001-2024",
-    image: "/certificates/iso-14001.svg",
+    standard: "Environmental Management System",
+    code: "SISTEMA-KSA/ADC-E11796",
+    image: "/certificates/4.jpeg",
+    aspectClass: "aspect-[210/297]",
   },
   {
     id: "iso-45001",
     title: "ISO 45001:2018",
-    standard: "Occupational Health & Safety",
-    code: "OHS-SA-45001-2024",
-    image: "/certificates/iso-45001.svg",
+    standard: "Occupational Health & Safety System",
+    code: "SISTEMA-KSA/ADC-O11797",
+    image: "/certificates/5.jpeg",
+    aspectClass: "aspect-[210/297]",
   },
   {
-    id: "aramco",
-    title: "Saudi Aramco Approved",
-    standard: "Vendor ID: 10048291",
-    code: "VENDOR-10048291",
-    image: "/certificates/aramco.svg",
+    id: "commercial-registration",
+    title: "Commercial Registration Certificate",
+    standard: "Ministry of Commerce Company Registration",
+    code: "CR No: 2059000287",
+    image: "/certificates/2.jpeg",
+    aspectClass: "aspect-[297/210]",
   },
   {
-    id: "sabic",
-    title: "SABIC Approved Contractor",
-    standard: "Vendor ID: 502194",
-    code: "VENDOR-502194",
-    image: "/certificates/sabic.svg",
+    id: "asharqia-chamber",
+    title: "Asharqia Chamber Membership",
+    standard: "Chamber of Commerce & Industry Membership",
+    code: "Membership No: 4133",
+    image: "/certificates/1.jpeg",
+    aspectClass: "aspect-[297/210]",
   },
 ];
 
@@ -55,32 +61,32 @@ export default function CertificatesSection() {
       <div className="relative z-10 w-full max-w-[1475px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-24">
         {/* Main Split Grid: Left 5 Certificates + Right Vision 2030 Emblem */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* LEFT SIDE: 5 Square Borderless Certificate Images */}
+          {/* LEFT SIDE: 5 Certificate Images without border radius */}
           <div className="lg:col-span-7 xl:col-span-7 w-full flex items-center justify-center lg:justify-start">
-            <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-2.5 w-full max-w-2xl">
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5 sm:gap-3.5 w-full max-w-2xl">
               {certificates.map((cert, index) => {
                 // Top row: 3 ISO certificates (col-span-2 each out of 6 cols on sm+)
-                // Bottom row: 2 Premier Client Approvals (col-span-3 each out of 6 cols on sm+)
-                // Mobile: 2 cols for first 4, 5th card spans full 2 cols
+                // Bottom row: 2 Official Saudi registrations (col-span-3 each out of 6 cols on sm+)
+                // Mobile: index 0,1 each col-span-1; index 2 col-span-2; index 3,4 each col-span-2
                 const spanClass =
-                  index < 3
+                  index < 2
                     ? "col-span-1 sm:col-span-2"
-                    : index === 4
-                      ? "col-span-2 sm:col-span-3"
-                      : "col-span-1 sm:col-span-3";
+                    : index === 2
+                      ? "col-span-2 sm:col-span-2 max-w-[200px] sm:max-w-none mx-auto w-full"
+                      : "col-span-2 sm:col-span-3";
 
                 return (
                   <div
                     key={cert.id}
-                    className={`${spanClass} relative aspect-[900/636] flex items-center justify-center`}
+                    className={`${spanClass} relative ${cert.aspectClass} flex items-center justify-center bg-white rounded-none overflow-hidden shadow-sm`}
                   >
                     <Image
                       src={cert.image}
                       alt={cert.title}
                       fill
-                      unoptimized
-                      className="object-contain"
-                      priority
+                      className="object-contain rounded-none"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                      priority={index < 3}
                     />
                   </div>
                 );
