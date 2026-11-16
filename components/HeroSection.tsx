@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay, Pagination, Navigation, EffectFade} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, EffectFade } from "swiper/modules";
+import type { Swiper as SwiperClass } from "swiper";
 import LiquidButton from "@/components/LiquidButton";
 
 // Import Swiper styles
@@ -11,44 +12,78 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
+interface SlideItem {
+  id: number;
+  type: "video" | "image";
+  src: string;
+  duration?: number;
+  title: string;
+  description: string;
+  primaryBtn: { text: string; href: string };
+  secondaryBtn: { text: string; href: string };
+}
+
 export default function HeroSection() {
-  const slides = [
+  const swiperRef = useRef<SwiperClass | null>(null);
+
+  const slides: SlideItem[] = [
     {
       id: 1,
-      image: "/banner/banner-1.jpg",
-      title: "Empowering Supply Chains\n& Mega Infrastructure",
+      type: "image",
+      src: "/banner/banner-2.webp",
+      duration: 5000,
+      title: "Keeping Industries Running\nat Their Best",
       description:
-        "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
-      primaryBtn: {text: "Our Logistics Services", href: "#services"},
-      secondaryBtn: {text: "Request a Quote", href: "#contact"},
+        "Providing dependable industrial maintenance, technical support, and operational solutions to ensure safety, efficiency, and uninterrupted performance.",
+      primaryBtn: { text: "Our Services", href: "#services" },
+      secondaryBtn: { text: "Request a Quote", href: "#contact" },
     },
-
     {
       id: 2,
-      image: "/banner/banner-3.jpg",
-      title: "Advanced Heavy Equipment\n& Fleet Logistics",
+      type: "image",
+      src: "/banner/banner-3.png",
+      duration: 5000,
+      title: "Delivering Excellence in\nIndustrial Contracting",
       description:
-        "Providing modern heavy freight haulage, certified equipment operators, and round-the-clock nationwide transportation across the Kingdom.",
-      primaryBtn: {text: "Get in Touch", href: "#contact"},
-      secondaryBtn: {text: "Learn About Us", href: "#about"},
+        "From complex industrial installations to specialized contracting projects, we provide reliable solutions backed by technical expertise and a commitment to quality.",
+      primaryBtn: { text: "Explore Capabilities", href: "#services" },
+      secondaryBtn: { text: "Learn About Us", href: "#about" },
     },
     {
       id: 3,
-      image: "/banner/banner-2.webp",
-      title: "Efficient Cargo Transport\n& Material Handling",
+      type: "video",
+      src: "/banner/banner-1.mp4",
+      duration: 19500,
+      title: "Powering Industrial Excellence\nThrough Engineering & Infrastructure",
       description:
-        "Delivering dependable supply chain logistics, on-time material transport, and end-to-end heavy equipment mobility with certified safety standards.",
-      primaryBtn: {text: "Explore Fleet Capabilities", href: "#services"},
-      secondaryBtn: {text: "Contact Us", href: "#contact"},
+        "Delivering comprehensive engineering, turnkey contracting, industrial maintenance, and heavy logistics solutions across Saudi Arabia with over 45 years of experience.",
+      primaryBtn: { text: "Get in Touch", href: "#contact" },
+      secondaryBtn: { text: "Our Projects", href: "#projects" },
     },
   ];
 
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 font-sans">
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        onSlideChange={(swiper) => {
+          swiper.slides.forEach((slideEl, idx) => {
+            const vid = slideEl.querySelector("video");
+            if (vid) {
+              if (idx === swiper.activeIndex) {
+                vid.currentTime = 0;
+                vid.play().catch(() => {});
+              } else {
+                vid.pause();
+              }
+            }
+          });
+        }}
         modules={[Autoplay, Navigation, EffectFade]}
         effect="fade"
-        fadeEffect={{crossFade: true}}
+        fadeEffect={{ crossFade: true }}
         speed={1000}
         autoplay={{
           delay: 5000,
@@ -58,23 +93,41 @@ export default function HeroSection() {
         className="w-full h-[500px] sm:h-[540px] lg:h-[620px]"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative w-full h-full">
-            {/* Background Image with Next Image */}
-            <div className="absolute inset-0 w-full h-full">
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                priority={slide.id === 1}
-                quality={70}
-                sizes="100vw"
-                className="object-cover object-center"
-              />
+          <SwiperSlide
+            key={slide.id}
+            data-swiper-autoplay={slide.duration}
+            className="relative w-full h-full"
+          >
+            {/* Background Media */}
+            <div className="absolute inset-0 w-full h-full bg-slate-950">
+              {slide.type === "video" ? (
+                <video
+                  src={slide.src}
+                  autoPlay
+                  muted
+                  playsInline
+                  preload="auto"
+                  onEnded={() => {
+                    swiperRef.current?.slideNext();
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+              ) : (
+                <Image
+                  src={slide.src}
+                  alt={slide.title}
+                  fill
+                  priority={slide.id === 1}
+                  quality={70}
+                  sizes="100vw"
+                  className="object-cover object-center"
+                />
+              )}
               {/* Dark Gradient Overlay for Maximum Readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/35 to-black/15" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/65 via-slate-950/40 to-black/20" />
             </div>
 
-            {/* Slide Content - Positioned in the exact same place across all slides */}
+            {/* Slide Content */}
             <div className="relative z-10 w-full max-w-[1475px] mx-auto h-full flex items-center px-6 sm:px-12 lg:px-16 xl:px-24">
               <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl space-y-3.5 sm:space-y-4 md:space-y-5 lg:space-y-6">
                 {/* Main Heading */}
@@ -87,7 +140,7 @@ export default function HeroSection() {
                   {slide.description}
                 </p>
 
-                {/* Action Buttons - Kept on the exact same row across all screen sizes */}
+                {/* Action Buttons */}
                 <div className="flex flex-row items-center flex-nowrap gap-2.5 sm:gap-3.5 md:gap-4 pt-1 sm:pt-2">
                   <LiquidButton
                     text={slide.primaryBtn.text}
