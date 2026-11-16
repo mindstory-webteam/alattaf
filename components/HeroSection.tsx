@@ -15,7 +15,7 @@ export default function HeroSection() {
   const slides = [
     {
       id: 1,
-      image: "/banner/banner-1.webp",
+      image: "/banner/banner-1.jpg",
       title: "Empowering Supply Chains\n& Mega Infrastructure",
       description:
         "Delivering advanced logistics fleet operations, turnkey contracting, and dependable industrial project support with uncompromised quality standards.",
@@ -25,14 +25,14 @@ export default function HeroSection() {
 
     {
       id: 2,
-      image: "/banner/banner-3.webp",
+      image: "/banner/banner-3.jpg",
       title: "Advanced Heavy Equipment\n& Fleet Logistics",
       description:
         "Providing modern heavy freight haulage, certified equipment operators, and round-the-clock nationwide transportation across the Kingdom.",
       primaryBtn: {text: "Get in Touch", href: "#contact"},
       secondaryBtn: {text: "Learn About Us", href: "#about"},
     },
-        {
+    {
       id: 3,
       image: "/banner/banner-2.webp",
       title: "Efficient Cargo Transport\n& Material Handling",

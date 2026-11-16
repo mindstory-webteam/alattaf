@@ -43,16 +43,6 @@ export default function ProjectsSection() {
     },
     {
       id: 2,
-      title: "Jubail Petrochemical Piping & Erection",
-      client: "SABIC Affiliates",
-      status: "ongoing",
-      statusLabel: "Under Construction",
-      location: "Jubail Industrial City",
-      category: "Mechanical & Piping EPC",
-      image: "https://images.pexels.com/photos/224924/pexels-photo-224924.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      id: 3,
       title: "SUPIC Project 3rd Industrial City Abqaiq (2016-17)",
       client: "Saudi Universal Petrochemical Company (SUPIC)",
       status: "completed",
@@ -63,17 +53,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 4,
-      title: "Industrial Logistics & Heavy Fleet Mobilization",
-      client: "Saudi Aramco Vendor Operations",
-      status: "ongoing",
-      statusLabel: "Under Execution",
-      location: "Kingdom-wide Delivery",
-      category: "Logistics & Fleet Transport",
-      image: "https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=800",
-    },
-    {
-      id: 5,
+      id: 3,
       title: "Project of KFUPM Villas Facility Dhahran",
       client: "King Fahd University of Petroleum & Minerals (KFUPM)",
       status: "completed",
@@ -84,7 +64,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 6,
+      id: 4,
       title: "Demolishing Of SO2 Solution Tank At Qswp",
       client: "Saudi Aramco / Qurayyah Seawater Plant",
       status: "completed",
@@ -95,7 +75,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 7,
+      id: 5,
       title: "Saudi Universal Petrochemical Company Project",
       client: "Saudi Universal Petrochemical Company (SUPIC)",
       status: "completed",
@@ -106,7 +86,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 8,
+      id: 6,
       title: "Modular Industrial Piping & Valve Skid Assembly",
       client: "SABIC & Industrial Affiliates",
       status: "completed",
@@ -117,7 +97,7 @@ export default function ProjectsSection() {
       imageFit: "contain",
     },
     {
-      id: 9,
+      id: 7,
       title: "Heavy-Gauge Industrial Pipeline & Pressure Vessel Supply",
       client: "Saudi Aramco",
       status: "completed",
@@ -128,7 +108,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 10,
+      id: 8,
       title: "Industrial Piping Spool Hydrostatic Testing & Assembly",
       client: "Saudi Aramco Project Services",
       status: "completed",
@@ -139,7 +119,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 11,
+      id: 9,
       title: "High-Pressure Industrial Flanged Valve Supply & Installation",
       client: "YASREF / Petrochemical Facilities",
       status: "completed",
@@ -150,7 +130,7 @@ export default function ProjectsSection() {
       imageFit: "contain",
     },
     {
-      id: 12,
+      id: 10,
       title: "Highway Solar Street Lighting Infrastructure Installation",
       client: "Saudi Electricity Company (SEC)",
       status: "completed",
@@ -161,7 +141,7 @@ export default function ProjectsSection() {
       imageFit: "cover",
     },
     {
-      id: 13,
+      id: 11,
       title: "Turnkey Solar Street Lighting & Highway Electrification",
       client: "Eastern Province Municipalities",
       status: "completed",
@@ -252,79 +232,94 @@ export default function ProjectsSection() {
 
         {/* Auto-scrolling Project Cards Carousel */}
         <Reveal className="relative w-full" y={28} duration={750}>
-          <Swiper
-            key={activeFilter}
-            modules={[Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1}
-            loop={filteredProjects.length > 3}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 24,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-            }}
-            className="w-full"
-          >
-            {filteredProjects.map((project) => (
-              <SwiperSlide key={project.id} className="!h-auto flex">
-                <div className="group relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-none overflow-hidden shadow-sm h-full">
-                  {/* Image Container */}
-                  <div
-                    className={`relative w-full aspect-[16/10] shrink-0 overflow-hidden ${
-                      project.imageFit === "contain" ? "bg-white p-4" : "bg-slate-100"
-                    } rounded-none flex items-center justify-center`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className={`${
-                        project.imageFit === "contain"
-                          ? "object-contain p-2"
-                          : "object-cover object-center"
-                      } transition-transform duration-500 group-hover:scale-105`}
-                    />
-                  </div>
-
-                  {/* Project Details */}
-                  <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
-                    <div className="space-y-2 flex-1">
-                      <div className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                        {project.category}
-                      </div>
-
-                      <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2 min-h-[48px] sm:min-h-[56px] flex items-start">
-                        {project.title}
-                      </h4>
+          {filteredProjects.length === 0 ? (
+            <div className="w-full py-14 px-6 text-center bg-white border border-slate-200/80 rounded-none shadow-sm flex flex-col items-center justify-center space-y-3">
+              <p className="text-slate-600 font-medium text-sm sm:text-base">
+                No ongoing projects at the moment.
+              </p>
+              <button
+                type="button"
+                onClick={() => setActiveFilter("completed")}
+                className="text-xs sm:text-sm font-semibold text-blue-700 hover:text-blue-800 underline underline-offset-4 cursor-pointer"
+              >
+                Browse all completed projects
+              </button>
+            </div>
+          ) : (
+            <Swiper
+              key={activeFilter}
+              modules={[Autoplay]}
+              spaceBetween={24}
+              slidesPerView={1}
+              loop={filteredProjects.length > 3}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 24,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
+              className="w-full"
+            >
+              {filteredProjects.map((project) => (
+                <SwiperSlide key={project.id} className="!h-auto flex">
+                  <div className="group relative flex flex-col justify-between w-full bg-white border border-slate-200/80 rounded-none overflow-hidden shadow-sm h-full">
+                    {/* Image Container */}
+                    <div
+                      className={`relative w-full aspect-[16/10] shrink-0 overflow-hidden ${
+                        project.imageFit === "contain" ? "bg-white p-4" : "bg-slate-100"
+                      } rounded-none flex items-center justify-center`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className={`${
+                          project.imageFit === "contain"
+                            ? "object-contain p-2"
+                            : "object-cover object-center"
+                        } transition-transform duration-500 group-hover:scale-105`}
+                      />
                     </div>
 
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 mt-auto">
-                      <div>
-                        <span className="font-semibold text-slate-700 block">Client:</span>
-                        <span>{project.client}</span>
+                    {/* Project Details */}
+                    <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
+                      <div className="space-y-2 flex-1">
+                        <div className="text-xs font-bold uppercase tracking-wider text-blue-700">
+                          {project.category}
+                        </div>
+
+                        <h4 className="text-base sm:text-lg font-bold text-slate-900 leading-snug line-clamp-2 min-h-[48px] sm:min-h-[56px] flex items-start">
+                          {project.title}
+                        </h4>
                       </div>
 
-                      <div className="text-right">
-                        <span className="font-semibold text-slate-700 block">Location:</span>
-                        <span>{project.location}</span>
+                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 mt-auto">
+                        <div>
+                          <span className="font-semibold text-slate-700 block">Client:</span>
+                          <span>{project.client}</span>
+                        </div>
+
+                        <div className="text-right">
+                          <span className="font-semibold text-slate-700 block">Location:</span>
+                          <span>{project.location}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </Reveal>
       </div>
     </section>
