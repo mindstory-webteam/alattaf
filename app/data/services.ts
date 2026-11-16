@@ -358,7 +358,7 @@ export const services: Service[] = [
     excerpt:
       "Installation, inspection, testing, commissioning and maintenance of fire and life safety systems, P.E. certification, and GAP analysis to SBC, NFPA, and IBC codes.",
     intro:
-      "AAAC provides installation, inspection, testing, commissioning and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom. We provide fire protection design and construction P.E. certification services. We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes.",
+      "AACC provides installation, inspection, testing, commissioning and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom. We provide fire protection design and construction P.E. certification services. We provide GAP analysis of the existing fire and safety systems in conjunction with SBC, IBC, NFPA, IFC and other international standards and codes.",
     image:
       "/fire&saftey/fireandsaftey.webp",
     heroImage:
@@ -372,7 +372,7 @@ export const services: Service[] = [
     sections: [
       {
         heading: "Fire & Life Safety Systems Installation & Maintenance",
-        body: "AAAC provides comprehensive installation, inspection, testing, commissioning, and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom.",
+        body: "AACC provides comprehensive installation, inspection, testing, commissioning, and maintenance of fire and life safety systems including fire water systems network, hydrants, fire water pumps, fire water sprinkler systems, fire extinguishers etc. for industrial, commercial and infrastructure projects across the kingdom.",
       },
       {
         heading: "Fire Protection Design & P.E. Certification",

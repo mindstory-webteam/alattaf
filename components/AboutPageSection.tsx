@@ -149,7 +149,7 @@ export default function AboutPageSection() {
 
               <Reveal delay={80}>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
-                  Formed in 1978 (1398H), AAAC commenced operations in direct
+                  Formed in 1978 (1398H), AACC commenced operations in direct
                   partnership with{" "}
                   <span className="text-blue-700 font-semibold">
                     Saudi Aramco
@@ -403,7 +403,7 @@ export default function AboutPageSection() {
 
             <div className="lg:col-span-6">
               <ScrollRevealText
-                text="AAAC has, over the years, undertaken many challenging projects and accumulated expertise, know-how, and skills in contracting maintenance work and engineering-related work."
+                text="AACC has, over the years, undertaken many challenging projects and accumulated expertise, know-how, and skills in contracting maintenance work and engineering-related work."
                 as="h3"
                 className="text-xl sm:text-2xl lg:text-[25px] font-bold leading-snug tracking-tight text-justify"
               />

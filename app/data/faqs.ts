@@ -9,15 +9,15 @@ export interface FaqItem {
 export const defaultFaqs: FaqItem[] = [
   {
     id: "faq-1",
-    question: "What specialized contracting services does AAAC provide?",
+    question: "What specialized contracting services does AACC provide?",
     answer:
       "Al Attaf Advanced Contracting delivers turnkey Civil Works, Mechanical & Industrial Piping, Electrical & Instrumentation, Structural Steel Erection, and Plant Maintenance (T&I) across industrial facilities in Saudi Arabia.",
   },
   {
     id: "faq-2",
-    question: "Is AAAC officially approved by Saudi Aramco and industrial partners?",
+    question: "Is AACC officially approved by Saudi Aramco and industrial partners?",
     answer:
-      "Yes. AAAC is officially recognized as an approved vendor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287) to execute specialized subcontract scopes.",
+      "Yes. AACC is officially recognized as an approved vendor under Saudi Aramco Vendor # 10005728 (Dhahran), SABIC affiliates, and registered with the Saudi Ministry of Commerce (CR # 2059000287) to execute specialized subcontract scopes.",
   },
   {
     id: "faq-3",
@@ -27,7 +27,7 @@ export const defaultFaqs: FaqItem[] = [
   },
   {
     id: "faq-4",
-    question: "Can AAAC mobilize heavy equipment and skilled workforce Kingdom-wide?",
+    question: "Can AACC mobilize heavy equipment and skilled workforce Kingdom-wide?",
     answer:
       "Yes. With our centralized headquarters in Abqaiq and dedicated logistics fleet, we rapidly deploy over 1,770+ certified technicians, heavy machinery, and portable site units across all industrial cities.",
   },
