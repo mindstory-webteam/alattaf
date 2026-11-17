@@ -74,28 +74,6 @@ const jobsData: JobListing[] = [
     ],
   },
   {
-    id: "civil-site-sup",
-    title: "Civil Site Works Supervisor",
-    department: "Civil",
-    deptSlug: "civil",
-    location: "Jubail Industrial City",
-    type: "Full-Time",
-    experience: "4 - 7 Years",
-    overview:
-      "Supervise daily civil excavation teams, formwork erection, rebar tying crews, and structural concrete pouring operations.",
-    responsibilities: [
-      "Conduct morning toolbox talks and enforce trench shoring and excavation barricades.",
-      "Inspect rebar tie-ups and embedments prior to official QA/QC witness inspection.",
-      "Track machinery hours, materials consumption, and maintain daily site logs.",
-      "Resolve on-site logistical and constructability bottlenecks.",
-    ],
-    requirements: [
-      "Diploma in Civil Engineering or 6+ years hands-on supervision background.",
-      "Strong understanding of construction safety standards (GI standards).",
-      "Valid Saudi driving license.",
-    ],
-  },
-  {
     id: "civil-qaqc-insp",
     title: "Civil QA/QC Inspector",
     department: "Civil",
@@ -114,26 +92,6 @@ const jobsData: JobListing[] = [
     requirements: [
       "Certified Civil QA/QC Inspector with valid Aramco SAP approval card.",
       "Strong knowledge of ASTM, ACI, and Saudi building codes.",
-    ],
-  },
-  {
-    id: "civil-surveyor",
-    title: "Chief Land Surveyor (Total Station & GPS)",
-    department: "Civil",
-    deptSlug: "civil",
-    location: "Dammam & Khobar",
-    type: "Full-Time",
-    experience: "5 - 8 Years",
-    overview:
-      "Perform precision topography, site benchmarks, elevation control, and coordinate setting-out for industrial building frames and infrastructure routes.",
-    responsibilities: [
-      "Operate Leica / Trimble Total Stations, Digital Levels, and RTK GPS receivers.",
-      "Verify pipeline alignments, road cut/fill volumes, and building foundation centerlines.",
-      "Export raw survey data into AutoCAD Civil 3D for as-built drawing verification.",
-    ],
-    requirements: [
-      "Degree or Diploma in Geodetic Surveying or Civil Engineering.",
-      "Proficient in AutoCAD Civil 3D and survey data post-processing.",
     ],
   },
   {
@@ -181,46 +139,6 @@ const jobsData: JobListing[] = [
     ],
   },
   {
-    id: "mech-hvac-eng",
-    title: "Industrial HVAC & Cooling Systems Engineer",
-    department: "Mechanical",
-    deptSlug: "mechanical",
-    location: "Eastern Province",
-    type: "Full-Time",
-    experience: "4 - 7 Years",
-    overview:
-      "Oversee cooling tower overhauls, industrial chiller maintenance, ductwork fabrication, and air handling unit (AHU) installations across enterprise sites.",
-    responsibilities: [
-      "Execute Turnaround & Inspection (T&I) overhauls on cooling towers and central chillers.",
-      "Perform air balancing, refrigerant leak checks, and motor vibration diagnostics.",
-      "Procure OEM spare parts and monitor scheduled preventative maintenance.",
-    ],
-    requirements: [
-      "B.Sc. in Mechanical Engineering with HVAC & refrigeration specialization.",
-      "Hands-on background with industrial water-cooled chillers (Carrier, Trane, York).",
-    ],
-  },
-  {
-    id: "fleet-maint-sup",
-    title: "Heavy Machinery Maintenance Supervisor",
-    department: "Fleet & Ops",
-    deptSlug: "fleet",
-    location: "Dammam & Khobar",
-    type: "Full-Time",
-    experience: "5 - 8 Years",
-    overview:
-      "Manage preventative maintenance, diagnostics, and repairs across our heavy plant inventory including CAT excavators, bulldozers, wheel loaders, and mobile cranes.",
-    responsibilities: [
-      "Direct mechanical and auto-electrical technicians in shop floor and remote field repairs.",
-      "Diagnose hydraulic pressures, hydrostatic transmissions, and CAT/Cummins diesel engines.",
-      "Oversee third-party safety inspections (TPI) and Saudi Aramco equipment sticker validations.",
-    ],
-    requirements: [
-      "Degree or Diploma in Mechanical / Automotive Engineering.",
-      "Deep experience troubleshooting Caterpillar, Komatsu, and Liebherr equipment.",
-    ],
-  },
-  {
     id: "fleet-crane-sup",
     title: "Heavy Rigging & Crane Operations Supervisor",
     department: "Fleet & Ops",
@@ -263,26 +181,6 @@ const jobsData: JobListing[] = [
     ],
   },
   {
-    id: "qhse-env-eng",
-    title: "Environmental Monitoring & Waste Management Officer",
-    department: "QHSE & Safety",
-    deptSlug: "qhse",
-    location: "Jubail Industrial City",
-    type: "Full-Time",
-    experience: "4 - 7 Years",
-    overview:
-      "Monitor site emissions, soil contamination controls, hazardous chemical storage, and industrial wastewater disposal compliance.",
-    responsibilities: [
-      "Implement site Environmental Management Plans (EMP) aligned with National Environmental standards.",
-      "Conduct regular audits on chemical secondary containments, dust suppression, and spill response kits.",
-      "Interface with Royal Commission / EPA inspectors during routine environmental audits.",
-    ],
-    requirements: [
-      "Bachelor's Degree in Environmental Science / Chemical Engineering.",
-      "Experience with industrial waste disposal procedures and environmental permits in KSA.",
-    ],
-  },
-  {
     id: "logistics-coord",
     title: "Heavy Transport & Dispatch Coordinator",
     department: "Logistics",
@@ -300,26 +198,6 @@ const jobsData: JobListing[] = [
     requirements: [
       "Degree in Logistics / Supply Chain Management or relevant commercial field.",
       "Bilingual in Arabic and English is preferred for liaising with transport authorities.",
-    ],
-  },
-  {
-    id: "logistics-proc-spec",
-    title: "Project Procurement & Materials Specialist",
-    department: "Logistics",
-    deptSlug: "logistics",
-    location: "Riyadh",
-    type: "Full-Time",
-    experience: "5 - 8 Years",
-    overview:
-      "Source structural steel, concrete additives, heavy machinery spares, and industrial equipment from approved Saudi Aramco vendor lists.",
-    responsibilities: [
-      "Negotiate commercial terms, volume discounts, and payment milestones with local suppliers.",
-      "Issue Purchase Orders, monitor expedited deliveries, and verify material test reports (MTR).",
-      "Liaise with site stores for inventory receipts and reconciliation.",
-    ],
-    requirements: [
-      "Bachelor's degree in Business, Supply Chain, or Engineering.",
-      "Extensive knowledge of vendor procurement ecosystems in Saudi Arabia.",
     ],
   },
 ];
@@ -356,8 +234,7 @@ export default function CareerRolesSection() {
     };
   }, [selectedJobForModal]);
 
-  const handleOpenApplyModal = (job: JobListing, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
+  const handleOpenApplyModal = (job: JobListing) => {
     setSelectedJobForModal(job);
     setFormData({
       fullName: "",
@@ -442,7 +319,7 @@ export default function CareerRolesSection() {
 
 
   return (
-    <div className="w-full mt-10">
+    <div className="w-full mt-6 sm:mt-8">
       {/* 1. Sleek Tab Bar & Location Dropdown (Matching Screenshot Design) */}
       <div className="w-full border-b border-slate-200">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -560,14 +437,15 @@ export default function CareerRolesSection() {
                   </div>
                 </div>
 
-                {/* Apply Button & Expand Arrow */}
+                {/* Apply Button & Expand Arrow — separated concerns */}
                 <div
                   onClick={(e) => e.stopPropagation()}
                   className="flex items-center gap-3 self-start md:self-center shrink-0"
                 >
+                  {/* Apply Now → opens modal directly */}
                   <LiquidButton
                     text="Apply Now"
-                    onClick={() => setExpandedRoleId(isExpanded ? null : job.id)}
+                    onClick={() => handleOpenApplyModal(job)}
                     btnColor="#1d4ed8"
                     hoverBgColor="#ffffff"
                     textColor="#ffffff"
@@ -575,6 +453,7 @@ export default function CareerRolesSection() {
                     className="px-4 py-2 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm"
                   />
 
+                  {/* Chevron → toggles job details accordion */}
                   <button
                     type="button"
                     onClick={(e) => {
@@ -636,16 +515,16 @@ export default function CareerRolesSection() {
                     </div>
                   </div>
 
-                  {/* Direct Apply Button inside card */}
+                  {/* Apply button inside expanded accordion */}
                   <div className="pt-2 flex justify-end">
                     <LiquidButton
                       text={`Apply for ${job.title}`}
                       onClick={() => handleOpenApplyModal(job)}
                       btnColor="#1d4ed8"
-                      hoverBgColor="#ffffff"
+                      hoverBgColor="#1e40af"
                       textColor="#ffffff"
-                      hoverTextColor="#1d4ed8"
-                      className="px-5 py-2 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm"
+                      hoverTextColor="#ffffff"
+                      className="px-5 py-2.5 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm cursor-pointer"
                     />
                   </div>
                 </div>

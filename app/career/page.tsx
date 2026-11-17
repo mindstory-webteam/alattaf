@@ -1,5 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import CareerRolesSection from "@/components/CareerRolesSection";
+import WorkWithAAACSection from "@/components/WorkWithAAACSection";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -20,13 +21,13 @@ export default function CareerPage() {
         showVisionLogo
       />
 
-      {/* Career Page Content */}
-      <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:py-16 sm:px-8 lg:px-12">
-        <div className="max-w-4xl space-y-4">
+      {/* Career Roles Section */}
+      <div className="mx-auto w-full max-w-[1475px] px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="max-w-4xl space-y-3">
           <h2 className="text-xl sm:text-2xl lg:text-[25px] font-bold text-slate-900 tracking-tight leading-snug">
             Build Your Career With Al Attaf
           </h2>
-          <p className="text-base sm:text-xl font-semibold text-slate-800 leading-relaxed">
+          <p className="text-sm sm:text-base font-medium text-slate-700 leading-relaxed">
             High-resolution snapshots from our civil contracting sites, heavy machinery fleet, process fabrication facilities, and nationwide logistics convoys.
           </p>
         </div>
@@ -34,6 +35,9 @@ export default function CareerPage() {
         {/* Tab Bar Filter (Department Counts + All Locations Dropdown), Roles List & Application Form */}
         <CareerRolesSection />
       </div>
+
+      {/* Culture & General Application Section */}
+      <WorkWithAAACSection />
 
       <Footer />
     </div>
