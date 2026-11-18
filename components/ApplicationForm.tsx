@@ -268,7 +268,7 @@ export default function ApplicationForm({
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           placeholder="Key Aramco/SCE approvals, notice period, or remarks..."
-          className={inputClass.replace("pl-10", "pl-3.5") + " resize-none"}
+          className={inputClass.replace("pl-10", "pl-3.5") + " block resize-none"}
         />
       </div>
 
