@@ -7,14 +7,16 @@ import {
   Clock,
   Check,
   X,
-  UploadCloud,
-  FileText,
+  Briefcase,
+  SlidersHorizontal,
+  RotateCcw,
   CheckCircle2,
-  AlertCircle,
+  Building2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import LiquidButton from "@/components/LiquidButton";
 import Reveal from "@/components/Reveal";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export interface JobListing {
   id: string;
@@ -202,93 +204,57 @@ const jobsData: JobListing[] = [
   },
 ];
 
+const EASTERN_PROVINCE_CITIES = [
+  "Abqaiq",
+  "Jubail Industrial City",
+  "Dammam & Khobar",
+  "Ras Tanura",
+  "Eastern Province",
+];
+
 export default function CareerRolesSection() {
   const [activeDept, setActiveDept] = useState("all");
   const [activeLocation, setActiveLocation] = useState("All Locations");
   const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
   const [expandedRoleId, setExpandedRoleId] = useState<string | null>(null);
-
-  // Modal Application Form State
   const [selectedJobForModal, setSelectedJobForModal] = useState<JobListing | null>(null);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    mobile: "",
-    message: "",
-  });
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const locationRef = useRef<HTMLDivElement | null>(null);
 
-  // Prevent background scrolling when modal is open
+  /* Lock background scroll + close on Escape while modal is open */
   useEffect(() => {
-    if (selectedJobForModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!selectedJobForModal) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedJobForModal(null);
+    };
+    window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "unset";
+      window.removeEventListener("keydown", onKey);
     };
   }, [selectedJobForModal]);
 
-  const handleOpenApplyModal = (job: JobListing) => {
-    setSelectedJobForModal(job);
-    setFormData({
-      fullName: "",
-      email: "",
-      mobile: "",
-      message: "",
-    });
-    setResumeFile(null);
-    setIsSubmitting(false);
-    setIsSubmitted(false);
-    setFormError("");
-  };
-
-  const handleCloseModal = () => {
-    setSelectedJobForModal(null);
-    setIsSubmitted(false);
-    setFormError("");
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      if (file.size > 10 * 1024 * 1024) {
-        setFormError("File size exceeds 10MB limit. Please upload a smaller file.");
-        return;
+  /* Close location dropdown on outside click */
+  useEffect(() => {
+    if (!isLocationDropdownOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (locationRef.current && !locationRef.current.contains(e.target as Node)) {
+        setIsLocationDropdownOpen(false);
       }
-      setResumeFile(file);
-      setFormError("");
-    }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [isLocationDropdownOpen]);
+
+  const handleOpenApplyModal = (job: JobListing) => setSelectedJobForModal(job);
+  const handleCloseModal = () => setSelectedJobForModal(null);
+
+  const resetFilters = () => {
+    setActiveDept("all");
+    setActiveLocation("All Locations");
   };
 
-  const handleSubmitApplication = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.fullName.trim() || !formData.email.trim() || !formData.mobile.trim()) {
-      setFormError("Please fill in all required fields.");
-      return;
-    }
-    if (!resumeFile) {
-      setFormError("Please upload your resume (PDF or DOCX).");
-      return;
-    }
-
-    setFormError("");
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1000);
-  };
-
-
-
-  // Department counts
+  /* Department counts */
   const deptCounts = useMemo(() => {
     const counts: Record<string, number> = { all: jobsData.length };
     departmentsList.forEach((d) => {
@@ -299,7 +265,7 @@ export default function CareerRolesSection() {
     return counts;
   }, []);
 
-  // Filtered Roles
+  /* Filtered roles */
   const filteredRoles = useMemo(() => {
     return jobsData.filter((job) => {
       const matchDept = activeDept === "all" || job.deptSlug === activeDept;
@@ -307,462 +273,448 @@ export default function CareerRolesSection() {
         activeLocation === "All Locations" ||
         job.location.toLowerCase().includes(activeLocation.toLowerCase()) ||
         (activeLocation === "Eastern Province" &&
-          (job.location === "Abqaiq" ||
-            job.location === "Jubail Industrial City" ||
-            job.location === "Dammam & Khobar" ||
-            job.location === "Ras Tanura" ||
-            job.location === "Eastern Province"));
+          EASTERN_PROVINCE_CITIES.includes(job.location));
       return matchDept && matchLoc;
     });
   }, [activeDept, activeLocation]);
 
-
+  const activeDeptLabel =
+    departmentsList.find((d) => d.slug === activeDept)?.label ?? "All";
+  const hasActiveFilters = activeDept !== "all" || activeLocation !== "All Locations";
 
   return (
-    <div className="w-full mt-6 sm:mt-8">
-      {/* 1. Sleek Tab Bar & Location Dropdown (Matching Screenshot Design) */}
-      <div className="w-full border-b border-slate-200">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          {/* Left: Department Tabs with Counts & Active Underline */}
-          <div className="flex items-center gap-4 sm:gap-6 md:gap-8 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-            {departmentsList.map((dept) => {
-              const isActive = activeDept === dept.slug;
-              const count = deptCounts[dept.slug] ?? 0;
-
-              return (
-                <button
-                  key={dept.slug}
-                  onClick={() => setActiveDept(dept.slug)}
-                  className={`relative py-3.5 text-sm sm:text-base font-semibold flex items-center gap-1.5 transition-colors shrink-0 cursor-pointer ${
-                    isActive
-                      ? "text-slate-900 font-bold"
-                      : "text-slate-500 hover:text-slate-800"
-                  }`}
-                >
-                  <span>{dept.label}</span>
-                  <span
-                    className={`text-xs font-normal transition-colors ${
-                      isActive ? "text-slate-600 font-semibold" : "text-slate-400"
-                    }`}
-                  >
-                    {count}
-                  </span>
-
-                  {/* Active Tab Underline Indicator */}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-slate-900 rounded-full" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right: All Locations Pill Dropdown */}
-          <div className="relative shrink-0 pb-3 sm:pb-0">
-            <button
-              onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
-              className="flex items-center justify-between gap-2.5 px-4 py-2 rounded-full border border-slate-300 bg-white hover:bg-slate-50 text-xs sm:text-sm text-slate-700 font-medium transition-all shadow-2xs cursor-pointer min-w-[140px]"
-            >
-              <span>{activeLocation}</span>
-              <ChevronDown
-                className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${
-                  isLocationDropdownOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {/* Dropdown Menu */}
-            {isLocationDropdownOpen && (
-              <div className="absolute right-0 top-full mt-2 w-52 bg-white border border-slate-200 rounded-2xl shadow-xl py-1.5 z-30">
-                {locationsList.map((loc) => (
-                  <button
-                    key={loc}
-                    onClick={() => {
-                      setActiveLocation(loc);
-                      setIsLocationDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-4 py-2 text-xs sm:text-sm transition-colors flex items-center justify-between cursor-pointer ${
-                      activeLocation === loc
-                        ? "bg-blue-50 text-blue-700 font-semibold"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                    }`}
-                  >
-                    <span>{loc}</span>
-                    {activeLocation === loc && <Check className="w-3.5 h-3.5 text-blue-700" />}
-                  </button>
-                ))}
-              </div>
+    <div className="w-full mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      {/* ───────────── LEFT: Filter Sidebar ───────────── */}
+      <aside className="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-32 space-y-4">
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+            <div className="flex items-center gap-2 text-sm font-bold text-slate-900">
+              <SlidersHorizontal className="w-4 h-4 text-blue-700" />
+              Filter Roles
+            </div>
+            {hasActiveFilters && (
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-blue-700 transition-colors cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                Reset
+              </button>
             )}
           </div>
+
+          <div className="p-5 space-y-5">
+            {/* Department */}
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+                Department
+              </p>
+              <div className="flex lg:flex-col gap-2 lg:gap-1 overflow-x-auto no-scrollbar -mx-5 px-5 lg:mx-0 lg:px-0">
+                {departmentsList.map((dept) => {
+                  const isActive = activeDept === dept.slug;
+                  const count = deptCounts[dept.slug] ?? 0;
+                  return (
+                    <button
+                      key={dept.slug}
+                      type="button"
+                      onClick={() => setActiveDept(dept.slug)}
+                      className={`shrink-0 flex items-center justify-between gap-3 rounded-lg px-3.5 py-2 lg:py-2.5 text-sm font-semibold transition-all cursor-pointer border lg:border-0 ${
+                        isActive
+                          ? "bg-blue-700 text-white border-blue-700 shadow-sm"
+                          : "bg-white lg:bg-transparent text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900"
+                      }`}
+                    >
+                      <span className="whitespace-nowrap">{dept.label}</span>
+                      <span
+                        className={`min-w-[22px] h-[22px] px-1.5 rounded-md text-[11px] font-bold flex items-center justify-center ${
+                          isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                        }`}
+                      >
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Location */}
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2.5">
+                Location
+              </p>
+              <div ref={locationRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setIsLocationDropdownOpen(!isLocationDropdownOpen)}
+                  aria-expanded={isLocationDropdownOpen}
+                  className={`w-full flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-lg border bg-white text-sm text-slate-700 font-medium transition-all cursor-pointer ${
+                    isLocationDropdownOpen
+                      ? "border-blue-600 ring-2 ring-blue-600/15"
+                      : "border-slate-200 hover:border-slate-300"
+                  }`}
+                >
+                  <span className="flex items-center gap-2 min-w-0">
+                    <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
+                    <span className="truncate">{activeLocation}</span>
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-200 ${
+                      isLocationDropdownOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {isLocationDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-0 right-0 top-full mt-2 bg-white border border-slate-200 rounded-xl shadow-xl py-1.5 z-30"
+                    >
+                      {locationsList.map((loc) => (
+                        <button
+                          key={loc}
+                          type="button"
+                          onClick={() => {
+                            setActiveLocation(loc);
+                            setIsLocationDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3.5 py-2 text-sm transition-colors flex items-center justify-between cursor-pointer ${
+                            activeLocation === loc
+                              ? "bg-blue-50 text-blue-700 font-semibold"
+                              : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                          }`}
+                        >
+                          <span>{loc}</span>
+                          {activeLocation === loc && <Check className="w-3.5 h-3.5 text-blue-700" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+      {/* ───────────── RIGHT: Roles List ───────────── */}
+      <div className="lg:col-span-8 xl:col-span-9 min-w-0">
+        {/* Results bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <p className="text-sm text-slate-600">
+            Showing <span className="font-bold text-slate-900">{filteredRoles.length}</span>{" "}
+            {filteredRoles.length === 1 ? "role" : "roles"}
+            {activeDept !== "all" && (
+              <>
+                {" "}in <span className="font-semibold text-slate-900">{activeDeptLabel}</span>
+              </>
+            )}
+            {activeLocation !== "All Locations" && (
+              <>
+                {" "}at <span className="font-semibold text-slate-900">{activeLocation}</span>
+              </>
+            )}
+          </p>
+
+          {hasActiveFilters && (
+            <div className="flex flex-wrap items-center gap-2">
+              {activeDept !== "all" && (
+                <button
+                  type="button"
+                  onClick={() => setActiveDept("all")}
+                  className="flex items-center gap-1.5 pl-3 pr-2 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
+                >
+                  {activeDeptLabel}
+                  <X className="w-3 h-3" />
+                </button>
+              )}
+              {activeLocation !== "All Locations" && (
+                <button
+                  type="button"
+                  onClick={() => setActiveLocation("All Locations")}
+                  className="flex items-center gap-1.5 pl-3 pr-2 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
+                >
+                  {activeLocation}
+                  <X className="w-3 h-3" />
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="space-y-3 sm:space-y-4">
+          {filteredRoles.map((job, idx) => {
+            const isExpanded = expandedRoleId === job.id;
+            const toggle = () => setExpandedRoleId(isExpanded ? null : job.id);
+
+            return (
+              <Reveal key={job.id} delay={Math.min(idx, 4) * 60}>
+                <article
+                  className={`relative rounded-2xl border bg-white overflow-hidden transition-all duration-300 ${
+                    isExpanded
+                      ? "border-slate-200/90 shadow-lg shadow-slate-900/5"
+                      : "border-slate-200/90 shadow-2xs hover:border-slate-300 hover:shadow-md"
+                  }`}
+                >
+                  {/* Header row */}
+                  <div
+                    onClick={toggle}
+                    className="p-5 sm:p-6 cursor-pointer select-none flex flex-col md:flex-row md:items-center gap-4 md:gap-6"
+                  >
+                    <div className="flex-1 min-w-0 space-y-2.5">
+                      {/* Tags */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                          <Building2 className="w-3 h-3" />
+                          {job.department}
+                        </span>
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                        {job.title}
+                      </h3>
+
+                      <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs sm:text-[13px] text-slate-500 font-medium">
+                        <span className="flex items-center gap-1.5">
+                          <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                          {job.location}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Briefcase className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                          {job.experience}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                          {job.type}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center gap-2.5 shrink-0"
+                    >
+                      <LiquidButton
+                        text="Apply Now"
+                        onClick={() => handleOpenApplyModal(job)}
+                        btnColor="#1d4ed8"
+                        hoverBgColor="#ffffff"
+                        textColor="#ffffff"
+                        hoverTextColor="#1d4ed8"
+                        className="px-5 py-2.5 text-xs sm:text-sm rounded-lg font-semibold border border-blue-700 shadow-sm"
+                      />
+                      <button
+                        type="button"
+                        onClick={toggle}
+                        aria-label={isExpanded ? "Hide details" : "View details"}
+                        aria-expanded={isExpanded}
+                        className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-colors cursor-pointer ${
+                          isExpanded
+                            ? "border-blue-200 bg-blue-50 text-blue-700"
+                            : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                        }`}
+                      >
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-300 ${
+                            isExpanded ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Expandable details */}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        key="details"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 sm:px-6 pb-6 pt-5 border-t border-slate-100 bg-slate-50/50 space-y-5">
+                          <div>
+                            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                              Position Overview
+                            </h4>
+                            <p className="text-sm text-slate-700 leading-relaxed max-w-3xl">
+                              {job.overview}
+                            </p>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs">
+                              <h5 className="text-xs font-bold uppercase tracking-wider text-blue-700 mb-3">
+                                Core Responsibilities
+                              </h5>
+                              <ul className="space-y-2.5">
+                                {job.responsibilities.map((resp, i) => (
+                                  <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-600 leading-relaxed">
+                                    <span className="mt-0.5 w-4 h-4 rounded-full bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+                                      <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                                    </span>
+                                    <span>{resp}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs">
+                              <h5 className="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-3">
+                                Candidate Requirements
+                              </h5>
+                              <ul className="space-y-2.5">
+                                {job.requirements.map((req, i) => (
+                                  <li key={i} className="flex items-start gap-2.5 text-[13px] text-slate-600 leading-relaxed">
+                                    <span className="mt-0.5 w-4 h-4 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+                                      <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                                    </span>
+                                    <span>{req}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                            <p className="text-xs text-slate-500">
+                              Ready to apply? It takes less than 2 minutes.
+                            </p>
+                            <LiquidButton
+                              text={`Apply for ${job.title}`}
+                              onClick={() => handleOpenApplyModal(job)}
+                              btnColor="#1d4ed8"
+                              hoverBgColor="#1e40af"
+                              textColor="#ffffff"
+                              hoverTextColor="#ffffff"
+                              className="px-5 py-2.5 text-xs sm:text-sm rounded-lg font-semibold border border-blue-700 shadow-sm cursor-pointer"
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </article>
+              </Reveal>
+            );
+          })}
+
+          {/* Empty state */}
+          {filteredRoles.length === 0 && (
+            <div className="px-6 py-14 text-center bg-white rounded-2xl border border-dashed border-slate-300">
+              <div className="w-12 h-12 mx-auto rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center mb-3">
+                <Briefcase className="w-6 h-6" />
+              </div>
+              <p className="text-slate-900 text-sm font-bold">No open roles found</p>
+              <p className="text-slate-500 text-sm mt-1">
+                Nothing in {activeDept !== "all" ? activeDeptLabel : "any department"} at{" "}
+                {activeLocation} right now.
+              </p>
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition-colors cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                Reset Filters
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* 2. Department-Wise Career Details & Roles List */}
-      <div className="py-8 sm:py-10 space-y-4">
-        {filteredRoles.map((job, idx) => {
-          const isExpanded = expandedRoleId === job.id;
-
-          return (
-            <Reveal key={job.id} delay={Math.min(idx, 4) * 60}>
-              <div
-                className={`rounded border transition-all duration-300 bg-white overflow-hidden ${
-                  isExpanded
-                    ? "border-blue-300 shadow-md ring-1 ring-blue-100/80"
-                    : "border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-sm"
-                }`}
-              >
-              {/* Role Header Row */}
-              <div
-                onClick={() => setExpandedRoleId(isExpanded ? null : job.id)}
-                className="p-5 sm:p-6 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 select-none"
-              >
-                <div className="space-y-1.5 flex-1 min-w-0">
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 transition-colors">
-                    {job.title}
-                  </h3>
-
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 font-medium">
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      {job.experience}
-                    </span>
-                    <span className="flex items-center gap-1.5 text-slate-600 font-medium">
-                      <span className="w-1 h-1 rounded-full bg-slate-400" />
-                      <span>{job.type}</span>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Apply Button & Expand Arrow — separated concerns */}
-                <div
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-3 self-start md:self-center shrink-0"
-                >
-                  {/* Apply Now → opens modal directly */}
-                  <LiquidButton
-                    text="Apply Now"
-                    onClick={() => handleOpenApplyModal(job)}
-                    btnColor="#1d4ed8"
-                    hoverBgColor="#ffffff"
-                    textColor="#ffffff"
-                    hoverTextColor="#1d4ed8"
-                    className="px-4 py-2 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm"
-                  />
-
-                  {/* Chevron → toggles job details accordion */}
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setExpandedRoleId(isExpanded ? null : job.id);
-                    }}
-                    aria-label="Toggle details"
-                    className="w-8 h-8 sm:w-9 sm:h-9 rounded border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
-                  >
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        isExpanded ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                </div>
-              </div>
-
-              {/* Accordion Details: Role Overview, Responsibilities, Requirements */}
-              {isExpanded && (
-                <div className="px-5 pb-6 sm:px-6 sm:pb-7 pt-2 border-t border-slate-100 bg-slate-50/40 space-y-5">
-                  <div>
-                    <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
-                      Position Overview
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                      {job.overview}
-                    </p>
-                  </div>
-
-                  {/* 2 Column Details */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
-                    <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
-                      <h5 className="text-xs font-bold uppercase tracking-wider text-blue-700">
-                        Core Responsibilities
-                      </h5>
-                      <ul className="space-y-1.5 text-xs text-slate-600">
-                        {job.responsibilities.map((resp, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-1.5 shrink-0" />
-                            <span>{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-2xs space-y-2.5">
-                      <h5 className="text-xs font-bold uppercase tracking-wider text-emerald-700">
-                        Candidate Requirements
-                      </h5>
-                      <ul className="space-y-1.5 text-xs text-slate-600">
-                        {job.requirements.map((req, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
-                            <span>{req}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Apply button inside expanded accordion */}
-                  <div className="pt-2 flex justify-end">
-                    <LiquidButton
-                      text={`Apply for ${job.title}`}
-                      onClick={() => handleOpenApplyModal(job)}
-                      btnColor="#1d4ed8"
-                      hoverBgColor="#1e40af"
-                      textColor="#ffffff"
-                      hoverTextColor="#ffffff"
-                      className="px-5 py-2.5 text-xs sm:text-sm rounded font-semibold border border-blue-700 shadow-sm cursor-pointer"
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-            </Reveal>
-          );
-        })}
-
-        {filteredRoles.length === 0 && (
-          <div className="p-12 text-center bg-white rounded-2xl border border-slate-200">
-            <p className="text-slate-600 text-sm font-medium">
-              No open roles found for {activeDept !== "all" ? activeDept : ""} in{" "}
-              {activeLocation}.
-            </p>
-            <button
-              onClick={() => {
-                setActiveDept("all");
-                setActiveLocation("All Locations");
-              }}
-              className="mt-3 px-4 py-2 rounded-xl bg-blue-700 text-white text-xs font-semibold hover:bg-blue-800 transition-colors cursor-pointer"
-            >
-              Reset Filters
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* Pop-up Modal Form */}
+      {/* ───────────── Application Modal ───────────── */}
       <AnimatePresence>
         {selectedJobForModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleCloseModal}
-              className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+              className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm"
             />
 
-            {/* Modal Card */}
+            {/* Modal card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Apply for ${selectedJobForModal.title}`}
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 my-auto"
+              className="relative z-10 w-full max-w-4xl max-h-[92vh] bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-5"
             >
-              {/* Modal Header */}
-              <div className="px-6 pt-6 pb-4 sm:px-8 sm:pt-7 border-b border-slate-100 flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                    Apply for Position
-                  </h3>
-                  <div className="text-xs sm:text-sm text-slate-500 mt-1 font-medium flex flex-wrap items-center gap-x-2">
-                    <span className="text-blue-700 font-semibold">{selectedJobForModal.title}</span>
-                    <span>•</span>
-                    <span>{selectedJobForModal.department}</span>
-                    <span>•</span>
-                    <span>{selectedJobForModal.location}</span>
-                  </div>
+              {/* Close */}
+              <button
+                type="button"
+                onClick={handleCloseModal}
+                aria-label="Close modal"
+                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-xl flex items-center justify-center text-white/80 md:text-slate-400 hover:text-white md:hover:text-slate-700 bg-white/10 md:bg-transparent hover:bg-white/20 md:hover:bg-slate-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Left: Job summary */}
+              <div className="md:col-span-2 bg-gradient-to-br from-blue-800 via-blue-700 to-blue-900 text-white p-6 sm:p-8 md:overflow-y-auto">
+                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-blue-200">
+                  Apply for Position
+                </p>
+                <h3 className="mt-2 text-xl sm:text-2xl font-bold leading-tight pr-10 md:pr-0">
+                  {selectedJobForModal.title}
+                </h3>
+
+                <div className="mt-5 grid grid-cols-2 md:grid-cols-1 gap-2.5 text-sm">
+                  {[
+                    { icon: Building2, value: selectedJobForModal.department },
+                    { icon: MapPin, value: selectedJobForModal.location },
+                    { icon: Briefcase, value: selectedJobForModal.experience },
+                    { icon: Clock, value: selectedJobForModal.type },
+                  ].map(({ icon: Icon, value }) => (
+                    <div key={value} className="flex items-center gap-2.5 text-blue-50">
+                      <span className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                        <Icon className="w-3.5 h-3.5" />
+                      </span>
+                      <span className="font-medium truncate">{value}</span>
+                    </div>
+                  ))}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={handleCloseModal}
-                  aria-label="Close modal"
-                  className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+
+                <div className="hidden md:block mt-7 pt-6 border-t border-white/15">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-blue-200 mb-3">
+                    Key Requirements
+                  </p>
+                  <ul className="space-y-2.5">
+                    {selectedJobForModal.requirements.map((req, i) => (
+                      <li key={i} className="flex items-start gap-2 text-[13px] text-blue-50/90 leading-relaxed">
+                        <CheckCircle2 className="w-4 h-4 mt-0.5 text-blue-200 shrink-0" />
+                        <span>{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
-              {/* Modal Body */}
-              <div className="px-6 py-6 sm:px-8 max-h-[calc(85vh-140px)] overflow-y-auto">
-                {isSubmitted ? (
-                  <div className="py-8 text-center space-y-4">
-                    <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto border border-emerald-200 shadow-sm">
-                      <CheckCircle2 className="w-9 h-9" />
-                    </div>
-                    <div className="space-y-1.5">
-                      <h4 className="text-xl font-bold text-slate-900">Application Submitted!</h4>
-                      <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                        Thank you, <strong className="text-slate-900">{formData.fullName}</strong>. Your application for{" "}
-                        <strong className="text-blue-700">{selectedJobForModal.title}</strong> has been received. Our recruitment committee will review your credentials and contact you shortly.
-                      </p>
-                    </div>
-                    <div className="pt-4 flex justify-center">
-                      <button
-                        type="button"
-                        onClick={handleCloseModal}
-                        className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-colors cursor-pointer"
-                      >
-                        Done & Close
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmitApplication} className="space-y-4 sm:space-y-5">
-                    {formError && (
-                      <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 shrink-0" />
-                        <span>{formError}</span>
-                      </div>
-                    )}
-
-                    {/* Full Name * */}
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder="e.g. Abdullah Al-Ghamdi"
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    {/* Email Address * & Mobile * */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Email Address * */}
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                          Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="e.g. name@example.com"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50 focus:bg-white transition-all"
-                        />
-                      </div>
-
-                      {/* Mobile * */}
-                      <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                          Mobile <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={formData.mobile}
-                          onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                          placeholder="e.g. +966 5X XXX XXXX"
-                          className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50 focus:bg-white transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Message <span className="text-slate-400 text-xs normal-case font-normal">(Optional)</span>
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Key Aramco/SCE approvals, notice period, or remarks..."
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 text-sm text-slate-900 placeholder:text-slate-400 bg-slate-50/50 focus:bg-white transition-all resize-none"
-                      />
-                    </div>
-
-                    {/* Resume * */}
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                        Resume <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        className="hidden"
-                      />
-
-                      {resumeFile ? (
-                        <div className="flex items-center justify-between p-3.5 rounded-xl border border-blue-200 bg-blue-50/60">
-                          <div className="flex items-center gap-3 min-w-0">
-                            <div className="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center shrink-0">
-                              <FileText className="w-5 h-5" />
-                            </div>
-                            <div className="min-w-0">
-                              <p className="text-xs font-semibold text-slate-900 truncate">
-                                {resumeFile.name}
-                              </p>
-                              <p className="text-[11px] text-slate-500">
-                                {(resumeFile.size / (1024 * 1024)).toFixed(2)} MB
-                              </p>
-                            </div>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setResumeFile(null);
-                              if (fileInputRef.current) fileInputRef.current.value = "";
-                            }}
-                            className="text-xs text-red-600 hover:text-red-700 font-semibold px-2 py-1 rounded-md hover:bg-red-50 cursor-pointer transition-colors"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => fileInputRef.current?.click()}
-                          className="border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-2xl p-5 text-center cursor-pointer transition-colors bg-slate-50/50 hover:bg-blue-50/30 group"
-                        >
-                          <UploadCloud className="w-7 h-7 text-slate-400 group-hover:text-blue-600 mx-auto mb-1.5 transition-colors" />
-                          <p className="text-xs font-bold text-slate-700 group-hover:text-blue-700 transition-colors">
-                            Click to attach your Resume (PDF or DOCX)
-                          </p>
-                          <p className="text-[11px] text-slate-400 mt-0.5">
-                            Maximum size: 10MB
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Submit Button */}
-                    <div className="pt-2 [&>button]:w-full">
-                      <LiquidButton
-                        text={isSubmitting ? "Submitting Application..." : "Submit Application"}
-                        type="submit"
-                        btnColor="#1d4ed8"
-                        hoverBgColor="#1e40af"
-                        textColor="#ffffff"
-                        hoverTextColor="#ffffff"
-                        className="w-full py-3 text-xs sm:text-sm rounded-xl font-bold shadow-md cursor-pointer justify-center"
-                      />
-                    </div>
-                  </form>
-                )}
+              {/* Right: Form */}
+              <div className="md:col-span-3 p-6 sm:p-8 overflow-y-auto max-h-[60vh] md:max-h-[92vh]">
+                <ApplicationForm
+                  key={selectedJobForModal.id}
+                  jobTitle={selectedJobForModal.title}
+                  showHeader={false}
+                  onDone={handleCloseModal}
+                />
               </div>
             </motion.div>
           </div>
