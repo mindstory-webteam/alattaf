@@ -285,7 +285,7 @@ export default function CareerRolesSection() {
   return (
     <div className="w-full mt-8 sm:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       {/* ───────────── LEFT: Filter Sidebar ───────────── */}
-      <aside className="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-24 space-y-4">
+      <aside className="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-32 space-y-4">
         <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs">
           <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
             <div className="flex items-center gap-2 text-sm font-bold text-slate-900">

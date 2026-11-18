@@ -63,7 +63,7 @@ export default function WorkWithAAACSection() {
           </div>
 
           {/* Right Column: Application Card (top aligned with heading) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
             <Reveal delay={150}>
               <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-7 shadow-sm">
                 <div className="mb-5 pb-4 border-b border-slate-100">
