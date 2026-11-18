@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
           {/* Introduction */}
           <section className="space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base">
             <p>
-              <strong>Al Attaf Advanced Contracting Company</strong> (&quot;AAAC&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), registered under Saudi Ministry of Commerce Commercial Registration <strong>CR # 2059000287</strong> and recognized under <strong>Saudi Aramco Vendor # 10005728</strong>, is committed to upholding the highest standards of data security, privacy, and confidentiality.
+              <strong>Al Attaf Advanced Contracting Company</strong> (&quot;AACC&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), registered under Saudi Ministry of Commerce Commercial Registration <strong>CR # 2059000287</strong> and recognized under <strong>Saudi Aramco Vendor # 10005728</strong>, is committed to upholding the highest standards of data security, privacy, and confidentiality.
             </p>
             <p>
               This Privacy Policy outlines our practices concerning the collection, storage, processing, and protection of information obtained through our website (<a href="https://alattafcompany.com" className="text-blue-700 hover:underline">alattafcompany.com</a>) and our corporate contracting communications, complying with the <strong>Personal Data Protection Law (PDPL)</strong> of the Kingdom of Saudi Arabia.

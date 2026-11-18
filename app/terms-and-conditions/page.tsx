@@ -37,7 +37,7 @@ export default function TermsAndConditionsPage() {
           <section className="space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base">
             <p>
               Welcome to <strong>Al Attaf Advanced Contracting Company</strong>{" "}
-              (&quot;AAAC&quot;). By accessing our website (
+              (&quot;AACC&quot;). By accessing our website (
               <a
                 href="https://alattafcompany.com"
                 className="text-blue-700 hover:underline"
@@ -89,7 +89,7 @@ export default function TermsAndConditionsPage() {
               inquiries generated via this platform are indicative and
               non-binding until formalized into an executed Master Services
               Agreement (MSA), Purchase Order (PO), or formal Contract signed by
-              an authorized signatory of AAAC.
+              an authorized signatory of AACC.
             </p>
           </section>
 

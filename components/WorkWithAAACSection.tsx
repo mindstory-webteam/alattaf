@@ -29,7 +29,7 @@ export default function WorkWithAAACSection() {
         {/* Section Header */}
         <div className="max-w-3xl mb-10 sm:mb-14">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
-            Work with AAAC
+            Work with AACC
           </h2>
           <p className="mt-2.5 text-sm sm:text-base text-slate-600 leading-relaxed">
             We build more than projects — we build lasting careers grounded in mutual respect, continuous learning, and shared success.
